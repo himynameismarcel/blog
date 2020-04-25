@@ -1,0 +1,719 @@
+---
+title: "APIs and Web Services: Background and an Example"
+author: "Marcel Kropp"
+date: 2018-03-13T21:13:37-05:00
+categories: ["Python"]
+tags: ["Web Service", "API", "Python", "Flask"]
+---
+
+
+
+<p>About a year ago I familiarized myself with <strong>web-services</strong> and <strong>APIs</strong> (<em>Application Program(ming) Interface</em>) more generally to get a better understanding of the technological background. My conclusion back then was that the terms are used in various contexts and depending on the exact context, everyone seemed to have a vague idea about what they actually mean and stand for.</p>
+<div id="a-first-explainer-getting-some-intuition" class="section level3">
+<h3>A First Explainer: Getting Some Intuition</h3>
+<p>In an introductory class about web development from <a href="https://www.linkedin.com/in/coltsteele/">Colt Steele</a> which I had attended last year, he introduces APIs at some point in the course right after having moved from front-end technologies to back-end web development as follows: <em>API’s are interfaces for code/computers to talk to one another.</em></p>
+<p>He goes on to clarify that the term ‘API’ is actually a <em>‘broader term that refers to any type of code/interface that is made for other code to be used with/to communicated with’</em>. Referring to the corresponding <a href="https://en.wikipedia.org/wiki/Application_programming_interface">Wikipedia article</a>, the definition of an API undermines the very broad/vague definition that Colt used to introduce APIs by stating that <em>‘[a]n application programming interface (API) is a set of routines, protocols, and tools for building software and applications.’</em> Hence, the term API comprises anything ranging from libraries, packages, modules to databases, web-APIs, etc.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a><br></p>
+<div id="commonly-referred-to-as-apis-today-web-apis" class="section level4">
+<h4>Commonly referred to as APIs today: web APIs</h4>
+<p>But what people nowadays typically mean they refer to APIs are <strong>web (application) APIs</strong>, which are, strictly speaking, only a subset of the much broader definition of APIs from above. It is only that web APIs have become so prevalent and common, that when people refer to an API they usually actually are referring to a <strong>web API</strong>, meaning any sort of generic interface to an application via the web.</p>
+<p>Today a classical example where web APIs are exploited extensively are all kinds of travel search engines like Trivago, Expedia, Checkfelix, etc., that aggregate information from a number of other services via the corresponding web APIs and thereby make the respective data of the services whose web APIs they are consuming available on their platforms for customers to e.g., compare prices.</p>
+<p>The above example already makes clear, that the way that applications get data from web APIs or access its interface is through the internet (or more precisely, via <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a>, the ‘Hypertext Transfer Protocol’ which is <em>the</em> foundation of data communication for the modern world wide web and functions as a request-response protocol in the client-server computing model).</p>
+<p>Today almost all major (internet)-giants like <a href="https://www.programmableweb.com/api/twitter">Twitter</a>, <a href="https://www.programmableweb.com/api/facebook">Facebook</a>, <a href="https://console.developers.google.com/apis/dashboard">Google</a> (in their developers section; their most popular/interesting API being their Maps API), <a href="https://www.programmableweb.com/search/ebay">eBay</a>, <a href="https://www.programmableweb.com/search/yahoo">Yahoo</a>, <a href="https://www.programmableweb.com/category/all/apis?keyword=amazon">Amazon</a>, etc. actively maintain dozens of various web-APIs that are all designed for specific purposes and audiences and have become part of these companies’ standard product range/deliverables.</p>
+</div>
+<div id="two-examples-reddits-api-and-yahoo-weather" class="section level4">
+<h4>Two Examples: Reddit’s API and Yahoo Weather</h4>
+<p>As an example and to distinguish a web API from a <em>normal</em> human-readable website, Colt refers to <a href="https://www.reddit.com/r/aww">reddit.com/r/aww</a> which represents a subreddit for cute photos in a human-readable format (which our browser appropriately renders for us to have a look at). In other words, the underlying data (of content in the route ‘/r/aww’) is embedded in HTML-structure of the page which we get back rendered when making an HTTP request to <a href="https://www.reddit.com/r/aww">reddit.com/r/aww</a>. But there is also the corresponding web API-version for <em>code</em> to interact with of exactly this ‘aww’ subreddit available under <a href="https://www.reddit.com/r/aww.json">reddit.com/r/aww.json</a> that strips away all the extra-clutter that comes along with the data (HTML, etc.).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The base-bone data in <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> (Javascript Object Notation) format is easier for computers/code/applications to handle as compared to the human-readable version from before. Together with another very popular output-format called <a href="https://en.wikipedia.org/wiki/XML">XML</a> (eXtensible Markup Language), ‘JSON’ are the standard output-formats of HTTP requests to web APIs (so web APIs respond with data directly).</p>
+<p>Another simple example is the <a href="https://developer.yahoo.com/weather/">Yahoo Weather API</a> which allows to easily toggle between JSON and XML - responses and, e.g., refers you to the following end-point (URL) for a request for the sunset time in Hawaii in JSON - format (as an arbitrary example): <a href="https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&amp;format=json&amp;env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys">Endpoint Sunset time Hawaii</a>. The data that should be displayed in JSON-format is the following:</p>
+<pre class="json"><code>{
+  query: {
+    count: 1,
+    created: &quot;2018-03-23T21:26:22Z&quot;,
+    lang: &quot;de-DE&quot;,
+    results: {
+      channel: {
+        astronomy: {
+          sunset: &quot;6:37 pm&quot;
+        }
+      }
+    }
+  }
+}</code></pre>
+<p>The corresponding output in XML-format would look as follows:</p>
+<pre><code>&lt;query xmlns:yahoo=&quot;http://www.yahooapis.com/v1/base.rng&quot; yahoo:count=&quot;1&quot; yahoo:created=&quot;2018-03-23T21:28:07Z&quot; yahoo:lang=&quot;de-DE&quot;&gt;
+  &lt;results&gt;
+    &lt;channel&gt;
+      &lt;yweather:astronomy xmlns:yweather=&quot;http://xml.weather.yahoo.com/ns/rss/1.0&quot; sunset=&quot;6:37 pm&quot;/&gt;
+    &lt;/channel&gt;
+  &lt;/results&gt;
+&lt;/query&gt;
+&lt;!--  total: 18  --&gt;</code></pre>
+</div>
+<div id="advantage-of-json-and-xml---formats" class="section level4">
+<h4>Advantage of JSON and XML - formats</h4>
+<p>What makes the ‘raw’ data format returned from web APIs so attractive is that the response can, e.g., seamlessly be integrated into your own application/program. In such a scenario the HTTP-request to a certain endpoint of a web-API would therefore not be made via a browser but e.g., from within a program’s code (using certain packages that support HTTP-requests like <em>urllib</em> or <em>httplib</em> in Python, <em>httr</em> in R or <em>request</em> in NodeJS). Beyond that, there is also the possibility to fire HTTP-requests via the command-line using a tool called <code>curl</code> which ships with Macs by default but has to be installed on Windows machines. The bottom line is: browsers are not the only tools that can be used to make HTTP-requests to certain URLs (end-points).<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+</div>
+<div id="web-api-vs.-regular-websites" class="section level4">
+<h4>Web API vs. ‘regular websites’</h4>
+<p>After all of the above, we could be confused and think that <em>regular</em> websites and web APIs are two completely different technologies <em>or</em> we could concentrate on the similarities (i.e., the fact that they use the same HTTP protocol to fetch for data) and think that they are actually practically the same. Truth is, the difference between the two is actually negligible. What makes APIs stand out are the already discussed format they send data back (JSON or XML instead of HTML) and an accompanied syntax (usually explained in a dedicated documentation) that has to be used in order to retrieve/locate certain end-points according to one’s own needs.</p>
+</div>
+<div id="useful-websites" class="section level4">
+<h4>Useful Websites</h4>
+<p>As an interesting (not so say funny) application of such web APIs, in his web-development class Colt mentions <a href="https://ifttt.com/recipes">ifttt.com/recipes</a> which is a service that enables you to make apps and devices to work together by exploiting the connection/concatenation of web APIs (that are supported on this platform).</p>
+<p>Further, a great place that collects a comprehensive list of available web APIs (i.e., kind of like an API directory) is <a href="https://programmableweb.com">programmableweb.com</a>.</p>
+</div>
+</div>
+<div id="a-second-explainer" class="section level3">
+<h3>A Second Explainer</h3>
+<p>In his book <a href="http://shop.oreilly.com/product/0636920034391.do"><em>Web Scraping with Python (2015)</em></a><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> which I recently read through some of the chapters, Ryan Mitchell introduces generic APIs as <em>‘[…] convenient interfaces between multiple disparate applications […]’</em> and that <em>‘[…] APIs are designed to serve as a lingua franca between different pieces of software that need to share information with each other’ (p. 49)</em>. Without going into much detail about <em>what</em> exactly is meant with this definition for a layman, <em>web (application) APIs</em> are introduced as what has been commonly understood in recent times when people refer to ‘APIs’ (exactly like we discussed in our first explainer above).</p>
+<p>Mitchell goes on and lists a few simple <em>ground rules</em> that are common to almost all web APIs:
+* <strong>Methods:</strong>
+Information is requested via HTTP - requests whereby the four most commonly used ‘verbs’ are <code>GET, POST, PUT, DELETE</code>.
+* <strong>Authentication:</strong>
+While there are many free API services, there are also many proprietary APIs that require some type of authentication before they can be used (e.g., Twitter).
+* <strong>Responses:</strong>
+The most common types of response formatting are XML and JSON whereby in recent years JSON has become more and more popular. This can generally be attributed to (1) JSON files being generally smaller than their corresponding XML - counterparts and (2) that many backend frameworks used in web development nowadays use Javascript which natively integrates better with JSON - data.</p>
+<p>Two must-reads that Mitchell refers to to get a more or less complete overview of both the theory and practice of modern APIs are <a href="http://shop.oreilly.com/product/0636920028468.do"><em>RESTful Web APIs (2013)</em></a> by Richardson, Ruby and Amundsen as well as as video series on <a href="http://shop.oreilly.com/product/110000125.do"><em>Designing APIs for the Web</em></a> by Amundsen.</p>
+</div>
+<div id="a-third-explainer-and-building-your-own-web-api" class="section level3">
+<h3>A Third Explainer and Building Your Own Web-API</h3>
+<p>My third encounter with APIs was in Miguel Grinberg’s book <a href="http://shop.oreilly.com/product/0636920031116.do"><em>Flask Web Development</em></a> where he introduces APIs by mentioning that in recent years <em>‘there has been a trend in web applications to move more and more of the business logic to the client side, producing an architecturak styke that is known as Rich Internet Applications (RIA). In RIAs, the server’s main (and sometimes only) function is to provide client application with data retrieval and storage services.’ (p. 175)</em> It is exactly in this setting that the server’s purposes reduces to becoming a <em>web service</em> or <em>Application Programming Interface (API)</em><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.
+That is, Grinberg uses the terms <em>(web) APIs</em> and <em>web service</em> interchangeably.</p>
+<p>Mentioning the RPC (Remote Procedure Call) and SOAP (Simplified Object Access Protocols) that were the popular choices by which RIAs would communicate with a web service in the past years, Grinberg’s focus then shifts fully on the more recently emerged REST (Representational State Transfer) architecture for web services by exploiting and being built on the most powerful distributed computing system that we all know: the World Wide Web.</p>
+<p>Referring to <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Roy Fielding’s dissertation</a> which introduces the REST architecture for web services, Grinberg lists the six defining characteristics that make a web service RESTful:
+* <em>Client-Server</em>: There must be a clear separation between the client and the server.
+* <em>Stateless</em>: A client request must contain all the information that is necessary to carry out the request. The server must not store any state about the client that persists from one request to the next.
+* <em>Cache</em>: Responses from the server can be labeled as cacheable or non-cacheable so that clients (or intermediaries between clients and servers) can use a cache for optimization purposes.
+* <em>Uniform Interface</em>: The protocol by which clients access server resources must be consistent, well defined, and standardized. Hence, the commonly used uniform interface of REST web services is the HTTP protocol.
+* <em>Layered System</em>: Proxy servers, caches, or gateways can be inserted between clients and servers as necessary to improve performance, reliability, and scalability.
+* <em>Code-on-Demand</em>: Clients can optionally download code from the server to execute in their context.</p>
+<p>Before showing the reading how to actually build a web API, Grinberg mentions three additional concepts:
+* <strong>Resources Are Everything:</strong> <em>Resources</em> are considered the core to the REST architectural style which are nothing else then items of interest in the domain of the application (if you, e.g., consider a blogging application then <em>resources</em> would be users, blog posts, comments, etc.).<br>
+Thereby each resource must have a unique URL by which it is represented (staying with the blogging example, a blog post could be represented by the URL <code>/api/posts/123345</code> where <code>12345</code> is a unique identifier for a post such as the post’s database primary key).<br></p>
+<ul>
+<li><p><strong>Request Methods:</strong> While client applications send requests to a server using the corresponding URL, the request <em>method</em> indicates the desired operation. And because REST APIs use the HTTP-protocol that we are so well aware of, the respective HTTP-verbs are being exploited (i.e., the above mentioned <code>GET, POST, PUT, DELETE</code> to name only the most frequently used). Thereby the REST architecture does not require that all methods be implemented for a resource. An un-implemented request method would result in the client receiving a 405 status code as a response.</p></li>
+<li><p><strong>Request and Response Bodies:</strong>
+Resources are sent back and forth between client and server in the bodies of requests and responses, but REST does not specify the format to use to encode resources. As already mentioned multiple times, the two formats commonly used with RESTful web services are JSON and XML whereby for web-based RIAS, JSON is more attractive/userful because of its usefulness in the context of Javascript.
+An additional interesting aspect mentioned by Grinberg is that in a well-designed RESTful API, the client just knows a short list of top-level resource URLs and then discovers the rest from links included in the response, similar to how we can discover new web pages by simply browsing the Web by clicking on links that we stumble upon.</p></li>
+</ul>
+</div>
+<div id="building-a-web-api" class="section level3">
+<h3>Building a Web-API</h3>
+<p>While in his book <a href="http://shop.oreilly.com/product/0636920031116.do"><em>Flask Web Development</em></a>, Grinberg guides the reader through the process of exposing the already implemented blogging platform by using the familiar <code>route()</code> decorator along with its <code>methods</code> argument to declare the routes that would handle the resource URLs exposed by the web service, in another <a href="https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments">blog post</a> Grinberg goes through a very simple ad-hoc example of how to easily create a web service that would adhere to the REST architecture by means of just a few lines of code.</p>
+<p>The below example does not claim to be a complete tutorial of how to create a full-fledged RESTful API and is not backed by a proper database. It simply outlines some design aspects which in the case of a web service that adheres to the REST guidelines simply becomes an exercise in identifying the resources that will be exposed and how they will be affected by the different request methods.</p>
+<p>The example that Gringberg outlines is a simple ‘To Do List’ application whereby the only resource that will be exposed by this service are <em>tasks</em>. This tasks resource will use HTTP methods as follows:</p>
+<table border="1" class="dataframe">
+<tbody>
+<tr>
+<th>
+HTTP Method
+</th>
+<th>
+URI
+</th>
+<th>
+Action
+</th>
+</tr>
+<tr>
+<td>
+GET
+</td>
+<td>
+<a href="http://%5Bhostname%5D/todo/api/v1.0/tasks" class="uri">http://[hostname]/todo/api/v1.0/tasks</a>
+</td>
+<td>
+Retrieve list of tasks
+</td>
+</tr>
+<tr>
+<td>
+GET
+</td>
+<td>
+<a href="http://%5Bhostname%5D/todo/api/v1.0/tasks/%5Btask_id%5D" class="uri">http://[hostname]/todo/api/v1.0/tasks/[task_id]</a>
+</td>
+<td>
+Retrieve a task
+</td>
+</tr>
+<tr>
+<td>
+POST
+</td>
+<td>
+<a href="http://%5Bhostname%5D/todo/api/v1.0/tasks" class="uri">http://[hostname]/todo/api/v1.0/tasks</a>
+</td>
+<td>
+Create a new task
+</td>
+</tr>
+<tr>
+<td>
+DELETE
+</td>
+<td>
+<a href="http://%5Bhostname%5D/todo/api/v1.0/tasks/%5Btask_id%5D" class="uri">http://[hostname]/todo/api/v1.0/tasks/[task_id]</a>
+</td>
+<td>
+Delete a task
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>In addition, a task as defined as having the following fields:
+* <strong>id:</strong> unique identifier for tasks (numeric)
+* <strong>title:</strong> short description of task (string)
+* <strong>description:</strong> long task description (text)
+* <strong>done:</strong> state of task completion (boolean)</p>
+<p>Assuming that you have had a basic exposure to Python including the powerful Flask web development framework and working with virtual environments, switch to your command-line and run the following commands that create a root directory <code>createRESTfulAPI</code>, create a virtual environment within that root directory, activate that virtual environment, install flask using <code>pip</code> and create an additional folder <code>app</code> which will hold our application:</p>
+<pre><code>$ mkdir createRESTfulAPI
+$ cd createRESTfulAPI
+$ virtualenv virtual
+New python executable in ...............................
+Also creating executable in ............................
+Installing setuptools, pip, wheel...done.
+$ source virtual/bin/activate
+$ pip install flask
+$ mkdir app
+$ cd app</code></pre>
+<p>Having installed flask, a simple web application can be created by just a few lines of code that are which we will put in a file called <code>app.py</code>:</p>
+<pre class="python"><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route(&#39;/&#39;)
+def index():
+    return &quot;Hello, World!&quot;
+
+if __name__ == &#39;__main__&#39;:
+    app.run(debug=True)</code></pre>
+<p>Let us briefly disentangle what all of the above code is actually doing (for a more comprehensive review of the basics to get started with flask, see the <a href="http://flask.pocoo.org/docs/0.12/quickstart/">quickstart manual</a>) (note that for the below it helps at least to have an intuition about Object-Oriented Programming (OOP) in Python):
+* <code>from flask import Flask</code> imports the <code>Flask</code> class; an instance of this class will be our <a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">WSGI</a> application
+* then we create an instance of this class with <code>app = Flask(__name__)</code> whereby the first argument is the name of the application’s module or package. If we are using a single module (as in this example), we should use <code>__name__</code> because depending on if it’s started as application or imported as module the name will be different (<code>__main__</code> versus the actual import name)
+* then we use the <code>route()</code> decorator in <code>@app.route('/')</code> to tell Flask what URL should trigger our function
+* the function is given a name which is also used to generate URLs for that particular function and then returns the message we want to display in the user’s browser
+* with the line <code>if __name__ == '__main__': app.run(debug=True)</code>, we start the debugger when starting the application</p>
+<p>Now, to run this application, simply execute <code>python3 app.py</code> in your command-line, switch to your web-browser and type <code>http://localhost:5000</code> to see your application already in action (note that in my case I have to execute <code>python3</code> because for my system <code>python</code> is assigned to python 2; in your case simply running <code>python</code> might run already python3).<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>As mentioned above, the proper way to install our web service would be to have it backed by a proper database. But because the tutorial is not about databases, Miguel continues the implementation of the web service by means of a simple memory structure (which will only work if the web server that runs the application in the end is single process and single threaded which is okay for Flask’s own development server but would not be recommended for a real production web server).</p>
+<p>To implement the first entry point of our web service, we update the above flask - application by removing the <code>index</code> entry point, adding a list of dictionaries called <code>tasks</code> which contains the four fields which we have defined above and correspondingly create the ‘route’ (the entry-point) from which all the tasks are retrievable via a <code>GET</code> request:</p>
+<pre class="python"><code>from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+tasks = [
+    {
+        &#39;id&#39;: 1,
+        &#39;title&#39;: u&#39;Buy groceries&#39;,
+        &#39;description&#39;: u&#39;Milk, Cheese, Pizza, Fruit, Tylenol&#39;,
+        &#39;done&#39;: False
+    },
+    {
+        &#39;id&#39;: 2,
+        &#39;title&#39;: u&#39;Learn Python&#39;,
+        &#39;description&#39;: u&#39;Need to find a good Python tutorial on the web&#39;,
+        &#39;done&#39;: False
+    }
+]
+
+@app.route(&#39;/todo/api/v1.0/tasks&#39;, methods=[&#39;GET&#39;])
+def get_tasks():
+    return jsonify({&#39;tasks&#39;: tasks})
+
+if __name__ == &#39;__main__&#39;:
+    app.run(debug=True)</code></pre>
+<p>The implemented <code>get_tasks</code> function is associated with the implemented URI <code>/todo/api/v1.0/tasks</code> and responds with our <code>tasks</code> data in JSON format (note the import of <code>jsonify</code> from flask in the header of our script and the line <code>return jsonify({'tasks': tasks})</code> that transforms the list of dictionaries into a JSON structure.)</p>
+<p>By running the application on a local server (for this again type <code>python3 app.py</code> into your command-line<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>) and typing <code>http://localhost:5000/todo/api/v1.0/tasks</code> into your browser should show you the following JSON output:</p>
+<pre class="javascript"><code>{
+  tasks: [
+    {
+      description: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      done: false,
+      &quot;id&quot;: 1,
+      title: &quot;Buy groceries&quot;
+    },
+    {
+      description: &quot;Need to find a good Python tutorial on the web&quot;,
+      done: false,
+      &quot;id&quot;: 2,
+      title: &quot;Learn Python&quot;
+    }
+  ]
+}</code></pre>
+<p>Above we have already discussed that web browsers are not the only means to issue HTTP - requests. Similarly, here we actually want to either use the <a href="https://curl.haxx.se/"><code>curl</code></a> - command to issue the HTTP GET - request from the command-line or use a tool like <a href="https://www.getpostman.com/">Postman</a> which is specifically designed for API development.</p>
+<p>If we try to access your end-point with the <code>curl</code> - command via the command line, your output should like similar to the following:</p>
+<pre><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 294
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sat, 24 Mar 2018 14:46:55 GMT
+
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;description&quot;: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      &quot;done&quot;: false,
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Buy groceries&quot;
+    },
+    {
+      &quot;description&quot;: &quot;Need to find a good Python tutorial on the web&quot;,
+      &quot;done&quot;: false,
+      &quot;id&quot;: 2,
+      &quot;title&quot;: &quot;Learn Python&quot;
+    }
+  ]
+}</code></pre>
+<p>Voila - we just accessed the first end-point of our web service! Note that the part <code>-i</code> (which is called a ‘flag’, ‘option’, ‘argument’ or ‘parameter’ in command line jargon) stands for <code>--include</code> and makes the HTTP response to include the header in the output (the header can include things like server name, cookies, date of the document, etc.). For an comprehensive overview of available options for the <code>curl</code> tool refer to the following <a href="https://curl.haxx.se/docs/manpage.html">website</a>.</p>
+<p>When ran through Postman, the response looks exactly the same:
+<br>
+<img src="/img/Postman1.png" />
+<br></p>
+<p>Next, we turn to extending our web service by adding an additional <code>GET</code> method for our tasks resource that will be used to return the data of a single task. For the corresponding <code>get_task()</code> - function which is associated with the URI <code>/todo/api/v1.0/tasks/&lt;int:task_id&gt;</code>, we add an additional check to see if the <code>id</code> that we are handing over the HTTP request actually exists in our database (for this we have to import the <code>abort</code> object of the flask library ). The corresponding code looks as follows:</p>
+<pre class="python"><code>from flask import abort
+
+@app.route(&#39;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&#39;, methods=[&#39;GET&#39;])
+def get_task(task_id):
+    task = [task for task in tasks if task[&#39;id&#39;] == task_id]
+    if len(task) == 0:
+        abort(404)
+    return jsonify({&#39;task&#39;: task[0]})</code></pre>
+<p>Let us briefly disentangle the code and take a closer look in particular at the part <code>task = [task for task in tasks if task['id'] == task_id]</code>. The concept being applied here is a so-called <em>list comprehension</em>. List comprehensions are a very concise way to produce lists in python which can be very intuitive once you get the hang of them but can be a bit intimidating at the beginning. What proves especially useful is to rewrite a list comprehension as a for loop or a <em>lambda function</em> (which is another way to create lists in Python which we, however, will not investigate any further).</p>
+<p>To briefly recap: Lists are one of the four built-in data structures in Python (besides tuples, dictionaries and sets). Like in R is a compound data type, meaning that the values stored in the list don’t need to be of the same type. They are simply an ordered collection of items or objects which can be iterated. <br>
+The single best way to think about list comprehensions is to think of how we describe sets, tuples or vectors in Math:</p>
+<pre class="python"><code>S = {x^2: x in {0 ... 9}}
+V = (2^x: x in {0, ..., 12})</code></pre>
+<p>In Python, list comprehensions are constructed as follows: <code>list_variable = [x for x in iterable]</code>. The direct translation of this into the above examples of the sets <code>S</code>and <code>V</code> would mean:</p>
+<pre class="python"><code>S = [x**2 for x in range(10)]
+S
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+V = [2**i for i in range(13)]
+V
+[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]</code></pre>
+<p>We see that the syntax of list comprehensions in Python is very similar to the mathematical defintions of the sets we have described above. Overall, list comprehensions are very powerful because they can be a complete substitue to for loops, lambda functions and the functions <code>map()</code>, <code>filter()</code>and <code>reduce()</code>.</p>
+<p>Now, if we want we can even add conditionals to the list comprehensions. If, e.g., in the set <code>S</code> from above we would only like to get even numbers, we could write:</p>
+<pre class="pthon"><code>S = [x**2 for x in range(10) if x%2==0]
+S
+[0, 4, 16, 36, 64]</code></pre>
+<p>Coming back to our implementation of the new route, we see that we get the id of the task in the URL which is then handed over as the argument <code>task_id</code> to the route’s associated function <code>get_task(task_id)</code> (not to be confused with <code>get_tasks()</code> from our first route from above). With the argument <code>task_id</code> we search in our <code>tasks</code> array and if the id in our request does not exist in our in memory database (i.e., <code>len(task) == 0</code>), we return error code 404 which, according to the HTTP specification, stands for “Resource Not Found”. If, on the other hand, we find a corresponding task in our database, we again package it as JSON using <code>jsonify</code> and send it as a response. Start the local server again via <code>python3 app.py</code> and switch to the command-line to execute an HTTP request using <code>curl</code> as follows:</p>
+<pre><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks/2
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 152
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sat, 24 Mar 2018 22:05:30 GMT
+
+{
+  &quot;task&quot;: {
+    &quot;description&quot;: &quot;Need to find a good Python tutorial on the web&quot;,
+    &quot;done&quot;: false,
+    &quot;id&quot;: 2,
+    &quot;title&quot;: &quot;Learn Python&quot;
+  }
+}</code></pre>
+<p>Requesting a non-existent tasks give us the following response:</p>
+<pre><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks/3
+HTTP/1.0 404 NOT FOUND
+Content-Type: text/html
+Content-Length: 233
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sat, 24 Mar 2018 22:07:55 GMT
+
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.&lt;/p&gt;</code></pre>
+<p>Querying for resource id #2 gave us the expected result. However, querying for <code>task_id == 3</code> returned an HTML message instead of JSON because this is how Flask generates the 404 response by default. If ran through the browser, the returned web page would look as follows:</p>
+<p><br>
+<img src="/img/NotFound.png" />
+<br></p>
+<p>To also respond with JSON in the event of a 404 error, we slightly tweak our 404 error handler:</p>
+<pre class="python"><code>from flask import make_response
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({&#39;error&#39;: &#39;Not found&#39;}), 404)</code></pre>
+<p>After this, the printed response in our command-line looks much better:</p>
+<pre><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks/3
+HTTP/1.0 404 NOT FOUND
+Content-Type: application/json
+Content-Length: 27
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sat, 24 Mar 2018 22:15:57 GMT
+
+{
+  &quot;error&quot;: &quot;Not found&quot;
+}</code></pre>
+<p>We continue with the implementation of a <code>POST</code> method to be able to add a new item to our task database. For this we need the <code>request</code> object from the flask library. Note how we switched the <code>methods</code> attribute from <code>GET</code> to <code>POST</code>:</p>
+<pre class="python"><code>from flask import request
+
+@app.route(&#39;/todo/api/v1.0/tasks&#39;, methods=[&#39;POST&#39;])
+def create_task():
+    if not request.json or not &#39;title&#39; in request.json:
+        abort(400)
+    task = {
+        &#39;id&#39;: tasks[-1][&#39;id&#39;] + 1,
+        &#39;title&#39;: request.json[&#39;title&#39;],
+        &#39;description&#39;: request.json.get(&#39;description&#39;, &quot;&quot;),
+        &#39;done&#39;: False
+    }
+    tasks.append(task)
+    return jsonify({&#39;task&#39;: task}), 201</code></pre>
+<p>The following aspects are worth noting:
+* in Flask, data a client sends to the server is provided by the global <code>request</code> object
+* <code>request.json</code> will contain the posted data only if it came marked as JSON
+* if the data is not there or is missing a <code>title</code> item, we return error code 400 (<em>bad request</em>)
+* if the posted data is accepted as JSON, we create a new task dictionary using the id of the last task plus one via <code>'id': tasks[-1]['id'] + 1</code>. The construction takes the last task dictionary in our list of task dictionaries (<code>tasks[-1]</code>) and then extracts the <code>id</code> from this last task dictionary by extracting the corresponding <code>value</code> belonging to the key <code>id</code> (note that dictionaries in python are so-called <em>key-value pairs</em>.) So if our task dictionary contains e.g., two tasks, <code>tasks[-1]['id']</code> will evalute to <code>2</code>, hence <code>'id': tasks[-1]['id'] + 1</code> will make <code>'id'</code> to evalute to <code>3</code>.
+* in order to hand over the data as JSON we have to set the request content type to <code>application/json</code> when firing the <code>POST</code> request via the command line
+* we assume the <code>done</code> field to always start as <code>False</code>
+* the <code>description</code> field is optional and does not have to be delivered in the <code>POST</code> request
+* after adding the newly created task (via <code>tasks.append(task)</code>)to our list of tasks (our <code>tasks</code> array), we respond to the client with the added task like above including a status code 201 which according to HTTP stands for “Created”</p>
+<p>Launching our web service with <code>python3 app.py</code> and jumping over to our command line to test the newly implemented functionality results in the following:</p>
+<pre><code>$ curl -i -H &quot;Content-Type: application/json&quot; -X POST -d &#39;{&quot;title&quot;:&quot;Read a book&quot;}&#39; http://localhost:5000/todo/api/v1.0/tasks
+HTTP/1.0 201 CREATED
+Content-Type: application/json
+Content-Length: 105
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sat, 24 Mar 2018 23:18:39 GMT
+
+{
+  &quot;task&quot;: {
+    &quot;description&quot;: &quot;&quot;,
+    &quot;done&quot;: false,
+    &quot;id&quot;: 3,
+    &quot;title&quot;: &quot;Read a book&quot;
+  }
+}</code></pre>
+<p>The above command suddenly comes along with a bunch of additional <code>parameters</code>. Let us review them in turn:
+* <code>-i</code> was already clarified above and includes the header into an HTTP request
+* <code>-H</code> is used to include any number of extra headers into an HTTP request; and because ‘Content-Type’ is the name of one of the internal headers that <code>curl</code> would use (usually set to text/html by default), by setting it explicitly as a custom header, this externally set header will be used instead of the internal one.
+* <code>-X</code>specified a custom request method to use when communicating with an HTTP server; the specified request method will be sued instead of the method otherwise used (which defaults to GET)
+* <code>-d</code> send the specified data in a POST request to the HTTP server in the same way that a browser does when a user has filled in an HTML form and presses the submit button; this will cause <code>curl</code> to pass the data to the server using the content-type application/x-www-form-urlencoded.</p>
+<p>After adding this new task to our in-memory database, we can retrieve the list of all tasks including the new one:</p>
+<pre><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 424
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sat, 24 Mar 2018 23:20:13 GMT
+
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;description&quot;: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      &quot;done&quot;: false,
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Buy groceries&quot;
+    },
+    {
+      &quot;description&quot;: &quot;Need to find a good Python tutorial on the web&quot;,
+      &quot;done&quot;: false,
+      &quot;id&quot;: 2,
+      &quot;title&quot;: &quot;Learn Python&quot;
+    },
+    {
+      &quot;description&quot;: &quot;&quot;,
+      &quot;done&quot;: false,
+      &quot;id&quot;: 3,
+      &quot;title&quot;: &quot;Read a book&quot;
+    }
+  ]
+}</code></pre>
+<p>The very last route we are going to implement is the <code>DELETE</code>request:</p>
+<pre class="python"><code>@app.route(&#39;/todo/api/v1.0/tasks/&lt;int:task_id&gt;&#39;, methods=[&#39;DELETE&#39;])
+def delete_task(task_id):
+    task = [task for task in tasks if task[&#39;id&#39;] == task_id]
+    if len(task) == 0:
+        abort(404)
+    tasks.remove(task[0])
+    return jsonify({&#39;result&#39;: True})</code></pre>
+<p>Again, like in the case for the <code>POST</code>request we perform the list comprehension <code>task = [task for task in tasks if task['id'] == task_id]</code>. If the task to be deleted indeed exists in the <code>tasks</code> array, the variable <code>task</code></p>
+<p>To explain the line <code>tasks.remove(task[0])</code> a little bit better, let us assume that the user wants to delete the first task in our database (our in-memory array). Then we would set <code>&lt;int:task_id&gt;</code> equal to <code>1</code> in the <code>DELETE</code> request and the function associated with this route (i.e., <code>delete_task</code>) will first run the list comprehension to end up with the variable <code>task</code> which is itself a list and in our example would only contain one single list item, namely <code>[{'id': 1, 'title': 'Buy groceries', 'description': 'Milk, Cheese, Pizza, Fruit, Tylenol', 'done': False}]</code>.
+<br></p>
+<p><code>task[0]</code> accordingly selects the first item of our list <code>task</code> which only consists of that one element, i.e., <code>task[0]</code> returns the dictionary which corresponds to the first list element in <code>task</code>. <code>tasks.remove(task[0])</code> then removes exactly the dictionary we want to remove from the <code>tasks</code> array which contains all currently stored tasks.</p>
+<p>To test the newly created route, we run a <code>DELETE</code> - request via our command line to delete task #2:</p>
+<pre class="raw"><code>$ curl -i -X DELETE http://localhost:5000/todo/api/v1.0/tasks/2
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 21
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sun, 25 Mar 2018 11:34:32 GMT
+
+{
+  &quot;result&quot;: true
+}</code></pre>
+<p>Our new <code>tasks</code> array then looks as follows:</p>
+<pre class="raw"><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 163
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sun, 25 Mar 2018 11:36:28 GMT
+
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;description&quot;: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      &quot;done&quot;: false,
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Buy groceries&quot;
+    }
+  ]
+}</code></pre>
+<div id="small-improvements" class="section level4">
+<h4>Small Improvements</h4>
+<p>Our home-made web service is actually fully functional by now but there are two additional improvements we want to add which also Miguel Grinberg has included in his original <a href="https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments">blog post</a>.</p>
+<p>First, the problem with the current design of the web API is that we assume clients to know how the respective URIs are built (in practice this is also usually the case since all major web APIs come along with ample documentation).
+But there is another drawback: If we would want to apply any changes to these URIs in the future, we first would have to update relevant documentation, educate users, etc. Therefore it is easier if we return the full URIs that control a task (instead of only the task ids) so that clients always get the URIs ready to be used along with their requests. For this, we add a small helper function that generates a “public” version of a task that will be sent to the client along with a request:</p>
+<pre class="python"><code>from flask import url_for
+
+def make_public_task(task):
+    new_task = {}
+    for field in task:
+        if field == &#39;id&#39;:
+            new_task[&#39;uri&#39;] = url_for(&#39;get_task&#39;, task_id=task[&#39;id&#39;], _external=True)
+        else:
+            new_task[field] = task[field]
+    return new_task</code></pre>
+<p>Let us explain what the above function <code>make_public_task</code> is doing:
+If we quickly start a python session in our shell (by executing <code>python3</code> in our command line window and then create our tasks array, we can just pick one task out of the <code>tasks</code> array (our list of dictionaries) with which we have been working so far and assign it to the variable <code>task1</code> as shown below:</p>
+<pre class="python"><code>$ python3
+Python 3.6.4 (v3.6.4:d48ecebad5, Dec 18 2017, 21:07:28)
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+&gt;&gt;&gt; tasks = [
+...     {
+...         &#39;id&#39;: 1,
+...         &#39;title&#39;: u&#39;Buy groceries&#39;,
+...         &#39;description&#39;: u&#39;Milk, Cheese, Pizza, Fruit, Tylenol&#39;,
+...         &#39;done&#39;: False
+...     },
+...     {
+...         &#39;id&#39;: 2,
+...         &#39;title&#39;: u&#39;Learn Python&#39;,
+...         &#39;description&#39;: u&#39;Need to find a good Python tutorial on the web&#39;,
+...         &#39;done&#39;: False
+...     }
+... ]
+&gt;&gt;&gt; tasks[0]
+{&#39;id&#39;: 1, &#39;title&#39;: &#39;Buy groceries&#39;, &#39;description&#39;: &#39;Milk, Cheese, Pizza, Fruit, Tylenol&#39;, &#39;done&#39;: False}
+&gt;&gt;&gt; task1 = tasks[0]</code></pre>
+<p>Next, we create an empty dictionary called <code>new_task</code> and then iterate through all keys of the <code>task1</code> dictionary (which represents one single task). If the current key is not <code>id</code>, we simply add the current key-value pair to our newly created dictionary <code>new_task</code>. However, if the current key we are looking at is the <code>id</code>, we create an entry in our dictionary with the key <code>uri</code> instead and the corresponding value equal to the respective tasks URI. <br>
+If we were to perform the above description manually for one task, we would have the following:</p>
+<pre class="python"><code>&gt;&gt;&gt; new_task = {}
+&gt;&gt;&gt; new_task[&#39;title&#39;] = task1[&#39;title&#39;]
+&gt;&gt;&gt; new_task[&#39;done&#39;] = task1[&#39;done&#39;]
+&gt;&gt;&gt; new_task[&#39;description&#39;] = task1[&#39;description&#39;]
+&gt;&gt;&gt; new_task
+{&#39;title&#39;: &#39;Buy groceries&#39;, &#39;done&#39;: False, &#39;description&#39;: &#39;Milk, Cheese, Pizza, Fruit, Tylenol&#39;}</code></pre>
+<p>For the key <code>id</code> as described above, instead we want to generate the URI which we do by using Flasks <code>url_for</code> - function. How does that work?<br>
+Remembering that the <code>route()</code> decorator in flask is used to bind a function to a URL, the <code>url_for()</code> command generates the URI which is associated with a particular function. In our case, the URI we want to create is the URI associated with the function <code>get_task(task_id)</code> which we have defined above. But because we cannot generate a URL without the application actually running, I will only write down the code that will generate exactly what we want (namely the associated value belonging to the key <code>uri</code>): <br><code>new_task['uri'] = url_for('get_task', task_id=task['id'], _external=True)</code></p>
+<p>Having disentangled the newly created function, we can then pass the list of tasks through this newly created function before sending them to the client by slightly changing the very first route which we have implemented (again pay attention to the list comprehension used):</p>
+<pre class="python"><code>@app.route(&#39;/todo/api/v1.0/tasks&#39;, methods=[&#39;GET&#39;])
+def get_tasks():
+    return jsonify({&#39;tasks&#39;: [make_public_task(task) for task in tasks]})</code></pre>
+<p>So now if we want to get a list of all tasks we would get the following:</p>
+<pre class="python"><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks
+HTTP/1.0 200 OK
+Content-Type: application/json
+Content-Length: 407
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sun, 25 Mar 2018 14:41:25 GMT
+
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;description&quot;: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Buy groceries&quot;,
+      &quot;uri&quot;: &quot;http://localhost:5000/todo/api/v1.0/tasks/1&quot;
+    },
+    {
+      &quot;description&quot;: &quot;Need to find a good Python tutorial on the web&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Learn Python&quot;,
+      &quot;uri&quot;: &quot;http://localhost:5000/todo/api/v1.0/tasks/2&quot;
+    }
+  ]
+}</code></pre>
+<p>We should apply this technique to all other functions to ensure that the client always also sees the URIs instead of the ids (not shown here).</p>
+<p>The very last piece we want to implement following <a href="https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments">Grinberg’s post</a> is to secure our web service with an authentication. by requiring clients to provide a username and password.<br>
+Usually in web applications where we would have a login form that sends the credentials to the server which then creates a session for the logged in user would violate the <em>stateless</em> requirement of REST. Therefore, instead we have to ask clients to send their authentication information with every request they send to us.
+and because with REST we always try to adhere to the HTTP protocol as much as we can, we can make use of the Flask extension <code>Flask-HTTPAuth</code> which allows us to secure our web API. For this, we first have to install the extension with</p>
+<pre class="raw"><code>$ pip install flask-httpauth</code></pre>
+<p>and then import the <code>HTTPBasicAuth</code> object into our script <code>app.py</code>, instantiate an instance of the <code>HTTPBasicAuth</code> object and then implement the two callback functions <code>get_password</code> and <code>error_handler</code> (obviously you have to replace <code>your_password</code> and <code>your_username</code> with your own credentials of choice):</p>
+<pre class="python"><code>from flask_httpauth import HTTPBasicAuth
+auth = HTTPBasicAuth()
+
+@auth.get_password
+def get_password(username):
+    if username == &#39;your_username&#39;:
+        return &#39;your_password&#39;
+    return None
+
+@auth.error_handler
+def unauthorized():
+    return make_response(jsonify({&#39;error&#39;: &#39;Unauthorized access&#39;}), 401)</code></pre>
+<p>The callback function <code>get_password</code> is used by the extension to obtain the password for a given user (in the case of an application backed by a database, we would check the user’s table).<br>
+The function <code>error_handler</code> will be used by the extension in case an unauthorized client tries to access the service. Like we did with other custom error messages, we make sure that it contains JSON instead of HTML.</p>
+<p>Having implemented the above, the only thing left is to indicate all the functions that need to be protected by adding the <code>@auth.login_required</code> at the respective positions in the code.For our <code>GET</code> request that returns all tasks at once, this would look as follows:</p>
+<pre class="python"><code>@app.route(&#39;/todo/api/v1.0/tasks&#39;, methods=[&#39;GET&#39;])
+@auth.login_required
+def get_tasks():
+    return jsonify({&#39;tasks&#39;: [make_public_task(task) for task in tasks]})</code></pre>
+<p>If we would now request all tasks without authentication we would get the following output printed to our command line:</p>
+<pre class="raw"><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks
+HTTP/1.0 401 UNAUTHORIZED
+Content-Type: application/json
+WWW-Authenticate: Basic realm=&quot;Authentication Required&quot;
+Content-Length: 37
+Server: Werkzeug/0.14.1 Python/3.6.4
+Date: Sun, 25 Mar 2018 15:41:33 GMT
+
+{
+  &quot;error&quot;: &quot;Unauthorized access&quot;
+}
+{% endhighlight %}
+
+If we, however, hand our credentials over to the request, we get the full response as expected:
+{% highlight raw%}
+$ curl -u your_username:your_password http://localhost:5000/todo/api/v1.0/tasks
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;description&quot;: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Buy groceries&quot;,
+      &quot;uri&quot;: &quot;http://localhost:5000/todo/api/v1.0/tasks/1&quot;
+    },
+    {
+      &quot;description&quot;: &quot;Need to find a good Python tutorial on the web&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Learn Python&quot;,
+      &quot;uri&quot;: &quot;http://localhost:5000/todo/api/v1.0/tasks/2&quot;
+    }
+  ]
+}</code></pre>
+<p>Note that we changed the flag <code>-i</code> to <code>-u</code> which is the necessary flag to be able to specify user name and password to use for server authentication right after the flag. If we would only specify the user name, <code>curl</code> would prompt for a password.</p>
+<p>Having successfully replicated Miguel’s amazing <a href="https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments">post</a>], there is time to briefly about possible improvements that Miguel himself suggested:
+* A real web service should be backed by a real databases. So at some point we should get rid of the in memory structure and apply a MySQL or PostgreSQL database.
+* Our web service could be extended to be able to handle multiple users and correspondingly maintain multiple lists. In such a system we would have a second resource which would be the users.
+* The implemented <code>GET</code> request for the entire task list could be extended with a filter functionality.</p>
+</div>
+<div id="deployment-to-a-real-web-server" class="section level4">
+<h4>Deployment to a real web server</h4>
+<p>Being able to run our little web service on a local server, we want to add one more piece to the story by deploying it to a real web server via ‘Heroku’ so that we can ask a friend to access our web service as well.<br></p>
+<p>In order to do this we assume (1) that you are vaguely familiar with <a href="https://git-scm.com/">‘git’</a> and (2) the deployment process using ‘heroku’. This means that you have to have (1) <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">‘git’ installed on your machine</a> and (2) that you have to have at least a free account on <a href="https://www.heroku.com/home">heroku.com</a> as well as the <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku Command Line Interface (CLI)</a> installed.<br>
+Below we will go through the deployment process in 10 easy steps, assuming that your folder-structure looks like the below and you are currently in your <code>/app</code> directory and your virtual environment is still activated:</p>
+<pre class="raw"><code>CreateRESTfulAPI/
+  app/
+    app.py
+  virtual/</code></pre>
+<p>In case you are in the <code>/app</code> directory but your virtual environment is deactivated execute <code>$ source ../virtual/bin/activate</code> and your virtual environment should be activated again.
+1. Execute <code>pip install gunicorn</code>. <code>gunicorn</code> is a Python WSGI HTTP Server and needed later by Heroku to be able to run our application.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Execute <code>pip freeze &gt; requirements.txt</code> to create the file <code>requirements.txt</code> - file that contains a list of all the python packages that are currently in your virtual installation. This file is necessary to tell ‘Heroku’ what to install in their system.</p></li>
+<li><p>Create a file called <code>Procile</code> without an extension and write <code>web: gunicorn app:app</code> whereby the first instance of <code>app</code> refers to the name of your file <code>app.py</code> and the second <code>app</code> refers to the name of the variable holding the Flask instance.</p></li>
+<li><p>The last file we need is a file called <code>runtime.txt</code> in which we have to write the version of python we want our app to run on. To specify the correct version, simply refer to the <a href="https://devcenter.heroku.com/articles/python-runtimes">Heroku DevCenter</a> that always lists the latest supported python distributions for Python 2 and 3. In our case, we write <code>python-3.6.4</code> to our file.</p></li>
+<li>Next, we have to log in to <code>heroku</code> from the command line ty executing <code>heroku login</code>. When asked type in your Email-address and password.</li>
+</ol>
+<pre class="raw"><code>$ heroku login
+Enter your Heroku credentials:
+Email: &lt;your_email_address&gt;
+Password: &lt;your_password&gt;
+Logged in as &lt;your_email_address&gt;</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li><p>We create a new app by executing <code>heroku create todo-api-tutorial</code>. Note that you will have to use a different name because <code>todo-api-tutorial</code> will already be taken by me unless I deleted this app again in the meantime and the name is free again.</p></li>
+<li>Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:</li>
+</ol>
+<pre class="raw"><code>$ git init
+Initialized empty Git repository in ..........................
+$ git add .
+$ git commit -m &quot;first commit&quot;
+[master (root-commit) 77ab482] first commit
+ 5 files changed, 287 insertions(+)
+ create mode 100644 Procfile
+ create mode 100644 app.py
+ create mode 100644 requirements.txt
+ create mode 100644 runtime.txt
+ create mode 100644 tasks.txt</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li><p>We want to connect to our <code>todo-api-tutorial</code> app by executing <code>heroku git:remote --app todo-api-tutorial</code>. To check that the connection was successful run <code>heroku info</code>.</p></li>
+<li>By running <code>git push heroku master</code> will detect all the files that you created above, install all dependencies and packages specified in <code>requirements.txt</code> and ultimately deploy the app. The entire deployment process should end with</li>
+</ol>
+<pre class="raw"><code>remote: Verifying deploy... done.
+To https://git.heroku.com/todo-api-tutorial.git
+ * [new branch]      master -&gt; master</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below <code>GET</code> request in your command line should give you the following output:</li>
+</ol>
+<pre class="raw"><code>$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;description&quot;: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Buy groceries&quot;,
+      &quot;uri&quot;: &quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/1&quot;
+    },
+    {
+      &quot;description&quot;: &quot;Need to find a good Python tutorial on the web&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Learn Python&quot;,
+      &quot;uri&quot;: &quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2&quot;
+    }
+  ]
+}</code></pre>
+<p>If so, congratulations!</p>
+<p>In a similar fashion, you can add a task:</p>
+<pre class="raw"><code>$ curl -u your_username:your_password -H &quot;Content-Type: application/json&quot; -X POST -d &#39;{&quot;title&quot;:&quot;Read a book&quot;}&#39; http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+{
+  &quot;task&quot;: {
+    &quot;description&quot;: &quot;&quot;,
+    &quot;done&quot;: false,
+    &quot;id&quot;: 4,
+    &quot;title&quot;: &quot;Read a book&quot;
+  }
+}</code></pre>
+<p>and then again retrieve the newly updated list:</p>
+<pre class="raw"><code>$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;description&quot;: &quot;Milk, Cheese, Pizza, Fruit, Tylenol&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Buy groceries&quot;,
+      &quot;uri&quot;: &quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/1&quot;
+    },
+    {
+      &quot;description&quot;: &quot;Need to find a good Python tutorial on the web&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Learn Python&quot;,
+      &quot;uri&quot;: &quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2&quot;
+    },
+    {
+      &quot;description&quot;: &quot;&quot;,
+      &quot;done&quot;: false,
+      &quot;title&quot;: &quot;Read a book&quot;,
+      &quot;uri&quot;: &quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/3&quot;
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Building on all of the above, a fairly neat explanation is given by <a href="https://study.com/academy/lesson/application-programming-interface-api-definition-example.html">Martin Gibbs</a> where he states that <em>APIs are a set of tools that programmers can use in helping them create software</em> and thereby <em>allow a programmer to deliver solid solutions fairly rapidly without having to rebuild everything from scratch every time.</em><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Note that depending on whether or not you already have it, there is a Chrome-extension called <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=de">JSONView</a> that nicely formats raw JSON-responses in the browser. Similar tools should also be available for other browsers.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>We could, for example, easily type <code>curl http://www.google.com</code> into our command-line and get back a whole mess of unstructured HTML that a browser would usually nicely render for us when we request <a href="http://www.google.com" class="uri">http://www.google.com</a> from the browser. In other words, web APIs are designed to return structured data (in XML or JSON) and <em>not</em> to respond with HTML.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Note that although Ryan Mitchell declares that using APIs is generally not considered classical <em>web scraping</em>, he declares that both practices (of <em>web scraping</em> and using dedicated <em>web APIs</em>) make use of the same techniques and can often be very complementary to each other (p. 49).<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>From the way Grinberg introduces APIs I would conclude that he already jumps into <em>web APIs</em> without dealing with other things that could represent an API.<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Although there are Flask extensions that would help with building a RESTful service using Flask, Miguel decides to continue his tutorial without extensions.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Note that your terminal must be in the respective directory where your file <code>app.py</code> is located in order for the command <code>python3 app.py</code> to start Flask’s local server.<a href="#fnref7" class="footnote-back">↩</a></p></li>
+</ol>
+</div>

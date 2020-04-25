@@ -1,0 +1,40 @@
+baseurl = "/"
+title = "himynameismarcel"
+languageCode = "en-us"
+paginate = "10" # Number of posts per page
+theme = "Mainroad"
+disqusShortname = "" # Enable comments by entering your Disqus shortname
+googleAnalytics = "" # Enable Google Analytics by entering your tracking id
+
+[Author]
+  name = "Marcel Kropp"
+  # bio = "John Doe's true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it."
+  # avatar = "img/avatar.png"
+
+[Params]
+  subtitle = "A bit of economics, data and programming." # Subtitle of your site
+  description = "A bit of economics, data and programming." # Description of your site
+  opengraph = true
+  twitter_cards = false
+  readmore = false # Show "Read more" button in list if true
+  authorbox = false
+  pager = true
+  post_meta = ["date", "categories"] # Order of post meta information
+  # 24.04.2020: updated parameters for syntax highlighting:
+  highlightjsVersion = "9.12.0"
+    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    highlightjsLang = ["r", "yaml", "python", "SQL"]
+    highlightjsTheme = "github"
+    MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    MathJaxVersion = "2.7.5"
+
+[Params.sidebar]
+  home = "right"   # Configure layout for home page
+  list = "right"   # Configure layout for list pages
+  single = "right" # Configure layout for single pages
+  # Enable widgets in given order
+  widgets = ["search", "recent", "categories", "taglist"]
+
+[Params.widgets]
+  recent_num = 5 # Set the number of articles in the "Recent articles" widget
+  tags_counter = false # Enable counter for each tag in "Tags" widget (disabled by default)

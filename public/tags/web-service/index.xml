@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Service on himynameismarcel</title>
+    <link>/tags/web-service/</link>
+    <description>Recent content in Web Service on himynameismarcel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Mar 2018 21:13:37 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/web-service/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>APIs and Web Services: Background and an Example</title>
+      <link>/post/2018-03-13-apis-and-web-services-background-and-an-example/</link>
+      <pubDate>Tue, 13 Mar 2018 21:13:37 -0500</pubDate>
+      
+      <guid>/post/2018-03-13-apis-and-web-services-background-and-an-example/</guid>
+      <description>About a year ago I familiarized myself with web-services and APIs (Application Program(ming) Interface) more generally to get a better understanding of the technological background. My conclusion back then was that the terms are used in various contexts and depending on the exact context, everyone seemed to have a vague idea about what they actually mean and stand for.
+A First Explainer: Getting Some Intuition In an introductory class about web development from Colt Steele which I had attended last year, he introduces APIs at some point in the course right after having moved from front-end technologies to back-end web development as follows: API’s are interfaces for code/computers to talk to one another.</description>
+    </item>
+    
+  </channel>
+</rss>
