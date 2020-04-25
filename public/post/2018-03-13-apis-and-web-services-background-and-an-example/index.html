@@ -435,15 +435,17 @@ def create_task():
     }
     tasks.append(task)
     return jsonify({&#39;task&#39;: task}), 201</code></pre>
-<p>The following aspects are worth noting:
-* in Flask, data a client sends to the server is provided by the global <code>request</code> object
-* <code>request.json</code> will contain the posted data only if it came marked as JSON
-* if the data is not there or is missing a <code>title</code> item, we return error code 400 (<em>bad request</em>)
-* if the posted data is accepted as JSON, we create a new task dictionary using the id of the last task plus one via <code>'id': tasks[-1]['id'] + 1</code>. The construction takes the last task dictionary in our list of task dictionaries (<code>tasks[-1]</code>) and then extracts the <code>id</code> from this last task dictionary by extracting the corresponding <code>value</code> belonging to the key <code>id</code> (note that dictionaries in python are so-called <em>key-value pairs</em>.) So if our task dictionary contains e.g., two tasks, <code>tasks[-1]['id']</code> will evalute to <code>2</code>, hence <code>'id': tasks[-1]['id'] + 1</code> will make <code>'id'</code> to evalute to <code>3</code>.
-* in order to hand over the data as JSON we have to set the request content type to <code>application/json</code> when firing the <code>POST</code> request via the command line
-* we assume the <code>done</code> field to always start as <code>False</code>
-* the <code>description</code> field is optional and does not have to be delivered in the <code>POST</code> request
-* after adding the newly created task (via <code>tasks.append(task)</code>)to our list of tasks (our <code>tasks</code> array), we respond to the client with the added task like above including a status code 201 which according to HTTP stands for “Created”</p>
+<p>The following aspects are worth noting:</p>
+<ul>
+<li>in Flask, data a client sends to the server is provided by the global <code>request</code> object</li>
+<li><code>request.json</code> will contain the posted data only if it came marked as JSON</li>
+<li>if the data is not there or is missing a <code>title</code> item, we return error code 400 (<em>bad request</em>)</li>
+<li>if the posted data is accepted as JSON, we create a new task dictionary using the id of the last task plus one via <code>'id': tasks[-1]['id'] + 1</code>. The construction takes the last task dictionary in our list of task dictionaries (<code>tasks[-1]</code>) and then extracts the <code>id</code> from this last task dictionary by extracting the corresponding <code>value</code> belonging to the key <code>id</code> (note that dictionaries in python are so-called <em>key-value pairs</em>.) So if our task dictionary contains e.g., two tasks, <code>tasks[-1]['id']</code> will evalute to <code>2</code>, hence <code>'id': tasks[-1]['id'] + 1</code> will make <code>'id'</code> to evalute to <code>3</code>.</li>
+<li>in order to hand over the data as JSON we have to set the request content type to <code>application/json</code> when firing the <code>POST</code> request via the command line</li>
+<li>we assume the <code>done</code> field to always start as <code>False</code></li>
+<li>the <code>description</code> field is optional and does not have to be delivered in the <code>POST</code> request</li>
+<li>after adding the newly created task (via <code>tasks.append(task)</code>)to our list of tasks (our <code>tasks</code> array), we respond to the client with the added task like above including a status code 201 which according to HTTP stands for “Created”</li>
+</ul>
 <p>Launching our web service with <code>python3 app.py</code> and jumping over to our command line to test the newly implemented functionality results in the following:</p>
 <pre><code>$ curl -i -H &quot;Content-Type: application/json&quot; -X POST -d &#39;{&quot;title&quot;:&quot;Read a book&quot;}&#39; http://localhost:5000/todo/api/v1.0/tasks
 HTTP/1.0 201 CREATED
@@ -460,11 +462,13 @@ Date: Sat, 24 Mar 2018 23:18:39 GMT
     &quot;title&quot;: &quot;Read a book&quot;
   }
 }</code></pre>
-<p>The above command suddenly comes along with a bunch of additional <code>parameters</code>. Let us review them in turn:
-* <code>-i</code> was already clarified above and includes the header into an HTTP request
-* <code>-H</code> is used to include any number of extra headers into an HTTP request; and because ‘Content-Type’ is the name of one of the internal headers that <code>curl</code> would use (usually set to text/html by default), by setting it explicitly as a custom header, this externally set header will be used instead of the internal one.
-* <code>-X</code>specified a custom request method to use when communicating with an HTTP server; the specified request method will be sued instead of the method otherwise used (which defaults to GET)
-* <code>-d</code> send the specified data in a POST request to the HTTP server in the same way that a browser does when a user has filled in an HTML form and presses the submit button; this will cause <code>curl</code> to pass the data to the server using the content-type application/x-www-form-urlencoded.</p>
+<p>The above command suddenly comes along with a bunch of additional <code>parameters</code>. Let us review them in turn:</p>
+<ul>
+<li><code>-i</code> was already clarified above and includes the header into an HTTP request</li>
+<li><code>-H</code> is used to include any number of extra headers into an HTTP request; and because ‘Content-Type’ is the name of one of the internal headers that <code>curl</code> would use (usually set to text/html by default), by setting it explicitly as a custom header, this externally set header will be used instead of the internal one.</li>
+<li><code>-X</code>specified a custom request method to use when communicating with an HTTP server; the specified request method will be sued instead of the method otherwise used (which defaults to GET)</li>
+<li><code>-d</code> send the specified data in a POST request to the HTTP server in the same way that a browser does when a user has filled in an HTML form and presses the submit button; this will cause <code>curl</code> to pass the data to the server using the content-type application/x-www-form-urlencoded.</li>
+</ul>
 <p>After adding this new task to our in-memory database, we can retrieve the list of all tasks including the new one:</p>
 <pre><code>$ curl -i http://localhost:5000/todo/api/v1.0/tasks
 HTTP/1.0 200 OK

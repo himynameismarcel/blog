@@ -272,7 +272,7 @@ code {
 pre {
 	display: block;
 	padding: 0;
-	padding: 0.1rem;
+	/* padding: 0.1rem; */
 	margin-bottom: 20px;
 	margin-bottom: 1.25rem;
 	overflow: auto;
@@ -387,7 +387,7 @@ select {
 
 .logo__link {
 	display: inline-block;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 }
 
 .logo__title {
@@ -489,7 +489,7 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
 	padding: .625rem .9375rem;
 	font-weight: 700;
 	color: #fff;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 }
 
 .menu__link:hover {

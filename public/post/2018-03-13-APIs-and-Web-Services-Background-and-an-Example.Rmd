@@ -379,6 +379,7 @@ def create_task():
 ```
 
 The following aspects are worth noting:
+
 * in Flask, data a client sends to the server is provided by the global `request` object
 * `request.json` will contain the posted data only if it came marked as JSON
 * if the data is not there or is missing a `title` item, we return error code 400 (*bad request*)
@@ -408,6 +409,7 @@ Date: Sat, 24 Mar 2018 23:18:39 GMT
 ```
 
 The above command suddenly comes along with a bunch of additional `parameters`. Let us review them in turn:
+
 * `-i` was already clarified above and includes the header into an HTTP request
 * `-H` is used to include any number of extra headers into an HTTP request; and because 'Content-Type' is the name of one of the internal headers that `curl` would use (usually set to text/html by default), by setting it explicitly as a custom header, this externally set header will be used instead of the internal one.
 * `-X`specified a custom request method to use when communicating with an HTTP server; the specified request method will be sued instead of the method otherwise used (which defaults to GET)
