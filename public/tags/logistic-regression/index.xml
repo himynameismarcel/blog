@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logistic Regression on himynameismarcel</title>
+    <link>/tags/logistic-regression/</link>
+    <description>Recent content in Logistic Regression on himynameismarcel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 14 Jun 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/logistic-regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Binary Choice Models - Some Theory and an Application</title>
+      <link>/post/binary-choice-models-some-theory-and-an-application/</link>
+      <pubDate>Sat, 14 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/post/binary-choice-models-some-theory-and-an-application/</guid>
+      <description>
+
+
+&lt;div id=&#34;abstract&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;In this slightly longer post I want to outline some of the differences in the
+econometric modeling techniques when the dependent variable is a binary
+variable with two distinct outcomes (yes/no, 0/1). We will discuss the
+shortcomings of ordinary least squares (OLS) in these settings and how
+the concept of a conditional expectation function (CEF) is replaced by
+the concept of a conditional probability function (CPF) that gives rise
+to the so called &lt;strong&gt;logit&lt;/strong&gt; and &lt;strong&gt;probit&lt;/strong&gt; models used for binary responses.
+Within these frameworks, the least squares principle is replaced by
+maximum likelihood estimation, which is &lt;em&gt;the&lt;/em&gt; estimation technique
+common to all applications where the response variable is of qualitative
+nature. The theoretical discussion will be complemented with an
+illustrative example.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;introduction-and-theory&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction and Theory&lt;/h1&gt;
+&lt;p&gt;Ordinary Least Squares (OLS) is undoubtedly the most frequently used
+estimation technique within the Classical Linear (Regression) Model
+(CLM) to recover a functional and foremost causal relationship between a
+dependent variable of interest &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; and explanatory variables
+(regressors) &lt;span class=&#34;math inline&#34;&gt;\(x_j\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(j = 1, ..., k\)&lt;/span&gt; by means of parameter
+estimation. But the framework of the CLM underlies certain important
+assumptions for why within this framework the OLS-principle should be
+used only in circumstances where there are good reasons to believe that
+the underlying assumptions are fulfilled.&lt;/p&gt;
+&lt;p&gt;In many applications the response variable &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; we are trying to model is
+available on a continuous (or sufficiently continuous) measurement scale
+and in many instances also (roughly) normally distributed, at least
+after adequate transformations (e.g. log-transformations etc.). But this
+changes if we want to model categorial (or qualitative) variables, which
+are always discrete and can be binary/multinomial/ordered or
+quantitative variables with a restricted range (e.g., counts, durations,
+censored, truncated) that can be both, continuous or discrete. Within
+the class of categorial variables, the models used differ with respect
+to the response variable we are trying to model (hence they are called
+binary, multinomial or ordered response models).&lt;br/&gt;
+Binary variables arise from the answer to yes/no questions, multinomial
+extends the binary variables to the setting where we have more than two
+mutually exclusive and exhaustive categories that cannot be ordered and
+finally ordered variables are like multinomial variables but with a
+meaningful ordering of the categories.&lt;/p&gt;
+&lt;p&gt;The OLS-principle assumes relationships between &lt;em&gt;quantitative&lt;/em&gt;
+variables, where the regressors can enter the model also as dummy
+variables and the response is assumed to be continuous. For
+&lt;span class=&#34;math inline&#34;&gt;\(i = 1, ..., n\)&lt;/span&gt;, the PRF (population regression function) for the simple
+linear model can be written as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+y_i &amp;amp; = &amp;amp; \beta_1 + \beta_2 x_{2i} + ... + \beta_k x_{ki} + \epsilon_i  \\
+&amp;amp; = &amp;amp; \sum_{j=1}^K\beta_jx_{ji} + \epsilon_i  \\
+&amp;amp; = &amp;amp; \mathbf{x_i&amp;#39;\beta} + \epsilon_i.
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;which can be compactly written as
+&lt;span class=&#34;math display&#34;&gt;\[\mathbf{y} = \mathbf{X \beta} + \mathbf{\epsilon}.\]&lt;/span&gt; Under the
+Gauß-Markov assumptions which are (1) linearity in parameters, (2) full
+rank of the design matrix, (3) exogeneity of the explanatory variables
+&lt;span class=&#34;math inline&#34;&gt;\(E(\mathbf{\epsilon}\vert \mathbf{X})=0\)&lt;/span&gt; and homoscedastic and
+uncorrelated errors, meaning that the variance/covariance matrix simply
+is &lt;span class=&#34;math inline&#34;&gt;\(Cov\mathbf{(\epsilon)} = \sigma^2 \mathbf{I}\)&lt;/span&gt;, the ordinary least
+squares estimator is the best linear unbiased estimator (BLUE) and we
+can rewrite the model in terms of the then correctly specified
+&lt;em&gt;conditional&lt;/em&gt; expectation function&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+E(\mathbf{y}\vert \mathbf{X})=\mathbf{X\beta},
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;i.e., the systematic
+component of our linear regression model describes the conditional
+expectation.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; If, in addition, we assume the errors to be normally
+distributed, inference based on &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; tests is exact.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We could try to apply the least squares principle from above to a binary
+response variable &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt; where the categories are coded with numerical
+values &lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;. And to follow the argumentation it is useful to
+think of the linear regression model in terms of the conditional
+expectation function as specified above. For a binary variable
+(Bernoulli variable) where &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is denoted as the &amp;quot;success probability&amp;quot;
+we know that the expectation is
+&lt;span class=&#34;math inline&#34;&gt;\(E(y_i) = 0 \cdot P(y_i=0) + 1 \cdot P(y_i=1) = P(y_i=1) =p_i\)&lt;/span&gt;, i.e.,
+the expectation equals the success probability. And due to
+&lt;span class=&#34;math inline&#34;&gt;\(Var(y_i) = E(y_i - E(y_i))^2 = E(y_i^2) - E(y_i)^2\)&lt;/span&gt; we get
+&lt;span class=&#34;math inline&#34;&gt;\(Var(y_i) = p_i - p_i^2 = p_i(1-p_i)\)&lt;/span&gt;. If we were to use this in a
+linear regression we would have
+&lt;span class=&#34;math inline&#34;&gt;\(P(y = 1|\mathbf{x}) = E(y_i\vert \mathbf{x_i})=\mathbf{x_i&amp;#39;\beta}\)&lt;/span&gt; and
+consequently
+&lt;span class=&#34;math inline&#34;&gt;\(Var(y_i\vert \mathbf{x_i})=\mathbf{x_i&amp;#39;\beta}(1-\mathbf{x_i&amp;#39;\beta})\)&lt;/span&gt;.
+The problem with this specification is that
+&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{x_i&amp;#39;\hat{\mathbf{\mathbf{\beta}}}}\)&lt;/span&gt; (our linear predictor) is
+not restricted and can lead to nonsense predictions, i.e., predictions
+that are outside of the admissible range of &lt;span class=&#34;math inline&#34;&gt;\([0, 1]\)&lt;/span&gt; and is therefore
+not well suited for modeling the success probability of our response
+variable &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt; for a specific individual or entity given a set of
+covariates &lt;span class=&#34;math inline&#34;&gt;\(x_{ji}\)&lt;/span&gt;. In addition,
+&lt;span class=&#34;math inline&#34;&gt;\(Var(y_i\vert \mathbf{x_i})=\mathbf{x_i&amp;#39;\beta}(1-\mathbf{x_i&amp;#39;\beta})=p_i(1-p_i)\)&lt;/span&gt;
+shows that if &lt;span class=&#34;math inline&#34;&gt;\(p_i\)&lt;/span&gt; differs across individuals (depending on our linear
+predictor) then also our variance is not constant but is different for
+every individual &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, i.e. we have heteroscedasticity.&lt;/p&gt;
+&lt;p&gt;To overcome the difficulties, a different estimation technique is
+applied, namely Maximum Likelihood Estimation (MLE). In contrast to OLS,
+in MLE the starting point is a parametric distribution of the response
+variable (or the error term) where the parameters are specified as a
+function of the exogenous variables. By modeling the probability
+distribution of a response &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{y}\)&lt;/span&gt; conditional on regressors
+&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}\)&lt;/span&gt; the emphasis is shifted away from the conditional
+expectation function as in the OLS-framework towards the &lt;strong&gt;conditional
+probability function&lt;/strong&gt;. This procedure can be applied to a broader class
+of distributions within the framework of Generalized Linear Models
+(GLMs) which are an extension of the classical linear regression model
+to accommodate both non-normal response distributions and
+transformations to linearity. This framework allows a unified treatment
+of statistical methodology for several important classes of models where
+the response variables have an error distribution out of the class of
+the exponential family which incorporates the Bernoulli, Binomial,
+Poisson, Gamma or inverse Normal distribution etc. The GLM thereby
+allows the linear predictor to be related to the response variable via a
+link function and allows the magnitude of the variance of each
+observation to be a function of its predicted value.&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;glms&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;GLMs&lt;/h4&gt;
+&lt;p&gt;For GLMs the conditional distribution of &lt;span class=&#34;math inline&#34;&gt;\(y_i\vert \mathbf{x_i}\)&lt;/span&gt; is
+given by a density of the following type&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+f(y; \theta, \phi)=exp\left(\frac{y\theta-b(\theta)}{\phi}+c(y, \phi)\right)
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(b(.)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(c(.)\)&lt;/span&gt; are known functions and &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; are
+the so-called canonical and dispersion parameter.&lt;a href=&#34;#fn4&#34; class=&#34;footnote-ref&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; By appropriately
+choosing &lt;span class=&#34;math inline&#34;&gt;\(b(.)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(c(.)\)&lt;/span&gt; it is possible to generate the different
+distributions (normal, binomial, Poisson, …). &lt;br/&gt;
+To generate a regression model based on this exponential family one
+further states the conditional expectation to be
+&lt;span class=&#34;math inline&#34;&gt;\(\mu_i=E(y_i\vert \mathbf{x_i})\)&lt;/span&gt; and the linear predictor to be
+&lt;span class=&#34;math inline&#34;&gt;\(\eta_i=\mathbf{x_i&amp;#39;\beta}\)&lt;/span&gt; which are connected via a monotone
+transformation &lt;span class=&#34;math inline&#34;&gt;\(g(\mu_i)=\eta_i=\mathbf{x_i&amp;#39;\beta}\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(g(.)\)&lt;/span&gt; is
+called &lt;em&gt;link function&lt;/em&gt;.&lt;a href=&#34;#fn5&#34; class=&#34;footnote-ref&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt; And because &lt;span class=&#34;math inline&#34;&gt;\(g(.)\)&lt;/span&gt; is assumed to be a
+monotonic function it is invertible and we can rearrange to get
+&lt;span class=&#34;math inline&#34;&gt;\(\mu_i = g^{-1}(\eta_i) = g^{-1}(\mathbf{x_i&amp;#39;\beta})\)&lt;/span&gt;. Furthermore,
+&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; is also an invertible function of &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; and it can be shown
+that &lt;span class=&#34;math inline&#34;&gt;\(E(y_i\vert \mathbf{x_i})=\mu_i=b&amp;#39;(\theta_i)\)&lt;/span&gt;, which could be
+rearranged to &lt;span class=&#34;math inline&#34;&gt;\(\theta_i=(b&amp;#39;)^{-1}(\mu_i)\)&lt;/span&gt;, and
+&lt;span class=&#34;math inline&#34;&gt;\(Var(y_i\vert \mathbf{x_i})=\phi b&amp;#39;&amp;#39;(\theta_i)\)&lt;/span&gt;. We see that the
+canonical parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; is connected to our conditional expectation
+&lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; via the function &lt;span class=&#34;math inline&#34;&gt;\(b(.)\)&lt;/span&gt; and that &lt;span class=&#34;math inline&#34;&gt;\(E\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Var\)&lt;/span&gt; are not completely
+separated but the variance is, in the general case, a function of &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;
+and &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, therefore the variance is also a function of our
+expectation &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; which is often written down as
+&lt;span class=&#34;math inline&#34;&gt;\(Var(y_i\vert \mathbf{x_i})=\phi b&amp;#39;&amp;#39;(\theta(\mu))\)&lt;/span&gt; where
+&lt;span class=&#34;math inline&#34;&gt;\(V(\mu)=b&amp;#39;&amp;#39;(\theta(\mu))\)&lt;/span&gt; is called the variance function. If we combine
+all of the above we see that&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+\theta_i = (b&amp;#39;)^{-1}(\mu_i)=(b&amp;#39;)^{-1}(g^{-1}(\mathbf{x_i&amp;#39; \beta}))
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where we see that we have multiple transformations between the linear
+predictor, the conditional expectation and the canonical parameter. In
+the linear regression model we have $ =_i=_i=_i $.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-glm-for-binary-responses&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;A GLM for Binary Responses&lt;/h4&gt;
+&lt;p&gt;To pass these concepts on to a Bernoulli-distributed random variable &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;
+which takes the value 1 with success probability &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; and the value 0
+with probability &lt;span class=&#34;math inline&#34;&gt;\((1-p)\)&lt;/span&gt; we can, as a first step, simply write down the
+probability mass function which is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+f(y;\mu) = \mu^y (1-\mu)^{1-y}\!\quad \text{for }y\in\{0,1\}.
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This mass function&lt;a href=&#34;#fn6&#34; class=&#34;footnote-ref&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt; can be rewritten to&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+f(y; \mu) &amp;amp; = &amp;amp; \mu^{y} (1-\mu)^{1-y} \\
+          &amp;amp; = &amp;amp; exp \left \{y \cdot log \left ( \frac{\mu}{1-\mu} \right) + log(1 - \mu) \right \}
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In this representation we see that &lt;span class=&#34;math inline&#34;&gt;\(\phi=1\)&lt;/span&gt; and that &lt;span class=&#34;math inline&#34;&gt;\(c(y, \phi)\)&lt;/span&gt; is
+also not part of it. Comparing the remaining terms to the general
+representation of GLMs we see that
+&lt;span class=&#34;math inline&#34;&gt;\(\theta=log\left(\frac{\mu}{1-\mu}\right)\)&lt;/span&gt;, i.e. our canonical parameter
+&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; is a function of our conditional expectation &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;. Here,
+&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; is said to be the logit transform of &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;. Solving for &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;
+we see that &lt;span class=&#34;math inline&#34;&gt;\(\mu=\frac{e^\theta}{1+e^\theta}\)&lt;/span&gt; and we further get
+&lt;span class=&#34;math inline&#34;&gt;\(b(\theta)=-log\left(1-\frac{e^\theta}{1+e^\theta}\right)=...=log(1+e^\theta)\)&lt;/span&gt;.
+From this we can derive
+&lt;span class=&#34;math inline&#34;&gt;\(b&amp;#39;(\theta) = \frac{1}{1 + exp(\theta)} \cdot exp(\theta) = \mu\)&lt;/span&gt; and
+after some algebra also the variance function
+&lt;span class=&#34;math inline&#34;&gt;\(V(\mu) = b&amp;#39;&amp;#39;(\theta(\mu)) = \mu(1 - \mu)\)&lt;/span&gt;. By this we can represent the
+variance function as a function of &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; instead of our canonical
+parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;&lt;a href=&#34;#fn7&#34; class=&#34;footnote-ref&#34; id=&#34;fnref7&#34;&gt;&lt;sup&gt;7&lt;/sup&gt;&lt;/a&gt;. So we see, that in the Bernoulli-model it holds
+that &lt;span class=&#34;math inline&#34;&gt;\(E[y_i\vert \mathbf{x_i}]=\mu_i=b&amp;#39;(\theta)\)&lt;/span&gt; and that
+&lt;span class=&#34;math inline&#34;&gt;\(Var[y_i\vert \mathbf{x_i}]=\phi \cdot V(\mu_i)=\phi \cdot b&amp;#39;&amp;#39;(\theta(\mu))=\mu_i(1-\mu_i)\)&lt;/span&gt;,
+what is exactly what we postulated above. Here we clearly see how the
+conditional expectation &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; influences our variance.&lt;a href=&#34;#fn8&#34; class=&#34;footnote-ref&#34; id=&#34;fnref8&#34;&gt;&lt;sup&gt;8&lt;/sup&gt;&lt;/a&gt; &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;In general, each response distribution allows a variety of link functions to connect
+the mean with the linear predictor. In the case of binary dependent
+variables, the two most widely used links are the &lt;em&gt;logit&lt;/em&gt; and the
+&lt;em&gt;probit&lt;/em&gt; link&lt;a href=&#34;#fn9&#34; class=&#34;footnote-ref&#34; id=&#34;fnref9&#34;&gt;&lt;sup&gt;9&lt;/sup&gt;&lt;/a&gt;. For each response distribution the link function
+&lt;span class=&#34;math inline&#34;&gt;\(g=(b&amp;#39;)^{-1}\)&lt;/span&gt; for which we get &lt;span class=&#34;math inline&#34;&gt;\(\theta \equiv \eta\)&lt;/span&gt; is called the
+&lt;em&gt;canonical link&lt;/em&gt;. In case of binary responses the two most widely used
+links are the canonical &lt;em&gt;logit&lt;/em&gt; or &lt;em&gt;probit&lt;/em&gt; link. From above we see that
+&lt;span class=&#34;math inline&#34;&gt;\(\theta=(b&amp;#39;)^{-1}(\mu)=log\left(\frac{\mu}{1-\mu}\right)\)&lt;/span&gt; and so the
+link function &lt;span class=&#34;math inline&#34;&gt;\(g=(b&amp;#39;)^{-1}\)&lt;/span&gt; for which we get &lt;span class=&#34;math inline&#34;&gt;\(\theta \equiv \eta\)&lt;/span&gt; is
+exactly &lt;span class=&#34;math inline&#34;&gt;\(log\left(\frac{\mu}{1-\mu}\right)\)&lt;/span&gt; because then
+&lt;span class=&#34;math inline&#34;&gt;\(\theta = (b&amp;#39;)^{-1} (g^{-1} (\mathbf{x&amp;#39; \beta})) = \mathbf{x&amp;#39; \beta} = \eta\)&lt;/span&gt;.
+By setting &lt;span class=&#34;math inline&#34;&gt;\(log\left(\frac{\mu}{1-\mu}\right)=\eta\)&lt;/span&gt; we also see that
+&lt;span class=&#34;math inline&#34;&gt;\(\frac{\mu}{1-\mu}=exp(\eta)\)&lt;/span&gt; and further that
+&lt;span class=&#34;math inline&#34;&gt;\(\mu = \frac{\exp(\eta)}{1+exp(\eta)}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;In the paragraph above we rolled up the field from behind in an attempt
+to show how the relevant quantities naturally arise from a Bernoulli
+distribution. In practice, this is of course known and therefore one can
+immediately summarize the relevant results as follows: a binary
+regression model links the conditional probability that we want to model
+&lt;span class=&#34;math inline&#34;&gt;\(\mu_i = P(y_i=1\vert \mathbf{x_i})=E(y_i\vert\mathbf{x_i})\)&lt;/span&gt; to the
+linear predictor &lt;span class=&#34;math inline&#34;&gt;\(\eta_i\)&lt;/span&gt; via a function &lt;span class=&#34;math inline&#34;&gt;\(g^{-1}(.)\)&lt;/span&gt; which is a strict
+monotonic increasing distribution function so that
+&lt;span class=&#34;math inline&#34;&gt;\(g^{-1}(\eta) \in [0, 1]\)&lt;/span&gt; always holds and we have&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+\mu_i=g^{-1}(\eta_i)=g^{-1}(\mathbf{x_i&amp;#39;\beta})
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;By means of the
+inverse function &lt;span class=&#34;math inline&#34;&gt;\(g=(g^{-1})^{-1}\)&lt;/span&gt; it holds that
+&lt;span class=&#34;math inline&#34;&gt;\(g(\mu_i)=\eta_i=\mathbf{x_1&amp;#39;\beta}\)&lt;/span&gt;. In the GLM-terminology &lt;span class=&#34;math inline&#34;&gt;\(g^{-1}(.)\)&lt;/span&gt;
+is called &lt;em&gt;response function&lt;/em&gt; and &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; is called canonical &lt;em&gt;link
+function&lt;/em&gt;. It is important to note that the response function
+&lt;span class=&#34;math inline&#34;&gt;\(g^{-1}(.)\)&lt;/span&gt; should be chosen such that the linear predictor is mapped to
+the unit interval, i.e. &lt;span class=&#34;math inline&#34;&gt;\(g^{-1}:\mathbf{x_i&amp;#39;\beta}\rightarrow[0, 1]\)&lt;/span&gt; and
+the link function accordingly maps the unit interval to the real line,
+i.e. &lt;span class=&#34;math inline&#34;&gt;\(g:[0, 1] \rightarrow \mathbb{R}\)&lt;/span&gt;. The logit-model then arises by
+choosing the cumulative distribution function (CDF) of the logistic
+distribution&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+P(y_i = 1) = \mu=g^{-1}(\eta)=\frac{exp(\eta)}{1+exp(\eta)} = \Lambda(\eta)
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;that ensures that that &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; is restricted to the interval &lt;span class=&#34;math inline&#34;&gt;\([0,1]\)&lt;/span&gt; and
+the corresponding &lt;em&gt;logit-link&lt;/em&gt; function then is&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+g(\mu)=log\left(\frac{\mu}{1-\mu}\right)=\eta=\mathbf{x_i&amp;#39;\beta}.
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;By
+this one generates a linear model in the log-odds (the ratio of success
+probability to the probability of failure) &lt;span class=&#34;math inline&#34;&gt;\(log(\mu/(1-\mu))\)&lt;/span&gt; and
+transforming by taking &lt;span class=&#34;math inline&#34;&gt;\(exp()\)&lt;/span&gt; yields&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+\frac{\mu}{1-\mu}=exp(\mathbf{x_i&amp;#39;\beta})
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;which shows how the
+covariates influence the odds &lt;span class=&#34;math inline&#34;&gt;\(\mu/(1-\mu)\)&lt;/span&gt;. &lt;br/&gt;
+Similarly also other CDFs &lt;span class=&#34;math inline&#34;&gt;\(F(.)\)&lt;/span&gt; with &lt;span class=&#34;math inline&#34;&gt;\(F: \mathbb{R} \rightarrow [0, 1]\)&lt;/span&gt;
+can be used as the inverse link function, the most popular being&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+g(\mu)=\Phi^{-1}(\mu)
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(\Phi^{-1}\)&lt;/span&gt; is the inverse CDF of the
+standard normal distribution and therefore this model entered the
+literature as the &lt;em&gt;probit&lt;/em&gt; model. In terms of the normal distribution we
+would get&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+P(y_i = 1) &amp;amp; = &amp;amp; \mu = g^{-1}(\eta) = \Phi(\mathbf{x_i&amp;#39;\beta}) = \Phi(\eta)\\
+                &amp;amp; = &amp;amp; \int_\infty^{\mathbf{x_i&amp;#39;\beta}} \! \phi(z) dz = \int_\infty^{\mathbf{x_i&amp;#39;\beta}} \! \frac{1}{2\pi} exp\left( \frac{-z^2}{2} \right) dz
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As can be seen in
+the Figure below, the logistic and normal CDF, i.e., the inverse
+link functions (response functions) that map the linear predictor to the
+unit interval are very similar. They are both symmetric around zero but
+the logistic CDF somewhat slower approaches 1 and 0 for
+&lt;span class=&#34;math inline&#34;&gt;\(\eta \rightarrow +/- \infty\)&lt;/span&gt; respectively.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/logprob.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Inverse Logit and Probit functions.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This emerges because the logistic distribution has somewhat heavier
+tails. And because the logistic CDF has a variance of &lt;span class=&#34;math inline&#34;&gt;\(\pi^2/3\)&lt;/span&gt; (and not
+1 like the standard normal distribution) it has to be compared with a
+rescaled normal CDF &lt;span class=&#34;math inline&#34;&gt;\(\Phi\)&lt;/span&gt; with a variance of &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2=\phi^2/3\)&lt;/span&gt;. In the
+Figure above one can see that the Logit- and the (adjusted)
+Probit response function are very similar. Statistical analyses with
+Logit- and Probit-models therefore always lead to very similar results
+for the predicted probabilities. The rescaling of the parameters is
+thereby conserved whereby the coefficients of a Logit-models differ
+approximately by a factor of &lt;span class=&#34;math inline&#34;&gt;\(\sigma=\pi\sqrt{3} \approx 1.814\)&lt;/span&gt;, but the
+estimated probabilities are very similar.&lt;br/&gt;
+By specifying all of the above and further assume independence (which is
+often natural to assume for cross-section data), we can specify the full
+likelihood where the parameters are connected to the linear predictor
+via the link-function &lt;span class=&#34;math inline&#34;&gt;\(g(\mu)=\eta\)&lt;/span&gt; and it is possible to estimate the
+model via maximum likelihood. For this it is important to note that the
+linear predictor &lt;span class=&#34;math inline&#34;&gt;\(\eta_i=\mathbf{x_i&amp;#39;\beta}\)&lt;/span&gt; depends on &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt; and
+influences our conditional expectation &lt;span class=&#34;math inline&#34;&gt;\(\mu_i\)&lt;/span&gt; and further our canonical
+parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;.&lt;a href=&#34;#fn10&#34; class=&#34;footnote-ref&#34; id=&#34;fnref10&#34;&gt;&lt;sup&gt;10&lt;/sup&gt;&lt;/a&gt; In general, there is no analytic solution to
+this expression and is therefore typically estimated by &lt;em&gt;iterative
+weighted least squares&lt;/em&gt; which is a version of the Fisher scoring adapted
+to GLMs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;latent-variable-approach&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Latent Variable Approach&lt;/h4&gt;
+&lt;p&gt;So far we have argued that we want to model probabilities therefore,
+statistically, it makes sense to map our linear predictor to the unit
+interval. Apart from these considerations there are of course also
+economic/behavioural justifications for why we use these specifications
+and the corresponding link functions. Before proceeding to these
+considerations we want to briefly discuss the &lt;em&gt;latent variable
+approach&lt;/em&gt;. &lt;br/&gt;
+The idea is that the binary outcomes we observe are generated by an
+unobservable underlying (latent) variable &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt; that captures the
+propensity to have a &amp;quot;success&amp;quot; (i.e., outcome &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;) or not. Only if
+this latent variable is larger than some threshold &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;, we observe a
+success. This can be written down via
+&lt;span class=&#34;math inline&#34;&gt;\(y_i^* = \mathbf{x_i^\beta} + \epsilon_i\)&lt;/span&gt; where the linear predictor
+models the mean of the latent variable. But what we actually observe is
+only whether the latent variable exceeded some certain threshold., i.e.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+y_i = I(y_i^* \geq t) = 1  \text{ if } y_i^* \geq t \text{ and } 0 \text{ otherwise }
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Most frequently the threshold value &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; is chosen to be &lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt; because
+choosing a different threshold would only affect the intercept in the
+estimations. The probability to have a success, i.e., that &lt;span class=&#34;math inline&#34;&gt;\(y_i = 1\)&lt;/span&gt; for
+a given set of explanatory variables can then be written down as the
+corresponding value of the CDF evaluated at &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{x_i&amp;#39;\beta}\)&lt;/span&gt;. This
+can be derived via &lt;a href=&#34;#fn11&#34; class=&#34;footnote-ref&#34; id=&#34;fnref11&#34;&gt;&lt;sup&gt;11&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+P(y_i = 1 | \mathbf{x_i&amp;#39;}) = \mu_i &amp;amp; = &amp;amp; P(y_i^* \geq 0| x_i) = P(\mathbf{x_i&amp;#39;\beta} + \epsilon_i \geq 0 | \mathbf{x_i})\\
+         &amp;amp; = &amp;amp; P(\epsilon_i \geq \mathbf{-x_i&amp;#39;\beta} | \mathbf{x_i}) = P(\epsilon \leq \mathbf{x_i&amp;#39;\beta}| \mathbf{x_i})\\
+         &amp;amp; = &amp;amp; F(\mathbf{x_i&amp;#39;\beta)}
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This shows that by looking at latent variables where the
+latent variable is explained by a mean which is the linear predictor plus
+some random error term we get incidental decisions (&lt;span class=&#34;math inline&#34;&gt;\(0, 1\)&lt;/span&gt;) where the
+probability depends on the linear predictor and the distribution of the
+remaining error term around the latent variable. And then, by assuming
+that &lt;span class=&#34;math inline&#34;&gt;\(-\epsilon\)&lt;/span&gt; has a logistic distribution brings us to the logit
+model and assuming &lt;span class=&#34;math inline&#34;&gt;\(-\epsilon\)&lt;/span&gt; to be normally distributed brings us to
+the probit model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mle&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;MLE&lt;/h4&gt;
+&lt;p&gt;Under independence, the likelihood is the product of the individual
+densities (i.e. the joint density, given the data) as a function of the
+parameter vector&lt;a href=&#34;#fn12&#34; class=&#34;footnote-ref&#34; id=&#34;fnref12&#34;&gt;&lt;sup&gt;12&lt;/sup&gt;&lt;/a&gt; which can be written down as &lt;a href=&#34;#fn13&#34; class=&#34;footnote-ref&#34; id=&#34;fnref13&#34;&gt;&lt;sup&gt;13&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+L(\theta)=L(\theta; \mathbf{y}) = \prod_{i=1}^n f(\theta; y_i).
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And because it is computationally easier to handle (and also numerically
+more stable), in practice one generally uses a log-transformation (which
+is monotone with respect to maximization) and writes down the
+log-likelihood&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+l(\theta)=logL(\theta) = \sum_{i=1}^n log f(\theta; y_i).
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where,
+under independence of our sample, products are turned into
+computationally simpler sums. Then the maximum likelihood estimator
+(MLE) is the parameter estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat{\mathbf{\theta}}\_{ML}\)&lt;/span&gt; that
+maximizes the log-likelihood, i.e.
+&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mathbf{\theta}}\_{ML}=\arg\max_\theta L(\theta) = \arg\max_\theta l(\theta).\)&lt;/span&gt;
+And because the MLE depends on the specific observations (our sample)
+they can be considered as random variables. For inference it is then
+usual to look at Wald tests, Lagrange multiplier tests (LM) or
+Likelihood ratio (LR) tests. If GLMs are correctly specified, they
+inherit all properties of correctly specified ML estimation: efficiency,
+asymptotic normality and consistency.&lt;br/&gt;
+Here we will not in detail discuss Maximum Likelihood theory but only
+write down the relevant Bernoulli likelihood that is used in estimation
+for binary response models and assume that the necessary regularity
+conditions and correct specifications of the model guarantee that our
+MLE is consistent, asymptotically normal and efficient.&lt;br /&gt;
+Assuming that the sample is i.i.d the joint distribution for the binary
+choice model can be written down as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+Pr(\mathbf{y}|\mathbf{X}) = \prod_{i, y_i = 1} [F(\mathbf{x_i&amp;#39;\beta}] \prod_{i, y_i = 0} [1 - F(\mathbf{x_i&amp;#39;\beta})]
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and because the observed &lt;span class=&#34;math inline&#34;&gt;\(y_i\)&lt;/span&gt;’s are the outcome of Bernoulli
+experiments the likelihood for a sample of &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is then&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+L(\beta | \mathbf{y, X} = \prod_{i=1}^n [F(\mathbf{x_i\beta}]^{y_i} [1 - F(\mathbf{x_i&amp;#39;\beta}]^{1-y_i}
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\((.)\)&lt;/span&gt; again stands for either the CDF of the normal or the
+logistic distribution. The parameters of this model are then estimated
+by numerical methods (e.g. Newton-Raphson Algorithm).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;application-german-health-care-usage-gsoep&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Application: German Health Care Usage (GSOEP)&lt;/h1&gt;
+&lt;p&gt;For our empirical application we want to make use of a dataset that is
+about German health care usage and originates from the German
+Socioeconomic Panel Survey (GSOEP). The sample covers the years 1984-95
+and was used in a study by &lt;span class=&#34;citation&#34;&gt;@riphahn:03&lt;/span&gt; that investigated whether the
+presence of private insurance had an effect on the utilization (counts)
+of physician visits and hospital visits. The dataset is an unbalanced
+panel of 7,293 households and among the variables reported are household
+income with numerous additional sociodemographic variables including
+&lt;code&gt;age&lt;/code&gt;, &lt;code&gt;gender&lt;/code&gt;, &lt;code&gt;education&lt;/code&gt; etc. The number of observations varies from
+one to seven (1,525; 1,079; 825; 926; 1,311; 1,000; 887) with a total
+number of 27,326 observations.&lt;a href=&#34;#fn14&#34; class=&#34;footnote-ref&#34; id=&#34;fnref14&#34;&gt;&lt;sup&gt;14&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The dataset can be used to assess various research questions with
+various econometric models (count data models like Poisson regression,
+zero-inflation models or hurdle-models; binary choice models etc.).
+Since we want to model binary choices, our variable of interest
+(dependent variable) for this application is a binary variable &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; that
+indicates whether an individual visited a doctor &lt;em&gt;at all&lt;/em&gt; or not. That
+is, from the potential information of counts we have in the dataset our
+variable &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; takes on only the value &lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(docvis=0\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; for
+&lt;span class=&#34;math inline&#34;&gt;\(docvis=1\)&lt;/span&gt;. From the various socioeconomic variables (covariates) we
+decided to use only &lt;code&gt;gender&lt;/code&gt;, &lt;code&gt;age&lt;/code&gt;, &lt;code&gt;age2&lt;/code&gt;, &lt;code&gt;hhinc&lt;/code&gt;, &lt;code&gt;hhkids&lt;/code&gt;, &lt;code&gt;educ&lt;/code&gt;,
+&lt;code&gt;married&lt;/code&gt; and &lt;code&gt;working&lt;/code&gt; for the regressions.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/visits.png&#34; /&gt;
+&lt;em&gt;Count variable of doctor visits (left), binary variable (right).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the Figure above we can see the count variable &lt;code&gt;docvis&lt;/code&gt; in
+contrast to the binary variable &lt;code&gt;doc&lt;/code&gt;. The amount of observations that
+visited a doctor at least once (i.e. &lt;span class=&#34;math inline&#34;&gt;\(y&amp;gt;0\)&lt;/span&gt;) is larger compared to
+observations for which we have &lt;span class=&#34;math inline&#34;&gt;\(y=0\)&lt;/span&gt;. There are a total of 10,135
+observations that did &lt;em&gt;not&lt;/em&gt; visit a doctor in contrast to 17,191 that
+did. In the next Figure elow we have also plotted the variable &lt;code&gt;healthsat&lt;/code&gt;
+across gender for each level (ranging from 0 - 10). However, we have
+decided to not use this variable in the regressions.&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/healthsat.png&#34; /&gt;
+&lt;em&gt;Health satisfaction, coded 0 (low) - 10 (high) by gender.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Apart from the above, we can also have a look at bivariate relationships
+between our response and some of the regressors. In particular assessing
+the relationship between &lt;code&gt;educ&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; with our dependent variable in our
+Figure below, we see that with increasing education the
+tendency to visit a doctor decreases while with increasing age there
+seems to be a quadratic effect so that first the tendency to visit a
+doctor slightly decreases and then takes up again after the
+mid-fourties.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/educage.png&#34; /&gt;
+&lt;em&gt;Bivariate relationship between educ and age with doctor visits.&lt;/em&gt;&lt;/p&gt;
+&lt;div id=&#34;models&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Models&lt;/h4&gt;
+&lt;p&gt;As mentioned above, the dataset allows a vast array of models to be
+estimated. Within the binary choice models we could also make use of the
+panel structure of the data at hand. But due to time restrictions in
+preparing this project we restricted ourselves to the pooled logit and
+probit estimation and can hopefully add the binary models to this
+project anytime soon. Both models are estimated with the covariates
+&lt;code&gt;gender&lt;/code&gt;, &lt;code&gt;age&lt;/code&gt;, &lt;code&gt;age2&lt;/code&gt;, &lt;code&gt;hhinc&lt;/code&gt;, &lt;code&gt;hhkids&lt;/code&gt;, &lt;code&gt;educ&lt;/code&gt;, &lt;code&gt;married&lt;/code&gt; and
+&lt;code&gt;working&lt;/code&gt;.&lt;br/&gt;
+The Table below
+reports the regression output of these two models. Looking solely at the
+sign of the coefficients we see that for &lt;code&gt;gender: female&lt;/code&gt; we have a
+higher probability to visit a doctor, for &lt;code&gt;age&lt;/code&gt; there are two effects
+(age and age2) where the coefficient for &lt;code&gt;age&lt;/code&gt; is negative and the one
+for &lt;code&gt;age2&lt;/code&gt; positive, indicating that the probability to visit a doctor
+first decreases with age and then goes up again (though the effects are
+fairly small). For &lt;code&gt;hhinc&lt;/code&gt; the effect is almost zero and not
+significant, and for &lt;code&gt;hhkids: yes&lt;/code&gt;, &lt;code&gt;educ&lt;/code&gt;, &lt;code&gt;married: yes&lt;/code&gt; and
+&lt;code&gt;working: yes&lt;/code&gt; the effects are significantly negative (though only on a
+5% significant level for &lt;code&gt;working: yes&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/BinaryChoice.png&#34; /&gt;
+&lt;em&gt;Estimation results Logit and Probit.&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;interpretation-of-parameters&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Interpretation of Parameters&lt;/h4&gt;
+&lt;p&gt;Between logit and probit models, often logit-models are preferred
+because, besides the latent variable approach which they have both in
+common, the logit-transformation has the advantage that it can be
+regarded as a linear model on the log-odds scale, as we have stated
+above. By taking expectations, i.e. &lt;span class=&#34;math inline&#34;&gt;\(exp(\mathbf{x_i&amp;#39;\beta})\)&lt;/span&gt;, we get a
+model on the odds scale, therefore the coefficients of logistic
+regressions can be interpreted in terms of &lt;em&gt;odds&lt;/em&gt;. This approach makes
+it easy to compare two groups of subjects if they differ only for the
+&lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt; regressor by one unit which then results in &lt;span class=&#34;math inline&#34;&gt;\(exp(\beta_l)\)&lt;/span&gt; and
+immediately states the odds ratio, which is the ratio of the respective
+odds between the two groups. Relative changes in the odds ratio are then
+simply &lt;span class=&#34;math inline&#34;&gt;\(exp(\beta_l) - 1\)&lt;/span&gt;. By this we can immediately interpret
+&lt;span class=&#34;math inline&#34;&gt;\(exp(\beta)-1\)&lt;/span&gt; as changes on the odds-scale by looking at the
+coefficients from our logit-regression. For small &lt;span class=&#34;math inline&#34;&gt;\(\beta_l\)&lt;/span&gt; we further
+have &lt;span class=&#34;math inline&#34;&gt;\(exp({\beta_l})-1 \approx \beta_l\)&lt;/span&gt;, c.p. For the probit model
+instead, a direct interpretation of the coefficients like in the logit
+model is not possible. Still these considerations don’t tell us
+something about probabilities which we actually want to model.&lt;a href=&#34;#fn15&#34; class=&#34;footnote-ref&#34; id=&#34;fnref15&#34;&gt;&lt;sup&gt;15&lt;/sup&gt;&lt;/a&gt; For
+the remainder we will foremost focus on the interpretation of the
+logit-model (due to its interpretation in terms of odds) noting that in
+terms of predicted probabilities the two models are virtually
+equivalent.&lt;/p&gt;
+&lt;p&gt;Taking a step towards probabilities and how they are affected by changes
+in the regressors, things become slightly more involved than in the CLM.
+First of all, the estimated coefficients can be used to calculate the
+respective probabilities for a certain linear predictor &lt;span class=&#34;math inline&#34;&gt;\(\eta\)&lt;/span&gt;, ie. for
+every individual in the dataset with certain characteristics there
+exists a corresponding (success) probability that can be computed by
+simply evaluating
+&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mathbf{P}}r(y_i|\mathbf{x_i&amp;#39;}) = F(\mathbf{x_i&amp;#39;\hat{\mathbf{\mathbf{\beta}}}})\)&lt;/span&gt;.
+This can be, for example, used to calculate an average success
+probability across all individuals (which is of course not very
+informative as it summarizes a lot of information in the dataset). In
+our case the mean of the fitted probabilities (predicted probabilities)
+is about 0.63 (for both logit and probit). In R the &lt;code&gt;predict&lt;/code&gt;-function
+can be used to compute predictions of the response
+&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mathbf{\mu}}_i = \hat{\mathbf{P}}r(y_i|\mathbf{x_i&amp;#39;})\)&lt;/span&gt; where the
+default is the prediction of the linear predictor. Comparing, for
+example, an individual with
+&lt;code&gt;gender=male, age=44, hhinc=3500, kids=yes, educ=18, married=yes, working=yes&lt;/code&gt;
+to a person with the exact same characteristics &lt;em&gt;except&lt;/em&gt; that we set
+gender=female we get a predicted probability to visit a doctor of 0.4731
+as compared to 0.6123, respectively.&lt;a href=&#34;#fn16&#34; class=&#34;footnote-ref&#34; id=&#34;fnref16&#34;&gt;&lt;sup&gt;16&lt;/sup&gt;&lt;/a&gt; The &lt;code&gt;predict&lt;/code&gt;-function thereby
+takes the data and multiplies the vector of coefficients with the design
+matrix. By setting &lt;code&gt;type = &amp;quot;response&amp;quot;&lt;/code&gt; the linear predictors are then
+automatically sent through the inverse logit link function
+&lt;span class=&#34;math inline&#34;&gt;\(\Lambda(\eta)\)&lt;/span&gt; that evaluates the corresponding probability.&lt;a href=&#34;#fn17&#34; class=&#34;footnote-ref&#34; id=&#34;fnref17&#34;&gt;&lt;sup&gt;17&lt;/sup&gt;&lt;/a&gt; From
+these calculated probabilities it then possible to get back to the odds
+by plugging the calculated probabilities into the logit-link function or
+&lt;span class=&#34;math inline&#34;&gt;\(exp(logit-link)\)&lt;/span&gt; function for the log-odds). So for a male person with
+the above stated characteristics the probability to visit a doctor are
+0.8987 times the probability to not visit a doctor whereas for a female
+person the odds to visit a doctor are 1.578 times the probability to not
+visit a doctor.&lt;/p&gt;
+&lt;p&gt;For our odds-ratio (as outlined in the previous paragraph) we would get
+&lt;span class=&#34;math inline&#34;&gt;\(exp(0.564) = 1.758\)&lt;/span&gt;, meaning that the probability of a female person
+with a specific combination of covariates to visit a doctor is 1.758
+times higher than the odds of a male person with exactly the same
+covariate values (i.e., the regressors just differ by the &lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt;
+regressor by one unit!). And the corresponding relative change in the
+odds ratio is then &lt;span class=&#34;math inline&#34;&gt;\(0.7577 \approx 76\%\)&lt;/span&gt;, meaning that the odds to visit
+a doctor increase by 70% by changing the &lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt; regressor from &lt;code&gt;male&lt;/code&gt; to
+&lt;code&gt;female&lt;/code&gt;.&lt;a href=&#34;#fn18&#34; class=&#34;footnote-ref&#34; id=&#34;fnref18&#34;&gt;&lt;sup&gt;18&lt;/sup&gt;&lt;/a&gt; Similarly we can state that if education increases by one
+unit we expect the odds to visit a doctor to decrease by about
+&lt;span class=&#34;math inline&#34;&gt;\(exp(-0.023) - 1 = -0.02274 = -2.274\%\)&lt;/span&gt;, all else equal. Similarly
+having kids under 16 years in the household decreases the odds to visit
+a doctor by about 15%, being married increases them by about 14% and
+working decreases them by about 7% respectively. One feature of the
+calculation and report of odds is that they are still less well
+interpretable than probabilities (which are our primary interest).&lt;br /&gt;
+Alternatively it would also be possible to calculate the probability at
+the mean regressors which results in
+&lt;span class=&#34;math inline&#34;&gt;\(\hat{\mathbf{P}}r(y_i|\mathbf{\hat{\mathbf{\mathbf{x}}}_i&amp;#39;}) = F(\mathbf{\hat{\mathbf{\mathbf{x}}}_i&amp;#39;\hat{\mathbf{\mathbf{\beta}}}})\)&lt;/span&gt;.
+In our case the predicted probability at the mean regressors across the
+sample are 0.46 (logit) and 0.68 (probit) respectively.&lt;/p&gt;
+&lt;p&gt;In usual linear models the expectation &lt;span class=&#34;math inline&#34;&gt;\(E(y_i|\mathbf{x_i})\)&lt;/span&gt; that we
+want to model is a &lt;em&gt;linear function&lt;/em&gt; in the parameters, therefore every
+single parameter could be directly interpreted as a marginal effect on
+the expectation, ceteris paribus. An important difference of binary
+choice models to the CLM is that partial derivatives of the expectation,
+i.e. marginal effects, are not constant because they not only depend on
+the parameter under consideration but on the entire linear predictor
+that, of course, differs from person to person. This means that marginal
+effects result in&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+\frac{\partial P(y_i = 1|\mathbf{x_i&amp;#39;})}{\partial x_h} = \frac{\partial F(\mathbf{x_i&amp;#39;\beta})}{\partial\mathbf{x_h}} = f(\mathbf{x_i&amp;#39;\beta}) \cdot \beta_h
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(f(.)\)&lt;/span&gt; now stands for the derivative of either the logistic or
+normal CDF, i.e. the corresponding &lt;em&gt;density&lt;/em&gt;. The factor &lt;span class=&#34;math inline&#34;&gt;\(f(.)\)&lt;/span&gt; is
+always positive, therefore the sign of the corresponding &lt;span class=&#34;math inline&#34;&gt;\(f\beta_h\)&lt;/span&gt;
+directly shows in which direction the expectation changes. Due to the
+non-linearity he &lt;em&gt;size&lt;/em&gt; of a marginal effect crucially depends on the
+actual starting value we are considering when assessing the effect of
+the change of the &lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt; regressor on the predicted probability.
+Depending on the individual and its characteristics (that is
+incorporated in the linear predictor), the marginal effect can be larger
+or smaller. Due to this, it is common to report &amp;quot;typical&amp;quot; effects,
+namely &lt;em&gt;average&lt;/em&gt; marginal effects, similar to above where we reported
+average predicted probabilities and predicted probabilities at mean
+regressors. These can be calculated either by taking the mean over all
+observations (i.e. calculate the marginal effect for each observation
+and than take the mean) &lt;em&gt;or&lt;/em&gt; calculate the marginal effect at the mean
+of the regressors. In the former case we average across the
+probablity-scale, in the later across the regressor-scale, therefore
+also the results will differ.&lt;br/&gt;
+Because average probabilities as well as average marginal effects always
+merge a lot of information in one single number, their usefulness in
+terms of representation of the information in the data is debatable.
+Therefore it is often better to evaluate marginal probability effects by
+comparing groups in the data (here: married vs. not married, working
+vs. not working). Another issue is that software packages to compute
+marginal effects often don’t compute them correctly when there are
+interactions or polynomials in the model.&lt;/p&gt;
+&lt;p&gt;We have seen that both, odds and average (marginal) probabilities
+(effects) are either difficult to interpret or not very representative
+for the information in the dataset. Therefore, another very helpful tool
+to assess the information in the data is to fix all but the &lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt;
+regressor at their mean and then evaluate the marginal probability
+effects for the steps in the &lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt; regressor or directly plot the
+predicted probability against the entire range of values of the &lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt;
+regressor. We want to show here the latter for &lt;code&gt;educ&lt;/code&gt; which are
+so-called &amp;quot;effect-plots&amp;quot;. Such plots can be either generated by going
+step by step through the respective calculations, setting up a
+design-matrix where all but one regressor are fixed to a &amp;quot;typical&amp;quot;
+value we want to investigate and then let the &lt;span class=&#34;math inline&#34;&gt;\(lth\)&lt;/span&gt; regressor &amp;quot;run&amp;quot;
+and see how the predicted probabilities change. That is, we look how
+changes in one regressor, everything else fixed, translate into effects
+on probabilities. So instead of looking at marginal effects (which are
+the derivative of our expectation = success probability) it is often
+more convenient to directly look at the probabilities themselves. We
+have done this to assess the probability to visit a doctor depending on
+education while keeping all other values fixed to either their mean (for
+numeric data) or a &amp;quot;typical&amp;quot; value (for dummies). This exercise was
+then replicated for the same set of values except that we changed the
+status of &lt;code&gt;working&lt;/code&gt; from &amp;quot;yes&amp;quot; to &amp;quot;no&amp;quot; (red line in the plot). The
+result can be seen in
+Figure below where we see that if education runs
+from 7 to 18, the probability to visit a doctor decreases from slightly
+above 57% to about 51%. In between the function is almost linear. By
+changing &lt;code&gt;working&lt;/code&gt; from &amp;quot;yes&amp;quot; to &amp;quot;no&amp;quot; shifts our line so that
+persons that don’t work have a higher probability (but still decreasing
+for increasing education) across the entire range as compared to persons
+that do work.&lt;a href=&#34;#fn19&#34; class=&#34;footnote-ref&#34; id=&#34;fnref19&#34;&gt;&lt;sup&gt;19&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/educeffect.png&#34; /&gt;
+&lt;em&gt;Effect of education (everything else fixed at mean regressor); red line: changing “working”
+from “yes” to “no”.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If we want to apply the procedure above to every covariate one at a time
+we can use the &lt;code&gt;effects&lt;/code&gt;-package in R that does exactly what we did
+automatically and generates the respective effect-plots. For this it is
+important to slightly adapt the function-call for the &amp;quot;glm&amp;quot; so that R
+recognizes that &lt;code&gt;age&lt;/code&gt; and &lt;code&gt;age2&lt;/code&gt; belong together. The Figure below shows the resulting output.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/alleffects.png&#34; /&gt;
+&lt;em&gt;Effect of education (everything else fixed at mean regressor); red line: changing “working”
+from “yes” to “no”.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;To read these plots it is important to recognize that in each plot of
+the respective regressor all other covariates are fixed at their mean
+(or &amp;quot;typical&amp;quot;) values. By this it is possible to isolate the effects
+of covariates on the predicted probabilities and analyze them one at a
+time. We see a clear difference in the probability to visit a doctor
+regarding &lt;code&gt;gender&lt;/code&gt;, a quadratic age-effect whereby the probability to
+visit a doctor increases with age from about 37 onwards. Household
+income (&lt;code&gt;hhinc&lt;/code&gt;) reflects the insignificant effect we already saw in the
+regression output whereas having kids that are younger than 16
+(&lt;code&gt;hhkids&lt;/code&gt;) interestingly corresponds to a slightly lower probability to
+visit a doctor. Education has the negative (almost linear effect) we
+already showed above and married individuals have, ceteris paribus, a
+slightly higher probability to visit a doctor whereas working
+individuals have a slightly lower probability to do so. Our results show
+that the corresponding differences in probabilities are most pronounced
+for the &lt;code&gt;age&lt;/code&gt;-effect whereas for the other covariates the differences
+are fairly moderate.&lt;br /&gt;
+We want to emphasize again that for our results so far we ignored the
+panel-structure in the data. Our pooled logit and probit regressions are
+therefore just a starting point for more sophisticated binary choice
+panel data models.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;goodness-of-fit&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Goodness of Fit&lt;/h4&gt;
+&lt;p&gt;To assess the goodness of fit of our models there are various tools and
+procedures available. One option is the so-called McFadden &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;. In
+comparison to linear models where the &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; is a figure that reports the
+proportion of the total variation in the dependent variable that is
+explained by the model, this variance decomposition does not work for
+logit/probit models. Instead, a substitute is a log-likelihood
+comparison of the full model (with all regressors) with a constant-only
+model but it cannot be interpreted as the &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; in linear models. The
+McFadden &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; is thereby calculated as&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{eqnarray*}
+0 \leq R_{McFadden}^2 = 1- \frac{logLik_{unrestricted}}{logLik_{restricted}} \leq 1.
+\end{eqnarray*}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For the pseudo &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; a value near one just indicates a better model fit
+than a value near zero. This is because if our explanatory variables
+have no explanatory power at all we should get
+&lt;span class=&#34;math inline&#34;&gt;\(logLik_{unrestricted} = logLik_{restricted}\)&lt;/span&gt; and the pseudo-&lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; would
+then become 0. In the extreme case where the model perfectly explains
+the dependent variable, the log-likelihood would be zero and the
+pseudo-&lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; would be 1.&lt;a href=&#34;#fn20&#34; class=&#34;footnote-ref&#34; id=&#34;fnref20&#34;&gt;&lt;sup&gt;20&lt;/sup&gt;&lt;/a&gt; In our case the corresponding values for
+the McFadden-&lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;s are &lt;span class=&#34;math inline&#34;&gt;\(0.0368\)&lt;/span&gt; for the logit and &lt;span class=&#34;math inline&#34;&gt;\(0.03661\)&lt;/span&gt; for the
+probit model.&lt;/p&gt;
+&lt;p&gt;Another helpful visual tool are so-called &amp;quot;confusion matrices&amp;quot; that
+check the quality of the predictions in-sample. They are contingency
+tables of observed vs. predicted values where by choosing some cutoff
+probability &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt; calculated probabilities are considered a &amp;quot;success&amp;quot; or
+a &amp;quot;failure&amp;quot;. The table summarizes correct predictions on the main
+diagonal and incorrect predictions on the off-diagonal. These
+off-diagonal values can either be &amp;quot;false negatives&amp;quot;, i.e. cases that
+were falsely predicted to not visit a doctor while they actually did and
+&amp;quot;false positives&amp;quot;, i.e. cases that were falsely predicted to visit a
+doctor while they actually didn’t. Having a look at the
+Table,
+we see that a fairly large amount of cases could be predicted accurately
+but unfortunately also the false negative rate is quite high with 8299
+cases.&lt;a href=&#34;#fn21&#34; class=&#34;footnote-ref&#34; id=&#34;fnref21&#34;&gt;&lt;sup&gt;21&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/confmat.png&#34; /&gt;
+&lt;em&gt;Confusion Table for the Logit Model.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The last thing we did was to perform a Likelihood-Ratio test that
+suggests that our model is a significant improvement over a
+constant-only model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;appendix&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Appendix&lt;/h1&gt;
+&lt;div id=&#34;r-code&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;R-Code&lt;/h4&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Econometrics Project, Binary Choice Models
+#Marcel Kropp
+#19.6.2014
+
+dev.off()
+## inverse logit and probit
+x &amp;lt;- -47:47/10
+par(mar = c(6, 6, 3, 3), mfrow = c(1, 1))
+#quartz()
+plot(x, pnorm(x), type = &amp;quot;l&amp;quot;, lwd = 2,
+     xlab = expression(eta), ylab = expression(g(eta)^-1),
+     main = &amp;quot;&amp;quot;, col = &amp;quot;brown1&amp;quot;, cex.lab = 0.8, cex.axis = 0.8)
+lines(x, plogis(x), lwd = 2, col = &amp;quot;green4&amp;quot;)
+lines(x, pnorm(x, sd = dnorm(0)/dlogis(0)), lwd = 2, lty = 2)
+
+legend(&amp;quot;topleft&amp;quot;, c(&amp;quot;logistic&amp;quot;, &amp;quot;normal&amp;quot;, &amp;quot;normal (adj)&amp;quot;),
+       lty = c(1, 1, 2), lwd = 2,
+       col = c(&amp;quot;green4&amp;quot;, &amp;quot;brown1&amp;quot;, &amp;quot;black&amp;quot;),
+       bty = &amp;quot;n&amp;quot;, cex=0.8)
+
+
+
+
+#############
+## preliminaries            
+#############
+options(prompt = &amp;quot;R&amp;gt;&amp;quot;, continue = &amp;quot;+&amp;quot;, width = 64,
+        digits = 4, show.signif.stars = TRUE)
+#set.seed(1071)
+getwd()
+setwd(&amp;quot;/Users/...&amp;quot;)
+
+
+
+#############
+## original dataset            
+#############
+#original dataset is rather huge;
+#27,326 Observations
+#1 to 7 years, panel
+#7,293 households observed
+#The number of observations for a certain individual ranges from 1 to 7.
+#Frequencies are: 1=1525, 2=2158, 3=825, 4=926, 5=1051, 6=1000, 7=987
+
+#Here we list the variables that can be found in the complete dataset;
+#The variables we used for our analysis are in CAPITAL LETTERS.
+
+#variables:
+#   ID...........person ID-number
+#   FEMALE.......female = 1; male = 0
+#   YEAR.........year of observation
+#   AGE..........age in years
+#   hsat.........health satisfaction,
+#                     coded 0 (low) - 10 (high);
+#                     Note, this variable has 40 coding errors.
+#                     Variable NEWHSAT below fixes them.
+#   handdum......handicapped = 1; otherwise = 0
+#   handper......degree of handicap in percent (0 - 100)
+#   DOCTOR.......1 if Number of doctor visits &amp;gt; 0; otherwise = 0             
+#   hospital.....1 if Number of hospital visits &amp;gt; 0; otherwise = 0   
+#   HHNINC.......household nom. month. netincome in German marks/10000
+#   HHKIDS.......children under age 16 in the household = 1; otherwise = 0
+#   EDUC.........years of schooling
+#   MARRIED......married = 1; otherwise = 0
+#   haupts.......highest degree is Hauptschul degree = 1; otherwise = 0
+#   reals........highest degree is Realschul degree = 1; otherwise = 0
+#   fachhs.......highest degree is Polytechnical degree = 1; otherwise = 0
+#   abitur.......highest degree is Abitur = 1; otherwise = 0
+#   univ.........highest degree is university degree = 1; otherwise = 0
+#   WORKING......employed = 1; otherwise = 0
+#   bluec........blue collar employee = 1; otherwise = 0
+#   whitec.......white collar employee = 1; otherwise = 0
+#   self.........self employed = 1; otherwise = 0
+#   beamt........civil servant = 1; otherwise = 0
+#   DOCVIS.......number of doctor visits in last three months
+#   hospvis......number of hospital visits in last calendar year
+#   public.......insured in public health insurance = 1;
+#                otherwise = 0
+#   addon........insured by add-on insurance = 1; otherswise = 0
+
+#Notes: In the applications in the text of Greene, the following additional
+#variables are used:
+#   numobs.......Number of observations for this person.
+#                Repeated in each row of data.
+#   NEWHSAT = hsat; 40 observations on HSAT recorded between
+#                   6 and 7 were changed to 7.
+
+
+
+
+#############
+## read in the dataset            
+#############
+
+if(!file.exists(&amp;quot;healthcare.rda&amp;quot;)) {
+  url &amp;lt;- &amp;quot;http://people.stern.nyu.edu/wgreene/Econometrics/healthcare.csv&amp;quot;
+  download.file(url, destfile = &amp;quot;healthcare.csv&amp;quot;)
+  ##read in the data into R
+  healthcare &amp;lt;- read.csv(&amp;quot;healthcare.csv&amp;quot;, header = TRUE)
+
+  ##adjust dataset
+  healthcare &amp;lt;- subset(healthcare, select = c(id, DOCTOR, DOCVIS, NEWHSAT,
+                                   EDUC, HHNINC, HHKIDS, AGE,
+                                   FEMALE, MARRIED, WORKING,
+                                   YEAR))
+  #retransform the income variable
+  healthcare$HHNINC &amp;lt;- (healthcare$HHNINC)*10000
+  #View(healthcare)
+
+  #further transformations; relabelling, appropriate types
+  healthcare &amp;lt;- with(healthcare, data.frame(
+    &amp;quot;id&amp;quot; = id,
+    &amp;quot;doc&amp;quot; = factor(DOCTOR, levels = c(0, 1),
+                   labels = c(&amp;quot;no&amp;quot;, &amp;quot;yes&amp;quot;)),
+    &amp;quot;docvis&amp;quot; = DOCVIS,
+    &amp;quot;hsat&amp;quot; = NEWHSAT,
+    &amp;quot;educ&amp;quot; = EDUC,
+    &amp;quot;hhinc&amp;quot; = HHNINC,
+    &amp;quot;hhkids&amp;quot; = factor(HHKIDS, levels = c(0, 1), labels = c(&amp;quot;no&amp;quot;, &amp;quot;yes&amp;quot;)),
+    &amp;quot;age&amp;quot; = AGE,
+    &amp;quot;gender&amp;quot; = factor(FEMALE, levels = c(0, 1), labels = c(&amp;quot;male&amp;quot;, &amp;quot;female&amp;quot;)),
+    &amp;quot;married&amp;quot; = factor(MARRIED, levels = c(0, 1), labels = c(&amp;quot;no&amp;quot;, &amp;quot;yes&amp;quot;)),
+    &amp;quot;working&amp;quot; = factor(WORKING, levels = c(0, 1), labels = c(&amp;quot;no&amp;quot;, &amp;quot;yes&amp;quot;)),
+    &amp;quot;year&amp;quot; = YEAR
+  ))
+  ## save the file in .rda format
+  save(healthcare, file = &amp;quot;healthcare.rda&amp;quot;)
+} else {
+  load(&amp;quot;healthcare.rda&amp;quot;)
+}
+
+
+#a few separate bivariate plots
+dev.off()
+plot(doc ~ married, data = healthcare)
+plot(doc ~ hhkids, data = healthcare)
+plot(doc ~ hhinc, data = healthcare)
+plot(doc ~ gender, data = healthcare)
+plot(doc ~ married, data = healthcare)
+plot(doc ~ working, data = healthcare)
+plot(doc ~ age, data = healthcare)
+
+
+#our variable of interest is the binary choice:
+#visited doctor (yes/no)
+barplot(table(healthcare$doc),
+        xlab = &amp;quot;Individual visited doctor in past year&amp;quot;,
+        ylab = &amp;quot;absolute frequency&amp;quot;)
+
+#comparison reveals of count (docvis) and binary variable (doc)
+layout(matrix(c(1, 2), nrow = 1), widths = c(1, 0.5))
+matrix(c(1, 2), nrow = 1)
+par(mar = c(4.1, 4.1, 2, 2))
+plot(table(healthcare$docvis), main = &amp;quot;&amp;quot;, xlab = &amp;quot;count variable (visits)&amp;quot;,
+                         cex.lab = 0.7, cex.axis = 0.7, ylab = &amp;quot;frequency&amp;quot;)
+#then we set the margins for the second graph
+par(mar = c(4.1, 0.5, 2.1, 0.9))
+barplot(table(healthcare$doc), xlab = &amp;quot;binary variable (visits)&amp;quot;,
+                         cex.lab = 0.7, cex.axis = 0.7)
+table(healthcare$doc)
+
+
+#health satisfaction across gender
+attach(healthcare)
+par(mfrow = c(1, 1))
+table &amp;lt;- table(gender, hsat)
+#reformat the data to be in long format
+library(&amp;quot;reshape2&amp;quot;)
+table.long &amp;lt;- melt(table, id.vars = &amp;quot;gender&amp;quot;)
+table.long
+#use ggplot2 to create the plot
+#install.packages(&amp;quot;ggplot2&amp;quot;)
+library(&amp;quot;ggplot2&amp;quot;)
+ggplot(table.long, aes(x=hsat, y=value, fill = factor(gender)))+
+  geom_bar(stat=&amp;quot;identity&amp;quot;, position=&amp;quot;dodge&amp;quot;)+xlab(&amp;quot;&amp;quot;)+ylab(&amp;quot;Frequency&amp;quot;)
+
+
+#use adapted dataset &amp;quot;healthcare1&amp;quot; for regressions
+head(healthcare)
+healthcare1 &amp;lt;- healthcare
+healthcare1$docvis &amp;lt;- NULL
+#healthcare1$hsat &amp;lt;- NULL
+dev.off()
+par(mfrow = c(1, 2))
+plot(doc ~ educ, data = healthcare1, ylevels = 2:1, ylab = &amp;quot;&amp;quot;, main = &amp;quot;&amp;quot;)
+aux &amp;lt;- glm(doc ~ educ + I(educ^2), data = healthcare1, family = binomial)
+edu &amp;lt;- sort(unique(healthcare1$educ))
+prop &amp;lt;- ecdf(healthcare1$educ)(edu)
+lines(predict(aux, newdata = data.frame(educ = edu),
+              type = &amp;quot;response&amp;quot;) ~ prop, col = 2, lwd = 2)
+
+plot(doc ~ age, data = healthcare1, ylevels = 2:1, ylab = &amp;quot;&amp;quot;)
+aux &amp;lt;- glm(doc ~ age + I(age^2), data = healthcare1, family = binomial)
+ag &amp;lt;- sort(unique(healthcare1$age))
+prop &amp;lt;- ecdf(healthcare1$age)(ag)
+lines(predict(aux, newdata = data.frame(age = ag),
+              type = &amp;quot;response&amp;quot;) ~ prop, col = 2, lwd = 2)
+
+#############
+## models
+#############
+logit &amp;lt;- glm(doc ~ gender + age + I(age^2) + hhinc + hhkids + educ +
+                   married + working,
+                   family = binomial(link = &amp;quot;logit&amp;quot;),
+                   data = healthcare1)
+summary(logit)                               
+probit &amp;lt;- glm(doc ~ gender + age + I(age^2) + hhinc + hhkids + educ +
+                    married + working,
+                    family = binomial(link = &amp;quot;probit&amp;quot;),
+                    data = healthcare1)
+summary(probit)
+#Coefficients for probit and logit should differ by a factor of approx. 1.6
+cbind(coef(logit), coef(probit)*1.6)
+#install.packages(&amp;quot;memisc&amp;quot;)
+library(&amp;quot;memisc&amp;quot;)
+mtable(logit, probit)
+toLatex(mtable(logit, probit))
+
+
+
+#############
+## predictions and
+## interpretations
+#############
+#use predict function to compute predicted probabilities
+predict(logit, data.frame(gender = &amp;quot;male&amp;quot;, age = 44, hhinc = 3500, hhkids = &amp;quot;yes&amp;quot;,
+                          educ = 18, married = &amp;quot;yes&amp;quot;, working = &amp;quot;yes&amp;quot;),
+                          type = &amp;quot;response&amp;quot;)
+predict(logit, data.frame(gender = &amp;quot;female&amp;quot;, age = 44, hhinc = 3500, hhkids = &amp;quot;yes&amp;quot;,
+                          educ = 18, married = &amp;quot;yes&amp;quot;, working = &amp;quot;yes&amp;quot;),
+                          type = &amp;quot;response&amp;quot;)
+predict(probit, data.frame(gender = &amp;quot;male&amp;quot;, age = 44, hhinc = 3500, hhkids = &amp;quot;yes&amp;quot;,
+                          educ = 18, married = &amp;quot;yes&amp;quot;, working = &amp;quot;yes&amp;quot;),
+                          type = &amp;quot;response&amp;quot;)
+predict(probit, data.frame(gender = &amp;quot;female&amp;quot;, age = 44, hhinc = 3500, hhkids = &amp;quot;yes&amp;quot;,
+                          educ = 18, married = &amp;quot;yes&amp;quot;, working = &amp;quot;yes&amp;quot;),
+                          type = &amp;quot;response&amp;quot;)
+#the relation between link-scale and probability scale can be assessed via
+predict(logit, data.frame(gender = &amp;quot;male&amp;quot;, age = 44, hhinc = 3500, hhkids = &amp;quot;yes&amp;quot;,
+                          educ = 18, married = &amp;quot;yes&amp;quot;, working = &amp;quot;yes&amp;quot;),
+                          type = &amp;quot;link&amp;quot;)
+mu1 &amp;lt;- exp(-0.1077)/(1+exp(-0.1077))
+mu1 #is the same value that we got when setting type = &amp;quot;response&amp;quot;!
+
+#equivalently
+predict(logit, data.frame(gender = &amp;quot;female&amp;quot;, age = 44, hhinc = 3500, hhkids = &amp;quot;yes&amp;quot;,
+                          educ = 18, married = &amp;quot;yes&amp;quot;, working = &amp;quot;yes&amp;quot;),
+                          type = &amp;quot;link&amp;quot;)
+mu2 &amp;lt;- exp(0.4568)/(1+exp(0.4568))
+mu2
+
+#a male person with the above covariates the probability to visit a
+#doctor (yes/no) is 0.8987 times the probability to not visit a doctor.
+mu1/(1-mu1) #odds
+log(mu1/(1-mu1)) #log Chancen
+
+#a female person with the above covariates the probability to visit a
+#doctor (yes/no) is 1.578 times the probability to not visit a doctor.
+mu2/(1-mu2) #odds
+log(mu2/(1-mu2)) #log Chancen
+
+#odds ratios (ratio of odds for female vs odds for male)
+exp(0.564)
+exp(0.564) - 1
+
+#similarly:
+#education
+exp(-0.023) - 1
+
+exp(-0.166) - 1 #hhkids
+exp(0.150) -1 #married
+exp(-0.073) - 1 #working
+
+#all at once
+as.numeric(round(exp(coef(logit)) - 1, 2))
+
+
+#age is more difficult to interpret due to the quadratic term!
+#also hhinc is not reported because it is insignificant and
+#virtually zero!
+
+
+
+#average predicted probabilities:
+mean(predict(logit, type = &amp;quot;response&amp;quot;))
+mean(predict(probit, type = &amp;quot;response&amp;quot;))
+
+
+#predicted probability evaluated at mean regressors
+(pred.l &amp;lt;- as.numeric(plogis
+         (coef(logit)[1] +
+         coef(logit)[2]*(length(gender[gender == &amp;quot;female&amp;quot;])/length(gender) +
+         coef(logit)[3]*mean(healthcare1$age) +
+         coef(logit)[5]*mean(healthcare1$hhinc) +
+         coef(logit)[6]*(length(hhkids[hhkids == &amp;quot;yes&amp;quot;])/length(hhkids)) +
+         coef(logit)[7]*mean(healthcare1$educ) +
+         coef(logit)[8]*(length(married[married == &amp;quot;yes&amp;quot;])/length(married)) +
+         coef(logit)[9]*(length(working[working == &amp;quot;yes&amp;quot;])/length(working))))))
+(pred.p &amp;lt;- as.numeric(pnorm
+         (coef(probit)[1] +
+         coef(probit)[2]*(length(gender[gender == &amp;quot;female&amp;quot;])/length(gender) +
+         coef(probit)[3]*mean(healthcare1$age) +
+         coef(probit)[5]*mean(healthcare1$hhinc) +
+         coef(probit)[6]*(length(hhkids[hhkids == &amp;quot;yes&amp;quot;])/length(hhkids)) +
+         coef(probit)[7]*mean(healthcare1$educ) +
+         coef(probit)[8]*(length(married[married == &amp;quot;yes&amp;quot;])/length(married)) +
+         coef(probit)[9]*(length(working[working == &amp;quot;yes&amp;quot;])/length(working))))))
+
+
+#calculation for effects for education &amp;quot;by hand&amp;quot;
+x.matrix &amp;lt;- model.matrix(logit)
+head(x.matrix)
+
+xbar &amp;lt;- colMeans(x.matrix[, 2:9])
+xbar
+class(xbar)
+
+xbar &amp;lt;- as.data.frame(t(xbar))
+xbar
+
+names(xbar)[1] &amp;lt;- &amp;quot;gender&amp;quot;
+names(xbar)[5] &amp;lt;- &amp;quot;hhkids&amp;quot;
+names(xbar)[7] &amp;lt;- &amp;quot;married&amp;quot;
+names(xbar)[8] &amp;lt;- &amp;quot;working&amp;quot;
+xbar
+class(xbar)
+
+xbar$gender &amp;lt;- replace(xbar$gender, xbar$gender==&amp;quot;0.47877479323721&amp;quot;, &amp;quot;male&amp;quot;)
+xbar$hhkids &amp;lt;- replace(xbar$hhkids, xbar$hhkids==&amp;quot;0.402730000731904&amp;quot;, &amp;quot;no&amp;quot;)
+xbar$married &amp;lt;- replace(xbar$married, xbar$married==&amp;quot;0.758618165849374&amp;quot;, &amp;quot;yes&amp;quot;)
+xbar$working &amp;lt;- replace(xbar$working, xbar$working==&amp;quot;0.677047500548928&amp;quot;, &amp;quot;yes&amp;quot;)
+xbar
+
+predict(logit, xbar, type = &amp;quot;response&amp;quot;)
+#fixing all covariates at their mean, the &amp;quot;typical&amp;quot; person has a probability to
+#visit a doctor of about 55%.
+
+#replicate the data
+xbar &amp;lt;- do.call(&amp;quot;rbind&amp;quot;, replicate(111, xbar, simplify = FALSE))
+head(xbar)
+summary(xbar)
+#then instead of having the mean value for &amp;quot;education&amp;quot; in every row we let
+#education run from 7 to 18 in steps of 0.1
+educ &amp;lt;- seq(7, 18, by = 0.1)
+xbar$educ &amp;lt;- educ
+xbar
+#all other values are fixed on a &amp;quot;typical&amp;quot; value
+
+#then we can say again
+predict(logit, xbar, type = &amp;quot;response&amp;quot;)
+#and calculated probabilities for a running value of &amp;quot;education&amp;quot;
+
+xbar$prob &amp;lt;- predict(logit, xbar, type = &amp;quot;response&amp;quot;)
+xbar
+#then we can write
+dev.off()
+plot(prob ~ educ, data = xbar, type = &amp;quot;l&amp;quot;, ylim = c(0.51,0.61), cex.axis = 0.7,
+     cex.lab = 0.7)
+#and see that if education runs from 7 to 18, the probability to visit a doctor
+#decreases from slightly above 57% to about 51%. In between the function is almost
+#linear!
+
+
+#the whole calculations can now be repeated for &amp;quot;working = no&amp;quot; and the line be
+#added to our plot via
+x.matrix &amp;lt;- model.matrix(logit)
+head(x.matrix)
+
+xbar &amp;lt;- colMeans(x.matrix[, 2:9])
+xbar
+class(xbar)
+
+xbar &amp;lt;- as.data.frame(t(xbar))
+xbar
+
+names(xbar)[1] &amp;lt;- &amp;quot;gender&amp;quot;
+names(xbar)[5] &amp;lt;- &amp;quot;hhkids&amp;quot;
+names(xbar)[7] &amp;lt;- &amp;quot;married&amp;quot;
+names(xbar)[8] &amp;lt;- &amp;quot;working&amp;quot;
+xbar
+class(xbar)
+
+xbar$gender &amp;lt;- replace(xbar$gender, xbar$gender==&amp;quot;0.47877479323721&amp;quot;, &amp;quot;male&amp;quot;)
+xbar$hhkids &amp;lt;- replace(xbar$hhkids, xbar$hhkids==&amp;quot;0.402730000731904&amp;quot;, &amp;quot;no&amp;quot;)
+xbar$married &amp;lt;- replace(xbar$married, xbar$married==&amp;quot;0.758618165849374&amp;quot;, &amp;quot;yes&amp;quot;)
+xbar$working &amp;lt;- replace(xbar$working, xbar$working==&amp;quot;0.677047500548928&amp;quot;, &amp;quot;no&amp;quot;)
+xbar
+
+predict(logit, xbar, type = &amp;quot;response&amp;quot;)
+xbar &amp;lt;- do.call(&amp;quot;rbind&amp;quot;, replicate(111, xbar, simplify = FALSE))
+head(xbar)
+summary(xbar)
+educ &amp;lt;- seq(7, 18, by = 0.1)
+xbar$educ &amp;lt;- educ
+xbar
+predict(logit, xbar, type = &amp;quot;response&amp;quot;)
+xbar$prob &amp;lt;- predict(logit, xbar, type = &amp;quot;response&amp;quot;)
+xbar
+lines(prob ~ educ, data = xbar, type = &amp;quot;l&amp;quot;, col = &amp;quot;red&amp;quot;)
+legend(&amp;quot;bottomleft&amp;quot;, c(&amp;quot;working = yes&amp;quot;, &amp;quot;working = no&amp;quot;),
+       lty = c(1, 1), lwd = 2, col = c(&amp;quot;black&amp;quot;, &amp;quot;red&amp;quot;), bty = &amp;quot;n&amp;quot;, cex=0.7)
+#and see that if education runs from 7 to 18, the probability to visit a doctor
+#decreases from slightly above 57% to about 51%. In between the function is almost
+#linear!
+
+
+#effects plots with the effects-package
+#install.packages(&amp;quot;effects&amp;quot;)
+library(&amp;quot;effects&amp;quot;)
+#to use the effects plot we restrict ourselves to the logit-model and reestimate
+#it so that R understands that &amp;quot;age&amp;quot; and &amp;quot;age^2&amp;quot; belong to one and the same
+#variable. this is done via &amp;quot;poly()&amp;quot;
+logit.2 &amp;lt;- glm(doc ~ gender + poly(age, 2, raw = TRUE) + hhinc + hhkids +
+                   educ + married + working,
+                   family = binomial(link = &amp;quot;logit&amp;quot;),
+                   data = healthcare1)
+logit.eff &amp;lt;- allEffects(logit.2)
+plot(logit.eff, aks = FALSE, rescale.axis = FALSE, cex.axis = 0.7, cex.lab = 0.7,
+     main = &amp;quot;&amp;quot;, rug = FALSE)
+
+
+#############
+## goodness of fit
+#############
+#McFadden R^2
+#Calculations:
+#evaluating the constant-only model:
+logit0 &amp;lt;- glm(doc ~ 1, data = healthcare1, family = binomial(link = &amp;quot;logit&amp;quot;))
+logLik(logit0)
+probit0 &amp;lt;- glm(doc ~ 1, data = healthcare1, family = binomial(link = &amp;quot;probit&amp;quot;))
+logLik(probit0)
+
+#the log-likelihood values from the unrestricted (full) model from above:
+logLik(logit)
+logLik(probit)
+
+
+rsq.logit &amp;lt;- as.numeric(1-(logLik(logit)/logLik(logit0)))
+rsq.logit
+rsq.probit &amp;lt;- as.numeric(1-(logLik(probit)/logLik(probit0)))
+rsq.probit
+
+
+#Alternative Approach
+## &amp;quot;Proportion of Correct Predictions&amp;quot;
+#with cut-off value 50%
+conftab1 &amp;lt;- table(true = healthcare1$doc, pred = fitted(logit) &amp;gt; 0.5) #Kreuztabelle
+#confusion-Matrix mit logit
+conftab2 &amp;lt;- table(true = healthcare1$doc, pred = fitted(probit) &amp;gt; 0.5) #Kreuztabelle
+#confusion-Matrix mit probit
+mtable(conftab1, conftab2)
+toLatex(mtable(logit, probit))
+
+
+#install.packages(&amp;quot;ROCR&amp;quot;)
+library(ROCR)
+pred &amp;lt;- prediction(fitted(logit), healthcare1$doc)
+plot(performance(pred, &amp;quot;acc&amp;quot;))
+plot(performance(pred, &amp;quot;tpr&amp;quot;, &amp;quot;fpr&amp;quot;))
+abline(0, 1, lty = 2)
+
+
+##############
+## LR-Test
+##############
+#Likelihood Ratio test: raw calculations
+as.numeric(-2*(logLik(probit0)-logLik(probit))) #result: 1319 (relevant test
+#statistic)
+as.numeric(-2*(logLik(logit0)-logLik(logit))) #result: 1326
+qchisq(0.99, 8) #we have 8 degress of freedom
+#-&amp;gt; Hypothesis that the two models are the same can be rejected!
+
+
+#LR-test with package:
+#install.packages(&amp;quot;lmtest&amp;quot;)
+library(lmtest)
+lrtest(probit0, probit)
+lrtest(logit0, logit)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;footnotes&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Footnotes&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;This can be derived from
+&lt;span class=&#34;math inline&#34;&gt;\(E[\mathbf{y}\vert \mathbf{X}]=E[\mathbf{X\beta+\epsilon}\vert \mathbf{X}]=E[\mathbf{X\beta\vert X}]+E[\mathbf{\epsilon\vert X}]=\mathbf{X\beta}\)&lt;/span&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Note that normality of the errors is not necessary for the tests
+to hold and also not part of the Gauß-Markov-assumptions.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Generalized linear models were formulated by &lt;span class=&#34;citation&#34;&gt;@nelder:72&lt;/span&gt; as a way
+of unifying various other statistical models, including linear
+regression, logistic regression and Poisson regression.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;If the dispersion parameter &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; is fixed then this type of
+distributions are called an &lt;em&gt;exponential family&lt;/em&gt;.&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;Due to &lt;span class=&#34;math inline&#34;&gt;\(g(\mu_i)=\eta_i=\mathbf{x_i&amp;#39;\beta}\)&lt;/span&gt; we have
+&lt;span class=&#34;math inline&#34;&gt;\(\mu_i=g^{-1}(\eta_i)=g^{-1}(\mathbf{x_i&amp;#39;\beta})\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(g^{-1}\)&lt;/span&gt; is
+the inverse link function.&lt;a href=&#34;#fnref5&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn6&#34;&gt;&lt;p&gt;Here we denote the conditional expectation &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; as our success probability &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; which is &lt;span class=&#34;math inline&#34;&gt;\(\in[0, 1]\)&lt;/span&gt;.&lt;a href=&#34;#fnref6&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn7&#34;&gt;&lt;p&gt;It is important to note that &lt;span class=&#34;math inline&#34;&gt;\(b(.)\)&lt;/span&gt; is a function of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; in
+the first place so that we have to differentiate with respect to
+&lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; and not &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt;.&lt;a href=&#34;#fnref7&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn8&#34;&gt;&lt;p&gt;In the case of the normal distribution mean and variance are
+independent.&lt;a href=&#34;#fnref8&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn9&#34;&gt;&lt;p&gt;Details will follow below.&lt;a href=&#34;#fnref9&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn10&#34;&gt;&lt;p&gt;In the setting of GLMs the dispersion parameter &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; can be
+treated as a nuisance parameter or is known anyway.&lt;a href=&#34;#fnref10&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn11&#34;&gt;&lt;p&gt;Whereby &lt;span class=&#34;math inline&#34;&gt;\(F(.)\)&lt;/span&gt; can then be either the CDF of the normal or the logistic distribution.&lt;a href=&#34;#fnref11&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn12&#34;&gt;&lt;p&gt;Switching from &amp;quot;likelihood&amp;quot; to &amp;quot;densities&amp;quot; emphasizes the
+reversed roles of the data and the parameters (i. e., the arguments)
+and is also expressed notationally by switching from the joint
+distribution as the joint probability density for observing
+&lt;span class=&#34;math inline&#34;&gt;\(y_1, ..., y_n\)&lt;/span&gt; given &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; to the &lt;em&gt;likelihood function&lt;/em&gt; of the
+unknown parameter &lt;span class=&#34;math inline&#34;&gt;\(theta\)&lt;/span&gt; given a random sample &lt;span class=&#34;math inline&#34;&gt;\(y_1, ..., y_n\)&lt;/span&gt;.&lt;a href=&#34;#fnref12&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn13&#34;&gt;&lt;p&gt;Here write down the setup without regressors; the general considerations are the same for cases where we specifically consider regressors, i.e. for &lt;span class=&#34;math inline&#34;&gt;\(f(\theta; y_1, ..., y_n\vert\mathbf{x})\)&lt;/span&gt;.&lt;a href=&#34;#fnref13&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn14&#34;&gt;&lt;p&gt;A detailed list with the variables and their description can be
+found in the accompanying R code in the
+Appendix below.&lt;a href=&#34;#fnref14&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn15&#34;&gt;&lt;p&gt;The logit model can therefore be interpreted as a
+semi-logarithmic model for the odds.&lt;a href=&#34;#fnref15&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn16&#34;&gt;&lt;p&gt;Evaluating the predicted probabilities using the probit model
+instead results in virtually no difference.&lt;a href=&#34;#fnref16&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn17&#34;&gt;&lt;p&gt;The default would be &lt;code&gt;type = &amp;quot;link&amp;quot;&lt;/code&gt; that reports the
+corresponding value on the link-scale.&lt;a href=&#34;#fnref17&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn18&#34;&gt;&lt;p&gt;Note that these odds ratios don’t change, i.e., the remain
+constant even if we change the other regressors, whereas the
+difference on the probability scale is not the same.&lt;a href=&#34;#fnref18&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn19&#34;&gt;&lt;p&gt;Note that the calculations were made only using the logit-model.
+Applying the procedure to probit-models would result in virtually
+identical results.&lt;a href=&#34;#fnref19&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn20&#34;&gt;&lt;p&gt;The pseudo-&lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; uses the same information as the likelihood
+ratio test.&lt;a href=&#34;#fnref20&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn21&#34;&gt;&lt;p&gt;It is also possible to check for which cutoff-value the
+proportion of correct predictions is largest (see the R-Code in the Appendix below).&lt;a href=&#34;#fnref21&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,18 +6,18 @@
     <description>Recent content in Basic Elements on himynameismarcel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 14 Jun 2014 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/basic-elements/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Basic HTML Elements</title>
+      <title>Binary Choice Models - Some Theory and an Application</title>
       <link>/post/basic-elements/</link>
-      <pubDate>Mon, 16 Apr 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 14 Jun 2014 00:00:00 +0000</pubDate>
       
       <guid>/post/basic-elements/</guid>
-      <description>&lt;p&gt;The main purpose of this article is to make sure that all basic HTML Elements are decorated with CSS so as to not miss any possible elements when creating new themes for Hugo.&lt;/p&gt;</description>
+      <description>Abstract In this slightly longer post I want to outline some of the differences in the econometric modeling techniques when the dependent variable is a binary variable with two distinct outcomes (yes/no, 0/1). We will discuss the shortcomings of ordinary least squares (OLS) in these settings and how the concept of a conditional expectation function (CEF) is replaced by the concept of a conditional probability function (CPF) that gives rise to the so called logit and probit models used for binary responses.</description>
     </item>
     
   </channel>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on himynameismarcel</title>
+    <link>/tags/markdown/</link>
+    <description>Recent content in Markdown on himynameismarcel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Markdown Crash-Course</title>
+      <link>/post/2018-03-09-a-markdown-crash-course/</link>
+      <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-03-09-a-markdown-crash-course/</guid>
+      <description>&lt;p&gt;Markdown-syntax has already crossed my path both when producing reproducible reports using Jupyter and R Markdown notebooks.&lt;/p&gt;
+&lt;p&gt;To check it&amp;rsquo;s features a bit more comprehensively I decided to make an exercise out of it and go through a detailed blog-post that I found on &lt;a href=&#34;https://ghost.org/de/&#34;&gt;ghost.org&lt;/a&gt;. The article is called &lt;a href=&#34;https://blog.ghost.org/markdown/&#34;&gt;How to Write Faster, Better &amp;amp; Longer: The Ultimate Guide to Markdown&lt;/a&gt;. Below will find all the snippets that I tried out myself while going through their article:&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;quick&lt;/em&gt; brown fox, jumped &lt;strong&gt;over&lt;/strong&gt; the lazy &lt;a href=&#34;https://en.wikipedia.org/wiki/Dog&#34;&gt;dog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Porchetta short loin chicken shoulder pork belly swine. Ground round biltong alcatra sausage pastrami kielbasa tenderloin filet mignon frankfurter capicola leberkas beef pig pork belly. Flank pork prosciutto sausage shankle shoulder swine burgdoggen drumstick. Turkey leberkas pancetta meatball porchetta ribeye buffalo sausage corned beef cupim meatloaf. Shoulder picanha burgdoggen spare ribs, kevin pastrami alcatra jowl kielbasa ground round turkey hamburger ribeye andouille tenderloin. Jerky rump kielbasa, pastrami tri-tip salami tenderloin short ribs meatloaf turducken beef ribs tail jowl.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;basic-markdown-formatting&#34;&gt;Basic Markdown Formatting&lt;/h1&gt;
+&lt;p&gt;Here are the elements we&amp;rsquo;ll use most often:&lt;/p&gt;
+&lt;h2 id=&#34;headings&#34;&gt;Headings&lt;/h2&gt;
+&lt;h1 id=&#34;heading-1&#34;&gt;Heading 1&lt;/h1&gt;
+&lt;h2 id=&#34;heading-2&#34;&gt;Heading 2&lt;/h2&gt;
+&lt;h3 id=&#34;heading-3&#34;&gt;Heading 3&lt;/h3&gt;
+&lt;h4 id=&#34;heading-4&#34;&gt;Heading 4&lt;/h4&gt;
+&lt;h2 id=&#34;text&#34;&gt;Text&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;italic&lt;/em&gt;
+&lt;strong&gt;bold&lt;/strong&gt;
+&lt;em&gt;&lt;strong&gt;bold-italic&lt;/strong&gt;&lt;/em&gt;
+&lt;a href=&#34;http://www.orf.at&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;images&#34;&gt;Images&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;http://via.placeholder.com/350x150&#34; alt=&#34;m&amp;rsquo;lady&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;unordered-lists&#34;&gt;Unordered Lists&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Milk&lt;/li&gt;
+&lt;li&gt;Bread
+&lt;ul&gt;
+&lt;li&gt;Wholegrain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Butter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ordered-lists&#34;&gt;Ordered Lists&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Tidy the kitchen&lt;/li&gt;
+&lt;li&gt;Prepare ingredients&lt;/li&gt;
+&lt;li&gt;Cook delicious things&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;quotes&#34;&gt;Quotes&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To be or not to be, that is the question.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;intermediate-markdown-formatting&#34;&gt;Intermediate Markdown Formatting&lt;/h1&gt;
+&lt;h2 id=&#34;horizontal-rules&#34;&gt;Horizontal Rules&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;code-snippets&#34;&gt;Code Snippets&lt;/h2&gt;
+&lt;p&gt;Some text with an inline &lt;code&gt;code&lt;/code&gt; snippet.&lt;/p&gt;
+&lt;p&gt;Indenting by &lt;strong&gt;4 spaces&lt;/strong&gt; will turn an entire paragraph into a code-block (further down we will learn how to specify the language for a proper syntax-highlighing:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.my-link {
+    text-decoration: underline;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;reference-lists--titles&#34;&gt;Reference Lists &amp;amp; Titles&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;The quick brown &lt;a href=&#34;https://en.wikipedia.org/wiki/Fox&#34; title=&#34;Wikipedia: Fox&#34;&gt;fox&lt;/a&gt;, jumped over the lazy &lt;a href=&#34;https://en.wikipedia.org/wiki/Dog&#34; title=&#34;Wikipedia: Dog&#34;&gt;dog&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Anywhere we use a URL, we can follow it with a &lt;code&gt;&amp;quot;title in quotation marks&amp;quot;&lt;/code&gt; to generate a title attribute.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Dog&#34; title=&#34;Wikipedia: Dog&#34;&gt;Dog&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;escaping&#34;&gt;Escaping&lt;/h2&gt;
+&lt;p&gt;*literally*&lt;/p&gt;
+&lt;p&gt;Escaping Markdown characters with a back-slash &lt;code&gt;\&lt;/code&gt; allows us to use any characters which might be getting accidentally converted into HTML.&lt;/p&gt;
+&lt;h2 id=&#34;embedding-html&#34;&gt;Embedding HTML&lt;/h2&gt;
+
+
+&lt;button class=&#34;button-save large&#34;&gt; Big Fat Button &lt;/button&gt;
+
+
+&lt;p&gt;Possibly the coolest feature of Markdown is that it also just supports plain old HTML.&lt;/p&gt;
+&lt;p&gt;So we can drop in any HTML, sharing button JavaScript snipped or iFrame we like and it will work on the page just as normal.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;advanced-markdown&#34;&gt;Advanced Markdown&lt;/h1&gt;
+&lt;p&gt;Every example so far has been vanilla, normal Markdown. Those code snippets will work absolutely anywhere which supports Markdown syntax.&lt;/p&gt;
+&lt;p&gt;Now we are going to look at some syntax which is &lt;strong&gt;not standard&lt;/strong&gt; to native Markdown (i.e., they are extensions of the language).&lt;/p&gt;
+&lt;h2 id=&#34;strike-throughs-we-have-to-use-the-html-way-of-doing-it-here&#34;&gt;Strike-throughs (we have to use the html-way of doing it here)&lt;/h2&gt;
+
+
+&lt;s&gt;deleted words&lt;/s&gt;
+
+
+&lt;h2 id=&#34;highlights-we-have-to-use-the-html-way-of-doing-it-here&#34;&gt;Highlights (we have to use the html-way of doing it here)&lt;/h2&gt;
+
+
+&lt;mark&gt;ooooh fancy&lt;/mark&gt;
+
+
+&lt;h2 id=&#34;automatic-links-works&#34;&gt;Automatic Links (works)&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://ghost.org&#34;&gt;https://ghost.org&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;markdown-footnotes-works&#34;&gt;Markdown Footnotes (works)&lt;/h2&gt;
+&lt;p&gt;The quick brown fox&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; jumped over the lazy dog&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;syntax-highlighting&#34;&gt;Syntax Highlighting&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; sqlite3
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Database&lt;/span&gt;:
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self, db):
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;conn &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sqlite3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;connect(db)
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;cur&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;conn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;cursor()
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;cur&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;execute(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CREATE TABLE IF NOT EXISTS book (id INTEGER PRIMARY KEY, title text, author text, year integer, isbn integer)&amp;#34;&lt;/span&gt;)
+        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;conn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;commit()
+        &lt;span style=&#34;color:#75715e&#34;&gt;# conn.close()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Another example using JavaScript Code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;// This .js-document is part of the udemy-class called &amp;#34;The Complete Web-Developer Bootcamp&amp;#34;.
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PRINT ALL NUMBERS BETWEEN -10 AND 19&amp;#34;&lt;/span&gt;);
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;){
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt;);
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;converting-html-to-markdown&#34;&gt;Converting HTML to Markdown&lt;/h1&gt;
+&lt;p&gt;A &lt;a href=&#34;https://domchristie.github.io/turndown/&#34;&gt;very handy tool&lt;/a&gt; comes from Dom Christie which easily allows you to convert HTML to Markdown.&lt;/p&gt;
+&lt;h1 id=&#34;best-markdown-apps&#34;&gt;Best Markdown Apps&lt;/h1&gt;
+&lt;p&gt;Writing in Markdown also easily allows you to export to HTML, PDF, or a wide variety of document types.&lt;/p&gt;
+&lt;p&gt;Some of the coolest Markdown editors for Mac, PC, desktop and mobile are:&lt;/p&gt;
+&lt;h2 id=&#34;mac-osx-markdown-editors&#34;&gt;Mac OSX Markdown Editors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Mou&lt;/li&gt;
+&lt;li&gt;iA Writer&lt;/li&gt;
+&lt;li&gt;Desk&lt;/li&gt;
+&lt;li&gt;ByWord&lt;/li&gt;
+&lt;li&gt;SublimeText&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;windows-pc-markdown-editors&#34;&gt;Windows PC Markdown Editors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;WriteMonkey&lt;/li&gt;
+&lt;li&gt;MarkdownPad&lt;/li&gt;
+&lt;li&gt;Texts&lt;/li&gt;
+&lt;li&gt;SublimeText&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;apple-ios-markdown-apps&#34;&gt;Apple iOS Markdown Apps&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Werdsmith&lt;/li&gt;
+&lt;li&gt;iA Writer&lt;/li&gt;
+&lt;li&gt;ByWord&lt;/li&gt;
+&lt;/ul&gt;
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Foxes are red &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Dogs are usually not red &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

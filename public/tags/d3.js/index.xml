@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>D3.js on himynameismarcel</title>
+    <link>/tags/d3.js/</link>
+    <description>Recent content in D3.js on himynameismarcel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/d3.js/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Collapsible Tree with D3.js</title>
+      <link>/post/2018-03-09-collapsible-tree-with-d3js/</link>
+      <pubDate>Fri, 02 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-03-09-collapsible-tree-with-d3js/</guid>
+      <description>&lt;p&gt;A couple of weeks ago at work we were faced with the issue of how best to represent hierarchical structures, i.e., parent-child-relationships. This issue was something that I had actually been thinking about for a while already and then finally when a colleague approached me with the wish to create such visualizations, finally we decided to invest some time into how we best could implement this&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;In a first step, we searched for common visualizations of such relationships and fairly quickly arrived at so-called &amp;lsquo;node-tree diagrams&amp;rsquo; (or simply &amp;lsquo;tree diagrams&amp;rsquo;). Additionally, the trees should eventually come along with the possibility to filter for certain characteristics and thereby only select parts of the tree that the user actually filters for (but this was an issue we kept aside for the moment and focussed on the core of the problem).&lt;/p&gt;
+&lt;p&gt;Because we had been working with Tableau a couple of times recently, instead of trying to implement tree-diagrams in R or Python, our choice in a first instance fell on Tableau.&lt;/p&gt;
+&lt;p&gt;While in the world of data science dedicated packages/libraries available in &lt;em&gt;R&lt;/em&gt; (ggplot2, plotly) or &lt;em&gt;Python&lt;/em&gt; (matplotlib, seaborn, ggplot, bokeh, gleam)&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; are widely used, Tableau (with almost no coding involved) has more of a usage in the business word. At the same time, there are software developers as kind of a third group distinct from classical data scientists of business analysts that also need to visualize data at some point during their work and this is where frequently javascript libraries like &lt;em&gt;Chart.js&lt;/em&gt; or &lt;em&gt;D3.js&lt;/em&gt; are more frequently used as tools being more well known in this domain.&lt;/p&gt;
+&lt;p&gt;In the more recent past however, things are starting to overlap and software developers wanting to dive into the world of data science are also largely acquiring skills in tools like &lt;em&gt;R&lt;/em&gt; or &lt;em&gt;Python&lt;/em&gt; and data scientists are leaving their set of tools and also making more and more use of the javascript libraries we mentioned above.&lt;/p&gt;
+&lt;p&gt;It is exactly &lt;em&gt;D3.js&lt;/em&gt; which caught my attention although it would require some investment into learning the syntax. But I saw a huge benefit in actually learning the syntax to create incredibly beautiful and concise visualizations. In fact, on Mike Boston&amp;rsquo;s homepage, he gather a huge set of example visualizations that give you a fairly good impression of what is possible with &lt;em&gt;D3.js&lt;/em&gt; and that learning it is well worth the investment.&lt;/p&gt;
+&lt;p&gt;In this post I will try to describe as clearly as possible the generation of a tree-diagram using the javascript library D3.js.&lt;/p&gt;
+&lt;p&gt;The reason I stumbled over this in the first place is that when diving into Tableau we had stumbled over the possibility to create node-tree diagrams. In particular, Jeffrey Shaffer pioneered the generation of such node-tree diagrams in Tableau.&lt;/p&gt;
+
+
+&lt;div style=&#34;height: 800px; width: 1000;&#34; id=&#34;example&#34;&gt;&lt;/div&gt;
+
+&lt;style&gt;
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+&lt;/style&gt;
+
+&lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js&#34;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+    width = 960 - margin.right - margin.left,
+    height = 800 - margin.top - margin.bottom;
+
+var i = 0,
+    duration = 750,
+    root;
+
+var tree = d3.layout.tree()
+    .size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+    .projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select(&#34;div#example&#34;).append(&#34;svg&#34;)
+    .attr(&#34;width&#34;, width + margin.right + margin.left)
+    .attr(&#34;height&#34;, height + margin.top + margin.bottom)
+  .append(&#34;g&#34;)
+    .attr(&#34;transform&#34;, &#34;translate(&#34; + margin.left + &#34;,&#34; + margin.top + &#34;)&#34;);
+
+var data = &#39;{ &#34;name&#34;: &#34;DE45245235&#34;, &#34;children&#34;: [ { &#34;name&#34;: &#34;AT75124&#34;, &#34;size&#34;: 17010 }, { &#34;name&#34;: &#34;DE0473947&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;LU3493424&#34;, &#34;size&#34;: 3534} ] }, { &#34;name&#34;: &#34;AT845654&#34;, &#34;size&#34;: 353 }, { &#34;name&#34;: &#34;DE1234&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;DE98533&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;DE5689&#34;, &#34;size&#34;: 2138}, {&#34;name&#34;: &#34;DE1437934&#34;, &#34;size&#34;: 3824},{&#34;name&#34;: &#34;AT93842&#34;, &#34;size&#34;: 1353}, {&#34;name&#34;: &#34;AT1234083&#34;, &#34;size&#34;: 4665}, {&#34;name&#34;: &#34;LU134739&#34;, &#34;size&#34;: 2649}, {&#34;name&#34;: &#34;DE1243934&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;DE74153&#34;, &#34;size&#34;: 2138}, {&#34;name&#34;: &#34;DE713&#34;, &#34;size&#34;: 3824}, {&#34;name&#34;: &#34;DE14635&#34;, &#34;size&#34;: 763}, {&#34;name&#34;: &#34;AT3542345&#34;, &#34;size&#34;: 5222}, {&#34;name&#34;: &#34;DE8265&#34;, &#34;size&#34;: 7862}, {&#34;name&#34;: &#34;AT9673&#34;, &#34;size&#34;: 8435} ] }, {&#34;name&#34;: &#34;DE097134&#34;, &#34;size&#34;: 4896}, {&#34;name&#34;: &#34;DE13493&#34;, &#34;size&#34;: 763}, {&#34;name&#34;: &#34;AT130943&#34;, &#34;size&#34;: 5222}, {&#34;name&#34;: &#34;DE0932439&#34;, &#34;size&#34;: 7862}, {&#34;name&#34;: &#34;AT09234&#34;, &#34;size&#34;: 8435} ] }, {&#34;name&#34;: &#34;LU964694&#34;, &#34;size&#34;: 1675} ] }, { &#34;name&#34;: &#34;BE8562452&#34;, &#34;size&#34;: 2313 }, { &#34;name&#34;: &#34;DE9834923894&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;DE085324&#34;, &#34;size&#34;: 2042} ] }, { &#34;name&#34;: &#34;DE9459458&#34;, &#34;size&#34;: 6314 }, { &#34;name&#34;: &#34;DE84294839&#34;, &#34;size&#34;: 4614 }, { &#34;name&#34;: &#34;ES234&#34;, &#34;size&#34;: 20859 }, { &#34;name&#34;: &#34;ES237849&#34;, &#34;size&#34;: 4461 }, { &#34;name&#34;: &#34;FR32894&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;FR84394893&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;IT92347923&#34;, &#34;size&#34;: 6725} ] }, {&#34;name&#34;: &#34;FR123&#34;, &#34;size&#34;: 3727}, {&#34;name&#34;: &#34;FR9034&#34;, &#34;size&#34;: 9317}, {&#34;name&#34;: &#34;IT2349&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;IT92347923&#34;, &#34;size&#34;: 6725}, {&#34;name&#34;: &#34;IT347932&#34;, &#34;size&#34;: 3727}, {&#34;name&#34;: &#34;IT65923&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;IT02397493&#34;, &#34;size&#34;: 6725}, {&#34;name&#34;: &#34;IT143234&#34;, &#34;size&#34;: 3727}, {&#34;name&#34;: &#34;IT023947293&#34;, &#34;size&#34;: 9317} ] }, {&#34;name&#34;: &#34;IT134238&#34;, &#34;size&#34;: 12003}, {&#34;name&#34;: &#34;IT9273492&#34;, &#34;size&#34;: 4853}, {&#34;name&#34;: &#34;FR134793&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;IT6832046208&#34;, &#34;size&#34;: 6725}, {&#34;name&#34;: &#34;IT298342398&#34;, &#34;size&#34;: 9317} ] }, {&#34;name&#34;: &#34;IT5793&#34;, &#34;size&#34;: 4864}, {&#34;name&#34;: &#34;ES237432&#34;, &#34;size&#34;: 3174}, {&#34;name&#34;: &#34;FR43242&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;IT023974923&#34;, &#34;size&#34;: 6725}, {&#34;name&#34;: &#34;IT1231738&#34;, &#34;size&#34;: 9317} ] }, {&#34;name&#34;: &#34;IT239479234&#34;, &#34;size&#34;: 12870}, {&#34;name&#34;: &#34;IT7937493&#34;, &#34;size&#34;: 2728}, {&#34;name&#34;: &#34;IT20342&#34;, &#34;size&#34;: 12348}, {&#34;name&#34;: &#34;IT028343&#34;, &#34;size&#34;: 870}, {&#34;name&#34;: &#34;IT09237493&#34;, &#34;size&#34;: 9121}, {&#34;name&#34;: &#34;IT092349&#34;, &#34;size&#34;: 9191} ] }, {&#34;name&#34;: &#34;AT09348&#34;, &#34;size&#34;: 4853}, {&#34;name&#34;: &#34;FR12983742&#34;, &#34;size&#34;: 8411}, {&#34;name&#34;: &#34;IT8403&#34;, &#34;size&#34;: 4864}, {&#34;name&#34;: &#34;ES729347&#34;, &#34;size&#34;: 3174}, {&#34;name&#34;: &#34;FR9104&#34;, &#34;size&#34;: 7881}, {&#34;name&#34;: &#34;FR05634&#34;, &#34;size&#34;: 12870}, {&#34;name&#34;: &#34;FR18348932&#34;, &#34;size&#34;: 2728}, {&#34;name&#34;: &#34;FR09384&#34;, &#34;size&#34;: 12348}, {&#34;name&#34;: &#34;FR12493&#34;, &#34;size&#34;: 870}, {&#34;name&#34;: &#34;US129439&#34;, &#34;size&#34;: 9121}, {&#34;name&#34;: &#34;FR093043&#34;, &#34;size&#34;: 9191} ] }, { &#34;name&#34;: &#34;FR32894&#34;, &#34;size&#34;: 5219 }, { &#34;name&#34;: &#34;GR273847283&#34;, &#34;size&#34;: 9956 }, { &#34;name&#34;: &#34;IE724893&#34;, &#34;size&#34;: 1286 }, { &#34;name&#34;: &#34;IT72384923879&#34;, &#34;children&#34;: [ {&#34;name&#34;: &#34;IT832942&#34;, &#34;size&#34;: 1041}, {&#34;name&#34;: &#34;IT2384932&#34;, &#34;size&#34;: 5593} ] }, { &#34;name&#34;: &#34;IT123123&#34;, &#34;size&#34;: 870 }, { &#34;name&#34;: &#34;LU2352&#34;, &#34;size&#34;: 9191 }, { &#34;name&#34;: &#34;LU65398&#34;, &#34;size&#34;: 2490 }, { &#34;name&#34;: &#34;NL73492&#34;, &#34;size&#34;: 2023 }, { &#34;name&#34;: &#34;PT1313&#34;, &#34;size&#34;: 16540 } ] }&#39;;
+
+  root = JSON.parse(data);
+  root.x0 = height / 2;
+  root.y0 = 0;
+
+  function collapse(d) {
+    if (d.children) {
+      d._children = d.children;
+      d._children.forEach(collapse);
+      d.children = null;
+    }
+  }
+
+root.children.forEach(collapse);
+update(root);
+
+d3.select(self.frameElement).style(&#34;height&#34;, &#34;800px&#34;);
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+      links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Update the nodes…
+  var node = svg.selectAll(&#34;g.node&#34;)
+      .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent&#39;s previous position.
+  var nodeEnter = node.enter().append(&#34;g&#34;)
+      .attr(&#34;class&#34;, &#34;node&#34;)
+      .attr(&#34;transform&#34;, function(d) { return &#34;translate(&#34; + source.y0 + &#34;,&#34; + source.x0 + &#34;)&#34;; })
+      .on(&#34;click&#34;, click);
+
+  nodeEnter.append(&#34;circle&#34;)
+      .attr(&#34;r&#34;, 1e-6)
+      .style(&#34;fill&#34;, function(d) { return d._children ? &#34;lightsteelblue&#34; : &#34;#fff&#34;; });
+
+  nodeEnter.append(&#34;text&#34;)
+      .attr(&#34;x&#34;, function(d) { return d.children || d._children ? -10 : 10; })
+      .attr(&#34;dy&#34;, &#34;.35em&#34;)
+      .attr(&#34;text-anchor&#34;, function(d) { return d.children || d._children ? &#34;end&#34; : &#34;start&#34;; })
+      .text(function(d) { return d.name; })
+      .style(&#34;fill-opacity&#34;, 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+      .duration(duration)
+      .attr(&#34;transform&#34;, function(d) { return &#34;translate(&#34; + d.y + &#34;,&#34; + d.x + &#34;)&#34;; });
+
+  nodeUpdate.select(&#34;circle&#34;)
+      .attr(&#34;r&#34;, 4.5)
+      .style(&#34;fill&#34;, function(d) { return d._children ? &#34;lightsteelblue&#34; : &#34;#fff&#34;; });
+
+  nodeUpdate.select(&#34;text&#34;)
+      .style(&#34;fill-opacity&#34;, 1);
+
+  // Transition exiting nodes to the parent&#39;s new position.
+  var nodeExit = node.exit().transition()
+      .duration(duration)
+      .attr(&#34;transform&#34;, function(d) { return &#34;translate(&#34; + source.y + &#34;,&#34; + source.x + &#34;)&#34;; })
+      .remove();
+
+  nodeExit.select(&#34;circle&#34;)
+      .attr(&#34;r&#34;, 1e-6);
+
+  nodeExit.select(&#34;text&#34;)
+      .style(&#34;fill-opacity&#34;, 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll(&#34;path.link&#34;)
+      .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent&#39;s previous position.
+  link.enter().insert(&#34;path&#34;, &#34;g&#34;)
+      .attr(&#34;class&#34;, &#34;link&#34;)
+      .attr(&#34;d&#34;, function(d) {
+        var o = {x: source.x0, y: source.y0};
+        return diagonal({source: o, target: o});
+      });
+
+  // Transition links to their new position.
+  link.transition()
+      .duration(duration)
+      .attr(&#34;d&#34;, diagonal);
+
+  // Transition exiting nodes to the parent&#39;s new position.
+  link.exit().transition()
+      .duration(duration)
+      .attr(&#34;d&#34;, function(d) {
+        var o = {x: source.x, y: source.y};
+        return diagonal({source: o, target: o});
+      })
+      .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+    d.x0 = d.x;
+    d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+    d._children = d.children;
+    d.children = null;
+  } else {
+    d.children = d._children;
+    d._children = null;
+  }
+  update(d);
+}
+
+&lt;/script&gt;
+
+
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Note that in the below we go through everything irrespective of the actual context of the parent-child-relationships. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;The examples of packages/libraries we have given is just a small selection of available packages in both languages. &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

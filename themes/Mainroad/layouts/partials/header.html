@@ -1,7 +1,17 @@
 <header class="header">
-	<link rel="stylesheet" href="{{"css/github-gist.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
+	<link rel="stylesheet" href="{{"css/tomorrow-night-eighties.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
 	<script src="{{ "js/highlight.pack.js" | absURL }}"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
+	<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<script async type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 	<div class="container">
 		<div class="logo">
 			<a class="logo__link" href="{{ "" | relLangURL }}" title="{{ .Site.Title }}" rel="home">
