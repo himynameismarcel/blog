@@ -251,7 +251,7 @@ $ source virtual/bin/activate
 $ pip install flask
 $ mkdir app
 $ cd app</code></pre>
-<p>Having installed flask, a simple web application can be created by just a few lines of code that are which we will put in a file called <code>app.py</code>:</p>
+<p>Having installed flask, a simple web application can be created by just a few lines of code which we will put in a file called <code>app.py</code>:</p>
 <pre class="python"><code>from flask import Flask
 
 app = Flask(__name__)
@@ -262,12 +262,14 @@ def index():
 
 if __name__ == &#39;__main__&#39;:
     app.run(debug=True)</code></pre>
-<p>Let us briefly disentangle what all of the above code is actually doing (for a more comprehensive review of the basics to get started with flask, see the <a href="http://flask.pocoo.org/docs/0.12/quickstart/">quickstart manual</a>) (note that for the below it helps at least to have an intuition about Object-Oriented Programming (OOP) in Python):
-* <code>from flask import Flask</code> imports the <code>Flask</code> class; an instance of this class will be our <a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">WSGI</a> application
-* then we create an instance of this class with <code>app = Flask(__name__)</code> whereby the first argument is the name of the application’s module or package. If we are using a single module (as in this example), we should use <code>__name__</code> because depending on if it’s started as application or imported as module the name will be different (<code>__main__</code> versus the actual import name)
-* then we use the <code>route()</code> decorator in <code>@app.route('/')</code> to tell Flask what URL should trigger our function
-* the function is given a name which is also used to generate URLs for that particular function and then returns the message we want to display in the user’s browser
-* with the line <code>if __name__ == '__main__': app.run(debug=True)</code>, we start the debugger when starting the application</p>
+<p>Let us briefly disentangle what all of the above code is actually doing (for a more comprehensive review of the basics to get started with flask, see the <a href="http://flask.pocoo.org/docs/0.12/quickstart/">quickstart manual</a>) (note that for the below it helps at least to have an intuition about Object-Oriented Programming (OOP) in Python):</p>
+<ul>
+<li><code>from flask import Flask</code> imports the <code>Flask</code> class; an instance of this class will be our <a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">WSGI</a> application</li>
+<li>then we create an instance of this class with <code>app = Flask(__name__)</code> whereby the first argument is the name of the application’s module or package. If we are using a single module (as in this example), we should use <code>__name__</code> because depending on if it’s started as application or imported as module the name will be different (<code>__main__</code> versus the actual import name)</li>
+<li>then we use the <code>route()</code> decorator in <code>@app.route('/')</code> to tell Flask what URL should trigger our function</li>
+<li>the function is given a name which is also used to generate URLs for that particular function and then returns the message we want to display in the user’s browser</li>
+<li>with the line <code>if __name__ == '__main__': app.run(debug=True)</code>, we start the debugger when starting the application</li>
+</ul>
 <p>Now, to run this application, simply execute <code>python3 app.py</code> in your command-line, switch to your web-browser and type <code>http://localhost:5000</code> to see your application already in action (note that in my case I have to execute <code>python3</code> because for my system <code>python</code> is assigned to python 2; in your case simply running <code>python</code> might run already python3).<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 <p>As mentioned above, the proper way to install our web service would be to have it backed by a proper database. But because the tutorial is not about databases, Miguel continues the implementation of the web service by means of a simple memory structure (which will only work if the web server that runs the application in the end is single process and single threaded which is okay for Flask’s own development server but would not be recommended for a real production web server).</p>
 <p>To implement the first entry point of our web service, we update the above flask - application by removing the <code>index</code> entry point, adding a list of dictionaries called <code>tasks</code> which contains the four fields which we have defined above and correspondingly create the ‘route’ (the entry-point) from which all the tasks are retrievable via a <code>GET</code> request:</p>
@@ -654,12 +656,9 @@ Date: Sun, 25 Mar 2018 15:41:33 GMT
 
 {
   &quot;error&quot;: &quot;Unauthorized access&quot;
-}
-{% endhighlight %}
-
-If we, however, hand our credentials over to the request, we get the full response as expected:
-{% highlight raw%}
-$ curl -u your_username:your_password http://localhost:5000/todo/api/v1.0/tasks
+}</code></pre>
+<p>If we, however, hand our credentials over to the request, we get the full response as expected:</p>
+<pre class="raw"><code>$ curl -u your_username:your_password http://localhost:5000/todo/api/v1.0/tasks
 {
   &quot;tasks&quot;: [
     {
@@ -697,39 +696,37 @@ Below we will go through the deployment process in 10 easy steps, assuming that 
 <li><p>Execute <code>pip freeze &gt; requirements.txt</code> to create the file <code>requirements.txt</code> - file that contains a list of all the python packages that are currently in your virtual installation. This file is necessary to tell ‘Heroku’ what to install in their system.</p></li>
 <li><p>Create a file called <code>Procile</code> without an extension and write <code>web: gunicorn app:app</code> whereby the first instance of <code>app</code> refers to the name of your file <code>app.py</code> and the second <code>app</code> refers to the name of the variable holding the Flask instance.</p></li>
 <li><p>The last file we need is a file called <code>runtime.txt</code> in which we have to write the version of python we want our app to run on. To specify the correct version, simply refer to the <a href="https://devcenter.heroku.com/articles/python-runtimes">Heroku DevCenter</a> that always lists the latest supported python distributions for Python 2 and 3. In our case, we write <code>python-3.6.4</code> to our file.</p></li>
-<li>Next, we have to log in to <code>heroku</code> from the command line ty executing <code>heroku login</code>. When asked type in your Email-address and password.</li>
-</ol>
-<pre class="raw"><code>$ heroku login
-Enter your Heroku credentials:
-Email: &lt;your_email_address&gt;
-Password: &lt;your_password&gt;
-Logged in as &lt;your_email_address&gt;</code></pre>
-<ol start="6" style="list-style-type: decimal">
+<li><p>Next, we have to log in to <code>heroku</code> from the command line ty executing <code>heroku login</code>. When asked type in your Email-address and password.</p>
+<pre><code> ```raw
+ $ heroku login
+ Enter your Heroku credentials:
+ Email: &lt;your_email_address&gt;
+ Password: &lt;your_password&gt;
+ Logged in as &lt;your_email_address&gt;
+ ```</code></pre></li>
 <li><p>We create a new app by executing <code>heroku create todo-api-tutorial</code>. Note that you will have to use a different name because <code>todo-api-tutorial</code> will already be taken by me unless I deleted this app again in the meantime and the name is free again.</p></li>
-<li>Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:</li>
-</ol>
-<pre class="raw"><code>$ git init
-Initialized empty Git repository in ..........................
-$ git add .
-$ git commit -m &quot;first commit&quot;
-[master (root-commit) 77ab482] first commit
- 5 files changed, 287 insertions(+)
- create mode 100644 Procfile
- create mode 100644 app.py
- create mode 100644 requirements.txt
- create mode 100644 runtime.txt
- create mode 100644 tasks.txt</code></pre>
-<ol start="8" style="list-style-type: decimal">
+<li><p>Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:</p>
+<pre><code> ```raw
+ $ git init
+ Initialized empty Git repository in ..........................
+ $ git add .
+ $ git commit -m &quot;first commit&quot;
+ [master (root-commit) 77ab482] first commit
+  5 files changed, 287 insertions(+)
+  create mode 100644 Procfile
+  create mode 100644 app.py
+  create mode 100644 requirements.txt
+  create mode 100644 runtime.txt
+  create mode 100644 tasks.txt
+ ```</code></pre></li>
 <li><p>We want to connect to our <code>todo-api-tutorial</code> app by executing <code>heroku git:remote --app todo-api-tutorial</code>. To check that the connection was successful run <code>heroku info</code>.</p></li>
-<li>By running <code>git push heroku master</code> will detect all the files that you created above, install all dependencies and packages specified in <code>requirements.txt</code> and ultimately deploy the app. The entire deployment process should end with</li>
-</ol>
+<li><p>By running <code>git push heroku master</code> will detect all the files that you created above, install all dependencies and packages specified in <code>requirements.txt</code> and ultimately deploy the app. The entire deployment process should end with</p>
 <pre class="raw"><code>remote: Verifying deploy... done.
 To https://git.heroku.com/todo-api-tutorial.git
- * [new branch]      master -&gt; master</code></pre>
-<ol start="10" style="list-style-type: decimal">
-<li>Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below <code>GET</code> request in your command line should give you the following output:</li>
-</ol>
-<pre class="raw"><code>$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+ * [new branch]      master -&gt; master</code></pre></li>
+<li><p>Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below <code>GET</code> request in your command line should give you the following output:</p>
+<pre><code>```raw
+$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
 {
   &quot;tasks&quot;: [
     {
@@ -745,8 +742,10 @@ To https://git.heroku.com/todo-api-tutorial.git
       &quot;uri&quot;: &quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2&quot;
     }
   ]
-}</code></pre>
-<p>If so, congratulations!</p>
+}
+```</code></pre>
+<p>If so, congratulations!</p></li>
+</ol>
 <p>In a similar fashion, you can add a task:</p>
 <pre class="raw"><code>$ curl -u your_username:your_password -H &quot;Content-Type: application/json&quot; -X POST -d &#39;{&quot;title&quot;:&quot;Read a book&quot;}&#39; http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
 {

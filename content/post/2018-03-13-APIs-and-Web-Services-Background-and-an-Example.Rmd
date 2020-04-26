@@ -140,7 +140,7 @@ $ mkdir app
 $ cd app
 ```
 
-Having installed flask, a simple web application can be created by just a few lines of code that are which we will put in a file called `app.py`:
+Having installed flask, a simple web application can be created by just a few lines of code which we will put in a file called `app.py`:
 ```python
 from flask import Flask
 
@@ -155,6 +155,7 @@ if __name__ == '__main__':
 ```
 
 Let us briefly disentangle what all of the above code is actually doing (for a more comprehensive review of the basics to get started with flask, see the [quickstart manual](http://flask.pocoo.org/docs/0.12/quickstart/)) (note that for the below it helps at least to have an intuition about Object-Oriented Programming (OOP) in Python):
+
 * `from flask import Flask` imports the `Flask` class; an instance of this class will be our [WSGI](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface) application
 * then we create an instance of this class with `app = Flask(__name__)` whereby the first argument is the name of the application's module or package. If we are using a single module (as in this example), we should use `__name__` because depending on if it's started as application or imported as module the name will be different (`__main__` versus the actual import name)
 * then we use the `route()` decorator in `@app.route('/')` to tell Flask what URL should trigger our function
@@ -643,10 +644,10 @@ Date: Sun, 25 Mar 2018 15:41:33 GMT
 {
   "error": "Unauthorized access"
 }
-{% endhighlight %}
+```
 
 If we, however, hand our credentials over to the request, we get the full response as expected:
-{% highlight raw%}
+```raw
 $ curl -u your_username:your_password http://localhost:5000/todo/api/v1.0/tasks
 {
   "tasks": [
@@ -695,60 +696,64 @@ In case you are in the `/app` directory but your virtual environment is deactiva
 4. The last file we need is a file called `runtime.txt` in which we have to write the version of python we want our app to run on. To specify the correct version, simply refer to the [Heroku DevCenter](https://devcenter.heroku.com/articles/python-runtimes) that always lists the latest supported python distributions for Python 2 and 3. In our case, we write `python-3.6.4` to our file.
 
 5. Next, we have to log in to `heroku` from the command line ty executing `heroku login`. When asked type in your Email-address and password.
-```raw
-$ heroku login
-Enter your Heroku credentials:
-Email: <your_email_address>
-Password: <your_password>
-Logged in as <your_email_address>
-```
+
+        ```raw
+        $ heroku login
+        Enter your Heroku credentials:
+        Email: <your_email_address>
+        Password: <your_password>
+        Logged in as <your_email_address>
+        ```
 
 6. We create a new app by executing `heroku create todo-api-tutorial`. Note that you will have to use a different name because `todo-api-tutorial` will already be taken by me unless I deleted this app again in the meantime and the name is free again.
 
 7. Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:
-```raw
-$ git init
-Initialized empty Git repository in ..........................
-$ git add .
-$ git commit -m "first commit"
-[master (root-commit) 77ab482] first commit
- 5 files changed, 287 insertions(+)
- create mode 100644 Procfile
- create mode 100644 app.py
- create mode 100644 requirements.txt
- create mode 100644 runtime.txt
- create mode 100644 tasks.txt
-```
+
+        ```raw
+        $ git init
+        Initialized empty Git repository in ..........................
+        $ git add .
+        $ git commit -m "first commit"
+        [master (root-commit) 77ab482] first commit
+         5 files changed, 287 insertions(+)
+         create mode 100644 Procfile
+         create mode 100644 app.py
+         create mode 100644 requirements.txt
+         create mode 100644 runtime.txt
+         create mode 100644 tasks.txt
+        ```
 
 8. We want to connect to our `todo-api-tutorial` app by executing `heroku git:remote --app todo-api-tutorial`. To check that the connection was successful run `heroku info`.
 
 9. By running `git push heroku master` will detect all the files that you created above, install all dependencies and packages specified in `requirements.txt` and ultimately deploy the app. The entire deployment process should end with
-```raw
-remote: Verifying deploy... done.
-To https://git.heroku.com/todo-api-tutorial.git
- * [new branch]      master -> master
-```
+
+      ```raw
+      remote: Verifying deploy... done.
+      To https://git.heroku.com/todo-api-tutorial.git
+       * [new branch]      master -> master
+      ```
 
 10. Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below `GET` request in your command line should give you the following output:
-```raw
-$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
-{
-  "tasks": [
-    {
-      "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
-      "done": false,
-      "title": "Buy groceries",
-      "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/1"
-    },
-    {
-      "description": "Need to find a good Python tutorial on the web",
-      "done": false,
-      "title": "Learn Python",
-      "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2"
-    }
-  ]
-}
-```
+
+        ```raw
+        $ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+        {
+          "tasks": [
+            {
+              "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
+              "done": false,
+              "title": "Buy groceries",
+              "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/1"
+            },
+            {
+              "description": "Need to find a good Python tutorial on the web",
+              "done": false,
+              "title": "Learn Python",
+              "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2"
+            }
+          ]
+        }
+        ```
 If so, congratulations!
 
 In a similar fashion, you can add a task:

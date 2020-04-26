@@ -8,7 +8,7 @@
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 	<meta property="og:title" content="Migrating my blog from jekyll to blogdown" />
-<meta property="og:description" content="About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between pelikan and jekyll and their easy compatibility with github (pages), I ultimately decided to use jekyll. While I did have some background in html, css and javascript, I remember that it did take me a few days to finally set up my blog with jekyll." />
+<meta property="og:description" content="At First Jekyll Won… About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between pelican (written in Python) and jekyll (written in Ruby) and their easy compatibility with github (pages), I ultimately decided to use jekyll." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/migrating-my-blog-from-jekyll-to-blogdown/" />
 <meta property="article:published_time" content="2020-04-26T00:00:00+00:00" />
@@ -81,10 +81,116 @@ MathJax.Hub.Config({
 			
 
 
-<p>About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between <a href="https://blog.getpelican.com/">pelikan</a> and <a href="https://jekyllrb.com/">jekyll</a> and their easy compatibility with <a href="https://pages.github.com/">github (pages)</a>, I ultimately decided to use <a href="https://jekyllrb.com/">jekyll</a>. While I did have some background in html, css and javascript, I remember that it did take me a few days to finally set up my blog with jekyll. While the resources are plenty (I actually should have written a dedicated blog-post back then about how I set up my blog to remember exactly everything), I do remember that the video series on Jekyll provided by the guys from <a href="https://www.youtube.com/watch?v=T1itpPvFWHI&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Giraffe Academy</a> had helped me the most. I hosted the final result on <a href="https://github.com/himynameismarcel/himynameismarcel.github.io">github</a> which powered my final web-page at <a href="https://himynameismarcel.github.io/">himynameismarcel.github.io</a>.</p>
-<p>While I did not write a dedicated blog-post about how I’ve set up my blog two years ago, I did take a few notes in a notebook friends had given to me upon my departure (see the below picture for the front-matter of the notebook :P).</p>
+<div id="at-first-jekyll-won" class="section level3">
+<h3>At First Jekyll Won…</h3>
+<p>About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between <a href="https://blog.getpelican.com/">pelican</a> (written in Python) and <a href="https://jekyllrb.com/">jekyll</a> (written in Ruby) and their easy compatibility with <a href="https://pages.github.com/">github (pages)</a>, I ultimately decided to use <a href="https://jekyllrb.com/">jekyll</a>. While I did have some background in html, css and javascript, I remember that it did take me a few days to finally set up my blog with jekyll. While the resources are plenty (I actually should have written a dedicated blog-post back then about how I set up my blog to remember exactly everything), I do remember that the video series on Jekyll provided by the guys from <a href="https://www.youtube.com/watch?v=T1itpPvFWHI&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Giraffe Academy</a> had helped me the most (in combination with various other sources, see below!). I hosted the final result on <a href="https://github.com/himynameismarcel/himynameismarcel.github.io">github</a> which powered my final web-page at <a href="https://himynameismarcel.github.io/">himynameismarcel.github.io</a>.</p>
+<p>While I did not write a dedicated blog-post about how I’ve set up my blog two years ago, I did take a few notes in a notebook good friends of mine had given to me upon my departure from the ECB (see the below picture for the front-matter of the notebook :P).</p>
 <p><img src="/img/getshitdone.png" width="250"></p>
-<p>In there I found the following resources that I’ve read</p>
+<p>In there I found the following resources and inspirations that I’ve read two years ago, among others, before actually creating my blog (looking at the below list I remember again why it took me so long to decide which site generator-engine to use):</p>
+<ul>
+<li>various articles on <a href="https://www.dataquest.io/">dataquest</a> (see <a href="https://www.dataquest.io/blog/data-science-portfolio-project/">an example for a data science portfolio project</a>, <a href="https://www.dataquest.io/blog/python-data-science/">another example</a> and <a href="https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/">creating a blog using Pelican</a>)</li>
+<li>a great article by Barry Clark on <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">how to create a blog with jekyll and github pages</a></li>
+<li>great read by Jonathan McGlone on <a href="http://jmcglone.com/guides/github-pages/">How to leverage Github Pages for Jekyll</a></li>
+<li>an article by Mat Leonard writing for udacity on <a href="https://blog.udacity.com/2016/02/how-to-build-a-data-analysis-portfolio-that-will-get-you-hired.html">How to Build a Data Analysis Portfolio</a> using pelican.</li>
+<li>another article by Duncan Lock on <a href="http://duncanlock.net/blog/2013/05/17/how-i-built-this-website-using-pelican-part-1-setup/">How He has Built His Wbsite Using Pelican</a></li>
+<li>a fantastic article by Charles Leifer on <a href="https://charlesleifer.com/blog/how-to-make-a-flask-blog-in-one-hour-or-less/">How to Make a flask Blog in one hour or less</a>: I remember that before deciding for pelican vs. jekyll, I was determined to create my own blog following Leifer’s article utilizing flask and an SQLite-DB to log in and edit/add blog-posts. After spending quite some time with this option I ultimately (and to my own frustration) failed to get the database running (Leifer had used SQLite only for demonstration purposes on a local machine) when deploying it on a server, although I tried to leverage some knowledge from a <a href="https://www.youtube.com/watch?v=XHGpPCYmPvI">youtube-tutorial of Pretty Printed</a> that shows how to build a blog web-app with flask and flask-SQLAlchemy.</li>
+<li>What surprised me the most was that I had apprently already stumbled over <strong>blogdown</strong> two years ago which I did not remember at all and makes me wonder why I decided against it in the race of pelican vs. jekyll. Apparently (according to my notes) I had stumbled over <a href="https://juliasilge.com/blog/">Julia Silge’s blog</a> where it says <em>Made with the R blogdown package […]</em> at the page’s footer. My notes continue with a reference to <a href="https://bookdown.org/yihui/blogdown/">Yihui’s book on blogdown</a> and and entry that says <em>also recommended by David Ribonson</em> in paranthesis.</li>
+</ul>
+<p>Fast forward, I think it was about one year later (in May 2019) when I stumbled over blogdown once again and having found the amazing <a href="https://themes.gohugo.io/mainroad/">Mainroad-theme</a> and blogdown’s easy integration with RStudio, I was heavily thinking about migrating my blog from jekyll’s engine to blogdown. What made me take another year was (1) time and (2) the question of whether I could also easily and seamlessly leverage the blogdown-environment in combination with the RStudio IDE to also write about various other programming langugages. The answer to (2) is ‘definitely, yes!’. And now that I finally had the time I sat down for two days to make it happen. Here’s what I did.</p>
+</div>
+<div id="readingwatching-list-for-blogdown" class="section level3">
+<h3>Reading/Watching-List for Blogdown</h3>
+<p>Due to my background in R and basic knowledge in web technologies, my transition to blogdown went rather smoothly. But independently of your background (even if you are a beginner in both R and web technologies and/or have never used Git/Github before), you should be up and running very quickly just to have enough time right after deployment to understand how everything actually works together. In his presentation (see below), the creator of blogdown (Yihui Xie) even mentions that someone with no prior experience in building websites will probably have his/her site up and running faster than someone <em>with</em> knowledge in web technologies when it comes to customization of the templates etc. Here’s the sequence of introductory resources I used:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=CjTLN-FXiFA">Introduction to Blogdown (R Package) RStudio Webinar</a> from the creator of the blogdowm-package himself, <a href="https://yihui.org/en/">Yihui Xie</a>: The video is about 2.5 years old but it is still an hour worth spent to get a quick overview of blogdown. Interestingly, Yihui himself wasn’t too happy with jekyll and explains the speed of <a href="https://gohugo.io/">Hugo</a>(the static site-generator built into the blogdown-package which is itself written in the <a href="https://golang.org/">Go-langugage</a>) as one of the key-reasons to having used it as the foundation of the blogdown-package.</li>
+<li>blogdown’s e-book <a href="https://bookdown.org/yihui/blogdown/">blogdown: Creating Websites with RMarkdown</a> by Yihui Xie, Amber Thomas and Alison Presmanes Hill: Arguably it is possible to set up the blog by just reading/skimming through Chapter 1 (Get Started) and 3 (Deployment) of this book, but I do think that the other parts (especially Chapter 2 on Hugo (the static site-generator serving under the hood in the blogdown package) is definitely worth to read to get a more fundamental understanding to start out with.</li>
+<li>As a complementary resource a great article by Storybench on <a href="https://www.storybench.org/how-to-build-a-website-with-blogdown-in-r/">How to build a website with Blogdown in R</a>.</li>
+</ul>
+<p>That’s about it to have the website up and running locally in almost no time.</p>
+</div>
+<div id="tweaking-some-emerging-issues" class="section level3">
+<h3>Tweaking Some Emerging Issues</h3>
+<p>After having finished the initial set-up, I started moving my former jekyll-posts to my new blog’s folder structure. Along the way I stumbled over the following issues for which I could find solutions online and which I want to briefly explain:</p>
+<ul>
+<li><p><strong>Inserting Raw <code>html</code> into markdown files (<code>.md</code>):</strong><br />
+As aptly formulated by <a href="https://anaulin.org/">Ana Ulin</a>, the simplicity of creating new content using markdown is amazing. But sometimes, markdown is not enough and this is where integrating html-code into the markdown-file comes into play. In Hugo, when working in a <code>.Rmd</code>-file, you can simply start writing plain <code>html</code>-code into the <code>.Rmd</code>-file and the Hugo-engine will render it accordingly. When using a <code>.md</code>-file, however, I discovered that my previous posts, which would leverage this possibility, would not display the <code>html</code>-code correctly. This issue seems to be attributable to Hugo. Ana Ulin presents the <a href="https://anaulin.org/blog/hugo-raw-html-shortcode/">solution on her blog</a> as follows:</p>
+<ul>
+<li><p>Add a shortcode template to your site in <code>layouts/shortcodes/rawhtml.html</code> with the following content:</p>
+<pre class="html"><code>&lt;!-- raw html --&gt;
+{{.Inner}}</code></pre>
+This template tells Hugo to simply render the inner content passed to your shortcode directly into the HTML of your side.</li>
+<li><p>This shortcode can then be used in the markdown content (<code>.md</code>-file) as follows:</p>
+<pre class="html"><code>{{&lt; rawhtml &gt;}}
+  &lt;p class=&quot;some random class&quot;&gt;
+    This is &lt;strong&gt;raw HTML&lt;/strong&gt;, inside Markdown.
+  &lt;/p&gt;
+{{&lt; /rawhtml &gt;}</code></pre>
+<p>There are subtle difference between <code>.Rmarkdown</code>, <code>.Rmd</code> and <code>.markdown</code> - files which are briefly discussed in the <a href="https://bookdown.org/yihui/blogdown/output-format.html">blogdown-book</a>.</p></li>
+</ul></li>
+<li><p><strong>Indenting code-blocks in lists:</strong><br />
+In lists or enumerations in jekyll, the engine would automatically indent code-blocks. To see what I’m talking about, here’s the corresponding code and output from both jekyll and hugo (blogdown):<br />
+</p>
+<p><strong>jekyll</strong>:</p>
+<p>The below markdown-code</p>
+<p><img src="/img/jekyll_markdown_example_input.png" /></p>
+<p>automaticall gives</p>
+<p><img src="/img/jekyll_markdown_example_output.png" /><br />
+when rendered on the web-page with jekyll.</p>
+<p><strong>hugo (blogdown)</strong>:
+When running the same in hugo</p>
+<p><img src="/img/hugo_markdown_example_input.png" /></p>
+<p>we get</p>
+<p><img src="/img/hugo_markdown_example_output.jpeg" /></p>
+<p>which doesn’t look very pretty.</p>
+<p>A hint can be found <a href="https://commonmark.org/help/tutorial/10-nestedLists.html">here</a> where it says <em>to nest a code block, indent by either 8 spaces or two tabs</em>. By trial and error I discovered that <strong>three</strong> tabs did the trick for me and the following code</p>
+<p><img src="/img/hugo_markdown_example_solution.png" /></p>
+<p>generates the desired output</p>
+<p><img src="/img/hugo_markdown_example_solution2.png" /></p></li>
+<li><p><strong>Lists and Enumerations:</strong> <br />
+In hugo (blogdown), lists and enumerations did not render for me when simply migrating my <code>.markdown</code>-blogposts to blogdown. The reasin was quickly found as discussed here on <a href="https://stackoverflow.com/questions/55186599/bullet-lists-not-rendering-in-blogdown-rmd-file">stackoverflow</a>: You have to add an empty line before the list.</p></li>
+<li><p><strong>How to include ‘Non-blog-files’ (like e.g. <code>.pdf</code>-files):</strong><br />
+The approach is fairly similar to when using jekyll and is described <a href="https://community.rstudio.com/t/is-there-a-place-we-can-put-non-blog-files-pdf-files-in-blogdown/10138/3">here</a>.<br />
+If you want to have e.g. a <code>.pdf</code>-file to go along with the blog post, simply put it in the static directory. There you can freely choose how to organize your files and folders. I have decided to simply add a <code>files</code>-folder under <code>static</code>. Now when wanting to include that <code>.pdf</code>-file into my blog-post I can simply reference it e.g. simply via <code>See the [handout](/files/file1.pdf) for more info.</code> Note that you have to include the correct path!</p></li>
+<li><p><strong>Including syntax highlighting:</strong><br />
+The Mainroad-theme is not shipped with automatic syntax highlighting. The preferred approach to include syntax highlighting in Hugo is <a href="https://highlightjs.org/">highlight.js</a>. <a href="https://notast.netlify.app/post/adding-syntax-highlight/">Benjamin C.</a> gives a brilliant overview of the approaches of how to include the necessary files into your blog. Similarly it is explained in a post on <a href="https://stackoverflow.com/questions/48075493/change-style-color-of-blocks-of-code-in-blogdown">stackoverflow</a> or on <a href="https://github.com/rstudio/blogdown/issues/10">github</a> with comments from Yihui Xie himself.</p></li>
+<li><strong>Customizing the color-scheme and some other tweaks of the Mainroad-theme:</strong><br />
+Mainroad is by default shipped with a red color-theme. To switch that to a more blue-ish scheme I adjusted the color-codes in the following places:
+<ul>
+<li>Set <code>highlightColor = &quot;#1756a9&quot;</code> in <code>config.toml</code>. This will change the color-scheme for most of the colored text-elements</li>
+<li>In the file <code>style.css</code> which you can find under <code>themes/Mainroad/static/css</code> change the color-code of the <code>code</code> - block via <code>color: #1756a9;</code>.</li>
+<li>I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in <code>style.css</code>: <code>/* padding: 0.1rem; */</code>.</li>
+</ul></li>
+<li><strong>Support math expressions through MathJax:</strong> 
+Yihui Xie explains how to add the support for mathematical expressions in the <a href="https://bookdown.org/yihui/blogdown/templates.html">blogdown e-book</a> in chapter 2.5.2. To do this, you have to add the below code to <code>footer.html</code> which is parked in <code>themes/Mainroad/layouts/partials</code>.</li>
+</ul>
+<pre class="raw"><code>&lt;script src=&quot;//yihui.org/js/math-code.js&quot;&gt;&lt;/script&gt;
+&lt;script async
+src=&quot;//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;</code></pre>
+<p>Finally, <code>YOUR-CDN-LIN</code> has to be replaced with the link to your preferred CDN host of MathJax, .e.g <code>cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5</code>.</p>
+<ul>
+<li><strong>Including an RSS-feed:</strong><br />
+As an optional set-up you can include an RSS-feed for your blog which is a prerequisite to be on <a href="https://www.r-bloggers.com/add-your-blog/">r-bloggers</a>. <a href="https://notast.netlify.app/post/blogdown-hugo-git-github-netlify-rss-disqus/">Benjaming C</a> outlines how he set up the RSS-feeds (at the bottom of the blog-post). The steps are as follows:
+<ol style="list-style-type: decimal">
+<li>Create a <code>.xml</code>-file under <code>themes/Mainroad/layouts/_default</code>. Name the file <code>rss.xml</code>.</li>
+<li>Furnish the bank <code>rss.xml</code>-file with <a href="https://gohugo.io/templates/rss/#the-embedded-rss-xml">Hugo’s embedded rss.xml code</a>. You can find the RSS template at the bottom of the page. Here’s the <a href="https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/_default/rss.xml">direct link</a>. Replace summary feed script <code>{{ .Summary | html }}</code> with full content script <code>{{ .Content | html }}</code>.</li>
+<li>Update <code>baseurl</code> at the top of <code>config.toml</code> with your website’s URL address.</li>
+<li>Test if your website ahs full content RSS Feeds with <a href="https://validator.w3.org/feed/check.cgi">https://validator.w3.org/feed/check.cgi</a> or <a href="https://simplepie.org/demo/">https://simplepie.org/demo/</a>.<br />
+<br />
+</li>
+</ol></li>
+<li><strong>First Fine-Tuning of the blog:</strong><br />
+Having stumbled over <a href="https://notast.netlify.app/">Benjaming C’s blog</a> which leveraged the same Mainroad-theme that I had chosen, I realized that there were a few additional tweaks to the page which I thought I had to implement myself. Turns out that I just had to read the <a href="https://themes.gohugo.io/mainroad/">documentation of the Mainroad-theme</a> to understand that the theme is even more amazing than I thought. It comes along with the possibility to
+<ul>
+<li>add widgets for your social networks (linkedin, github, etc.),</li>
+<li>enable a “Read more” button for ever post’s preview on your main page,</li>
+<li>turn pagination on/off and adjust the number of posts per page,</li>
+<li>enable disqus comments by entering your Disqus shortname,</li>
+<li>etc.</li>
+</ul></li>
+</ul>
+<p>Overall, I’m pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.</p>
+</div>
 
 		</div>
 		<footer class="post__footer">

@@ -20,10 +20,116 @@
       <description>
 
 
-&lt;p&gt;About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between &lt;a href=&#34;https://blog.getpelican.com/&#34;&gt;pelikan&lt;/a&gt; and &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt; and their easy compatibility with &lt;a href=&#34;https://pages.github.com/&#34;&gt;github (pages)&lt;/a&gt;, I ultimately decided to use &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt;. While I did have some background in html, css and javascript, I remember that it did take me a few days to finally set up my blog with jekyll. While the resources are plenty (I actually should have written a dedicated blog-post back then about how I set up my blog to remember exactly everything), I do remember that the video series on Jekyll provided by the guys from &lt;a href=&#34;https://www.youtube.com/watch?v=T1itpPvFWHI&amp;amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&#34;&gt;Giraffe Academy&lt;/a&gt; had helped me the most. I hosted the final result on &lt;a href=&#34;https://github.com/himynameismarcel/himynameismarcel.github.io&#34;&gt;github&lt;/a&gt; which powered my final web-page at &lt;a href=&#34;https://himynameismarcel.github.io/&#34;&gt;himynameismarcel.github.io&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While I did not write a dedicated blog-post about how I’ve set up my blog two years ago, I did take a few notes in a notebook friends had given to me upon my departure (see the below picture for the front-matter of the notebook :P).&lt;/p&gt;
+&lt;div id=&#34;at-first-jekyll-won&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;At First Jekyll Won…&lt;/h3&gt;
+&lt;p&gt;About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between &lt;a href=&#34;https://blog.getpelican.com/&#34;&gt;pelican&lt;/a&gt; (written in Python) and &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt; (written in Ruby) and their easy compatibility with &lt;a href=&#34;https://pages.github.com/&#34;&gt;github (pages)&lt;/a&gt;, I ultimately decided to use &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt;. While I did have some background in html, css and javascript, I remember that it did take me a few days to finally set up my blog with jekyll. While the resources are plenty (I actually should have written a dedicated blog-post back then about how I set up my blog to remember exactly everything), I do remember that the video series on Jekyll provided by the guys from &lt;a href=&#34;https://www.youtube.com/watch?v=T1itpPvFWHI&amp;amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&#34;&gt;Giraffe Academy&lt;/a&gt; had helped me the most (in combination with various other sources, see below!). I hosted the final result on &lt;a href=&#34;https://github.com/himynameismarcel/himynameismarcel.github.io&#34;&gt;github&lt;/a&gt; which powered my final web-page at &lt;a href=&#34;https://himynameismarcel.github.io/&#34;&gt;himynameismarcel.github.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While I did not write a dedicated blog-post about how I’ve set up my blog two years ago, I did take a few notes in a notebook good friends of mine had given to me upon my departure from the ECB (see the below picture for the front-matter of the notebook :P).&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/img/getshitdone.png&#34; width=&#34;250&#34;&gt;&lt;/p&gt;
-&lt;p&gt;In there I found the following resources that I’ve read&lt;/p&gt;
+&lt;p&gt;In there I found the following resources and inspirations that I’ve read two years ago, among others, before actually creating my blog (looking at the below list I remember again why it took me so long to decide which site generator-engine to use):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;various articles on &lt;a href=&#34;https://www.dataquest.io/&#34;&gt;dataquest&lt;/a&gt; (see &lt;a href=&#34;https://www.dataquest.io/blog/data-science-portfolio-project/&#34;&gt;an example for a data science portfolio project&lt;/a&gt;, &lt;a href=&#34;https://www.dataquest.io/blog/python-data-science/&#34;&gt;another example&lt;/a&gt; and &lt;a href=&#34;https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/&#34;&gt;creating a blog using Pelican&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;a great article by Barry Clark on &lt;a href=&#34;https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/&#34;&gt;how to create a blog with jekyll and github pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;great read by Jonathan McGlone on &lt;a href=&#34;http://jmcglone.com/guides/github-pages/&#34;&gt;How to leverage Github Pages for Jekyll&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;an article by Mat Leonard writing for udacity on &lt;a href=&#34;https://blog.udacity.com/2016/02/how-to-build-a-data-analysis-portfolio-that-will-get-you-hired.html&#34;&gt;How to Build a Data Analysis Portfolio&lt;/a&gt; using pelican.&lt;/li&gt;
+&lt;li&gt;another article by Duncan Lock on &lt;a href=&#34;http://duncanlock.net/blog/2013/05/17/how-i-built-this-website-using-pelican-part-1-setup/&#34;&gt;How He has Built His Wbsite Using Pelican&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;a fantastic article by Charles Leifer on &lt;a href=&#34;https://charlesleifer.com/blog/how-to-make-a-flask-blog-in-one-hour-or-less/&#34;&gt;How to Make a flask Blog in one hour or less&lt;/a&gt;: I remember that before deciding for pelican vs. jekyll, I was determined to create my own blog following Leifer’s article utilizing flask and an SQLite-DB to log in and edit/add blog-posts. After spending quite some time with this option I ultimately (and to my own frustration) failed to get the database running (Leifer had used SQLite only for demonstration purposes on a local machine) when deploying it on a server, although I tried to leverage some knowledge from a &lt;a href=&#34;https://www.youtube.com/watch?v=XHGpPCYmPvI&#34;&gt;youtube-tutorial of Pretty Printed&lt;/a&gt; that shows how to build a blog web-app with flask and flask-SQLAlchemy.&lt;/li&gt;
+&lt;li&gt;What surprised me the most was that I had apprently already stumbled over &lt;strong&gt;blogdown&lt;/strong&gt; two years ago which I did not remember at all and makes me wonder why I decided against it in the race of pelican vs. jekyll. Apparently (according to my notes) I had stumbled over &lt;a href=&#34;https://juliasilge.com/blog/&#34;&gt;Julia Silge’s blog&lt;/a&gt; where it says &lt;em&gt;Made with the R blogdown package […]&lt;/em&gt; at the page’s footer. My notes continue with a reference to &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;Yihui’s book on blogdown&lt;/a&gt; and and entry that says &lt;em&gt;also recommended by David Ribonson&lt;/em&gt; in paranthesis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Fast forward, I think it was about one year later (in May 2019) when I stumbled over blogdown once again and having found the amazing &lt;a href=&#34;https://themes.gohugo.io/mainroad/&#34;&gt;Mainroad-theme&lt;/a&gt; and blogdown’s easy integration with RStudio, I was heavily thinking about migrating my blog from jekyll’s engine to blogdown. What made me take another year was (1) time and (2) the question of whether I could also easily and seamlessly leverage the blogdown-environment in combination with the RStudio IDE to also write about various other programming langugages. The answer to (2) is ‘definitely, yes!’. And now that I finally had the time I sat down for two days to make it happen. Here’s what I did.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;readingwatching-list-for-blogdown&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reading/Watching-List for Blogdown&lt;/h3&gt;
+&lt;p&gt;Due to my background in R and basic knowledge in web technologies, my transition to blogdown went rather smoothly. But independently of your background (even if you are a beginner in both R and web technologies and/or have never used Git/Github before), you should be up and running very quickly just to have enough time right after deployment to understand how everything actually works together. In his presentation (see below), the creator of blogdown (Yihui Xie) even mentions that someone with no prior experience in building websites will probably have his/her site up and running faster than someone &lt;em&gt;with&lt;/em&gt; knowledge in web technologies when it comes to customization of the templates etc. Here’s the sequence of introductory resources I used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=CjTLN-FXiFA&#34;&gt;Introduction to Blogdown (R Package) RStudio Webinar&lt;/a&gt; from the creator of the blogdowm-package himself, &lt;a href=&#34;https://yihui.org/en/&#34;&gt;Yihui Xie&lt;/a&gt;: The video is about 2.5 years old but it is still an hour worth spent to get a quick overview of blogdown. Interestingly, Yihui himself wasn’t too happy with jekyll and explains the speed of &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;(the static site-generator built into the blogdown-package which is itself written in the &lt;a href=&#34;https://golang.org/&#34;&gt;Go-langugage&lt;/a&gt;) as one of the key-reasons to having used it as the foundation of the blogdown-package.&lt;/li&gt;
+&lt;li&gt;blogdown’s e-book &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with RMarkdown&lt;/a&gt; by Yihui Xie, Amber Thomas and Alison Presmanes Hill: Arguably it is possible to set up the blog by just reading/skimming through Chapter 1 (Get Started) and 3 (Deployment) of this book, but I do think that the other parts (especially Chapter 2 on Hugo (the static site-generator serving under the hood in the blogdown package) is definitely worth to read to get a more fundamental understanding to start out with.&lt;/li&gt;
+&lt;li&gt;As a complementary resource a great article by Storybench on &lt;a href=&#34;https://www.storybench.org/how-to-build-a-website-with-blogdown-in-r/&#34;&gt;How to build a website with Blogdown in R&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That’s about it to have the website up and running locally in almost no time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tweaking-some-emerging-issues&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Tweaking Some Emerging Issues&lt;/h3&gt;
+&lt;p&gt;After having finished the initial set-up, I started moving my former jekyll-posts to my new blog’s folder structure. Along the way I stumbled over the following issues for which I could find solutions online and which I want to briefly explain:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Inserting Raw &lt;code&gt;html&lt;/code&gt; into markdown files (&lt;code&gt;.md&lt;/code&gt;):&lt;/strong&gt;&lt;br /&gt;
+As aptly formulated by &lt;a href=&#34;https://anaulin.org/&#34;&gt;Ana Ulin&lt;/a&gt;, the simplicity of creating new content using markdown is amazing. But sometimes, markdown is not enough and this is where integrating html-code into the markdown-file comes into play. In Hugo, when working in a &lt;code&gt;.Rmd&lt;/code&gt;-file, you can simply start writing plain &lt;code&gt;html&lt;/code&gt;-code into the &lt;code&gt;.Rmd&lt;/code&gt;-file and the Hugo-engine will render it accordingly. When using a &lt;code&gt;.md&lt;/code&gt;-file, however, I discovered that my previous posts, which would leverage this possibility, would not display the &lt;code&gt;html&lt;/code&gt;-code correctly. This issue seems to be attributable to Hugo. Ana Ulin presents the &lt;a href=&#34;https://anaulin.org/blog/hugo-raw-html-shortcode/&#34;&gt;solution on her blog&lt;/a&gt; as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Add a shortcode template to your site in &lt;code&gt;layouts/shortcodes/rawhtml.html&lt;/code&gt; with the following content:&lt;/p&gt;
+&lt;pre class=&#34;html&#34;&gt;&lt;code&gt;&amp;lt;!-- raw html --&amp;gt;
+{{.Inner}}&lt;/code&gt;&lt;/pre&gt;
+This template tells Hugo to simply render the inner content passed to your shortcode directly into the HTML of your side.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;This shortcode can then be used in the markdown content (&lt;code&gt;.md&lt;/code&gt;-file) as follows:&lt;/p&gt;
+&lt;pre class=&#34;html&#34;&gt;&lt;code&gt;{{&amp;lt; rawhtml &amp;gt;}}
+  &amp;lt;p class=&amp;quot;some random class&amp;quot;&amp;gt;
+    This is &amp;lt;strong&amp;gt;raw HTML&amp;lt;/strong&amp;gt;, inside Markdown.
+  &amp;lt;/p&amp;gt;
+{{&amp;lt; /rawhtml &amp;gt;}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are subtle difference between &lt;code&gt;.Rmarkdown&lt;/code&gt;, &lt;code&gt;.Rmd&lt;/code&gt; and &lt;code&gt;.markdown&lt;/code&gt; - files which are briefly discussed in the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/output-format.html&#34;&gt;blogdown-book&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Indenting code-blocks in lists:&lt;/strong&gt;&lt;br /&gt;
+In lists or enumerations in jekyll, the engine would automatically indent code-blocks. To see what I’m talking about, here’s the corresponding code and output from both jekyll and hugo (blogdown):&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;jekyll&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;The below markdown-code&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/jekyll_markdown_example_input.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;automaticall gives&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/jekyll_markdown_example_output.png&#34; /&gt;&lt;br /&gt;
+when rendered on the web-page with jekyll.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;hugo (blogdown)&lt;/strong&gt;:
+When running the same in hugo&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_input.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;we get&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_output.jpeg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;which doesn’t look very pretty.&lt;/p&gt;
+&lt;p&gt;A hint can be found &lt;a href=&#34;https://commonmark.org/help/tutorial/10-nestedLists.html&#34;&gt;here&lt;/a&gt; where it says &lt;em&gt;to nest a code block, indent by either 8 spaces or two tabs&lt;/em&gt;. By trial and error I discovered that &lt;strong&gt;three&lt;/strong&gt; tabs did the trick for me and the following code&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_solution.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;generates the desired output&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_solution2.png&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lists and Enumerations:&lt;/strong&gt; &lt;br /&gt;
+In hugo (blogdown), lists and enumerations did not render for me when simply migrating my &lt;code&gt;.markdown&lt;/code&gt;-blogposts to blogdown. The reasin was quickly found as discussed here on &lt;a href=&#34;https://stackoverflow.com/questions/55186599/bullet-lists-not-rendering-in-blogdown-rmd-file&#34;&gt;stackoverflow&lt;/a&gt;: You have to add an empty line before the list.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;How to include ‘Non-blog-files’ (like e.g. &lt;code&gt;.pdf&lt;/code&gt;-files):&lt;/strong&gt;&lt;br /&gt;
+The approach is fairly similar to when using jekyll and is described &lt;a href=&#34;https://community.rstudio.com/t/is-there-a-place-we-can-put-non-blog-files-pdf-files-in-blogdown/10138/3&#34;&gt;here&lt;/a&gt;.&lt;br /&gt;
+If you want to have e.g. a &lt;code&gt;.pdf&lt;/code&gt;-file to go along with the blog post, simply put it in the static directory. There you can freely choose how to organize your files and folders. I have decided to simply add a &lt;code&gt;files&lt;/code&gt;-folder under &lt;code&gt;static&lt;/code&gt;. Now when wanting to include that &lt;code&gt;.pdf&lt;/code&gt;-file into my blog-post I can simply reference it e.g. simply via &lt;code&gt;See the [handout](/files/file1.pdf) for more info.&lt;/code&gt; Note that you have to include the correct path!&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Including syntax highlighting:&lt;/strong&gt;&lt;br /&gt;
+The Mainroad-theme is not shipped with automatic syntax highlighting. The preferred approach to include syntax highlighting in Hugo is &lt;a href=&#34;https://highlightjs.org/&#34;&gt;highlight.js&lt;/a&gt;. &lt;a href=&#34;https://notast.netlify.app/post/adding-syntax-highlight/&#34;&gt;Benjamin C.&lt;/a&gt; gives a brilliant overview of the approaches of how to include the necessary files into your blog. Similarly it is explained in a post on &lt;a href=&#34;https://stackoverflow.com/questions/48075493/change-style-color-of-blocks-of-code-in-blogdown&#34;&gt;stackoverflow&lt;/a&gt; or on &lt;a href=&#34;https://github.com/rstudio/blogdown/issues/10&#34;&gt;github&lt;/a&gt; with comments from Yihui Xie himself.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customizing the color-scheme and some other tweaks of the Mainroad-theme:&lt;/strong&gt;&lt;br /&gt;
+Mainroad is by default shipped with a red color-theme. To switch that to a more blue-ish scheme I adjusted the color-codes in the following places:
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;highlightColor = &amp;quot;#1756a9&amp;quot;&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;. This will change the color-scheme for most of the colored text-elements&lt;/li&gt;
+&lt;li&gt;In the file &lt;code&gt;style.css&lt;/code&gt; which you can find under &lt;code&gt;themes/Mainroad/static/css&lt;/code&gt; change the color-code of the &lt;code&gt;code&lt;/code&gt; - block via &lt;code&gt;color: #1756a9;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in &lt;code&gt;style.css&lt;/code&gt;: &lt;code&gt;/* padding: 0.1rem; */&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Support math expressions through MathJax:&lt;/strong&gt; 
+Yihui Xie explains how to add the support for mathematical expressions in the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/templates.html&#34;&gt;blogdown e-book&lt;/a&gt; in chapter 2.5.2. To do this, you have to add the below code to &lt;code&gt;footer.html&lt;/code&gt; which is parked in &lt;code&gt;themes/Mainroad/layouts/partials&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;&amp;lt;script src=&amp;quot;//yihui.org/js/math-code.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script async
+src=&amp;quot;//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, &lt;code&gt;YOUR-CDN-LIN&lt;/code&gt; has to be replaced with the link to your preferred CDN host of MathJax, .e.g &lt;code&gt;cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Including an RSS-feed:&lt;/strong&gt;&lt;br /&gt;
+As an optional set-up you can include an RSS-feed for your blog which is a prerequisite to be on &lt;a href=&#34;https://www.r-bloggers.com/add-your-blog/&#34;&gt;r-bloggers&lt;/a&gt;. &lt;a href=&#34;https://notast.netlify.app/post/blogdown-hugo-git-github-netlify-rss-disqus/&#34;&gt;Benjaming C&lt;/a&gt; outlines how he set up the RSS-feeds (at the bottom of the blog-post). The steps are as follows:
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Create a &lt;code&gt;.xml&lt;/code&gt;-file under &lt;code&gt;themes/Mainroad/layouts/_default&lt;/code&gt;. Name the file &lt;code&gt;rss.xml&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Furnish the bank &lt;code&gt;rss.xml&lt;/code&gt;-file with &lt;a href=&#34;https://gohugo.io/templates/rss/#the-embedded-rss-xml&#34;&gt;Hugo’s embedded rss.xml code&lt;/a&gt;. You can find the RSS template at the bottom of the page. Here’s the &lt;a href=&#34;https://github.com/gohugoio/hugo/blob/master/tpl/tplimpl/embedded/templates/_default/rss.xml&#34;&gt;direct link&lt;/a&gt;. Replace summary feed script &lt;code&gt;{{ .Summary | html }}&lt;/code&gt; with full content script &lt;code&gt;{{ .Content | html }}&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;baseurl&lt;/code&gt; at the top of &lt;code&gt;config.toml&lt;/code&gt; with your website’s URL address.&lt;/li&gt;
+&lt;li&gt;Test if your website ahs full content RSS Feeds with &lt;a href=&#34;https://validator.w3.org/feed/check.cgi&#34;&gt;https://validator.w3.org/feed/check.cgi&lt;/a&gt; or &lt;a href=&#34;https://simplepie.org/demo/&#34;&gt;https://simplepie.org/demo/&lt;/a&gt;.&lt;br /&gt;
+&lt;br /&gt;
+&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;First Fine-Tuning of the blog:&lt;/strong&gt;&lt;br /&gt;
+Having stumbled over &lt;a href=&#34;https://notast.netlify.app/&#34;&gt;Benjaming C’s blog&lt;/a&gt; which leveraged the same Mainroad-theme that I had chosen, I realized that there were a few additional tweaks to the page which I thought I had to implement myself. Turns out that I just had to read the &lt;a href=&#34;https://themes.gohugo.io/mainroad/&#34;&gt;documentation of the Mainroad-theme&lt;/a&gt; to understand that the theme is even more amazing than I thought. It comes along with the possibility to
+&lt;ul&gt;
+&lt;li&gt;add widgets for your social networks (linkedin, github, etc.),&lt;/li&gt;
+&lt;li&gt;enable a “Read more” button for ever post’s preview on your main page,&lt;/li&gt;
+&lt;li&gt;turn pagination on/off and adjust the number of posts per page,&lt;/li&gt;
+&lt;li&gt;enable disqus comments by entering your Disqus shortname,&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Overall, I’m pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -205,7 +311,7 @@ $ source virtual/bin/activate
 $ pip install flask
 $ mkdir app
 $ cd app&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Having installed flask, a simple web application can be created by just a few lines of code that are which we will put in a file called &lt;code&gt;app.py&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Having installed flask, a simple web application can be created by just a few lines of code which we will put in a file called &lt;code&gt;app.py&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;python&#34;&gt;&lt;code&gt;from flask import Flask
 
 app = Flask(__name__)
@@ -216,12 +322,14 @@ def index():
 
 if __name__ == &amp;#39;__main__&amp;#39;:
     app.run(debug=True)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Let us briefly disentangle what all of the above code is actually doing (for a more comprehensive review of the basics to get started with flask, see the &lt;a href=&#34;http://flask.pocoo.org/docs/0.12/quickstart/&#34;&gt;quickstart manual&lt;/a&gt;) (note that for the below it helps at least to have an intuition about Object-Oriented Programming (OOP) in Python):
-* &lt;code&gt;from flask import Flask&lt;/code&gt; imports the &lt;code&gt;Flask&lt;/code&gt; class; an instance of this class will be our &lt;a href=&#34;https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface&#34;&gt;WSGI&lt;/a&gt; application
-* then we create an instance of this class with &lt;code&gt;app = Flask(__name__)&lt;/code&gt; whereby the first argument is the name of the application’s module or package. If we are using a single module (as in this example), we should use &lt;code&gt;__name__&lt;/code&gt; because depending on if it’s started as application or imported as module the name will be different (&lt;code&gt;__main__&lt;/code&gt; versus the actual import name)
-* then we use the &lt;code&gt;route()&lt;/code&gt; decorator in &lt;code&gt;@app.route(&#39;/&#39;)&lt;/code&gt; to tell Flask what URL should trigger our function
-* the function is given a name which is also used to generate URLs for that particular function and then returns the message we want to display in the user’s browser
-* with the line &lt;code&gt;if __name__ == &#39;__main__&#39;: app.run(debug=True)&lt;/code&gt;, we start the debugger when starting the application&lt;/p&gt;
+&lt;p&gt;Let us briefly disentangle what all of the above code is actually doing (for a more comprehensive review of the basics to get started with flask, see the &lt;a href=&#34;http://flask.pocoo.org/docs/0.12/quickstart/&#34;&gt;quickstart manual&lt;/a&gt;) (note that for the below it helps at least to have an intuition about Object-Oriented Programming (OOP) in Python):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;from flask import Flask&lt;/code&gt; imports the &lt;code&gt;Flask&lt;/code&gt; class; an instance of this class will be our &lt;a href=&#34;https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface&#34;&gt;WSGI&lt;/a&gt; application&lt;/li&gt;
+&lt;li&gt;then we create an instance of this class with &lt;code&gt;app = Flask(__name__)&lt;/code&gt; whereby the first argument is the name of the application’s module or package. If we are using a single module (as in this example), we should use &lt;code&gt;__name__&lt;/code&gt; because depending on if it’s started as application or imported as module the name will be different (&lt;code&gt;__main__&lt;/code&gt; versus the actual import name)&lt;/li&gt;
+&lt;li&gt;then we use the &lt;code&gt;route()&lt;/code&gt; decorator in &lt;code&gt;@app.route(&#39;/&#39;)&lt;/code&gt; to tell Flask what URL should trigger our function&lt;/li&gt;
+&lt;li&gt;the function is given a name which is also used to generate URLs for that particular function and then returns the message we want to display in the user’s browser&lt;/li&gt;
+&lt;li&gt;with the line &lt;code&gt;if __name__ == &#39;__main__&#39;: app.run(debug=True)&lt;/code&gt;, we start the debugger when starting the application&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Now, to run this application, simply execute &lt;code&gt;python3 app.py&lt;/code&gt; in your command-line, switch to your web-browser and type &lt;code&gt;http://localhost:5000&lt;/code&gt; to see your application already in action (note that in my case I have to execute &lt;code&gt;python3&lt;/code&gt; because for my system &lt;code&gt;python&lt;/code&gt; is assigned to python 2; in your case simply running &lt;code&gt;python&lt;/code&gt; might run already python3).&lt;a href=&#34;#fn6&#34; class=&#34;footnote-ref&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;As mentioned above, the proper way to install our web service would be to have it backed by a proper database. But because the tutorial is not about databases, Miguel continues the implementation of the web service by means of a simple memory structure (which will only work if the web server that runs the application in the end is single process and single threaded which is okay for Flask’s own development server but would not be recommended for a real production web server).&lt;/p&gt;
 &lt;p&gt;To implement the first entry point of our web service, we update the above flask - application by removing the &lt;code&gt;index&lt;/code&gt; entry point, adding a list of dictionaries called &lt;code&gt;tasks&lt;/code&gt; which contains the four fields which we have defined above and correspondingly create the ‘route’ (the entry-point) from which all the tasks are retrievable via a &lt;code&gt;GET&lt;/code&gt; request:&lt;/p&gt;
@@ -608,12 +716,9 @@ Date: Sun, 25 Mar 2018 15:41:33 GMT
 
 {
   &amp;quot;error&amp;quot;: &amp;quot;Unauthorized access&amp;quot;
-}
-{% endhighlight %}
-
-If we, however, hand our credentials over to the request, we get the full response as expected:
-{% highlight raw%}
-$ curl -u your_username:your_password http://localhost:5000/todo/api/v1.0/tasks
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we, however, hand our credentials over to the request, we get the full response as expected:&lt;/p&gt;
+&lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;$ curl -u your_username:your_password http://localhost:5000/todo/api/v1.0/tasks
 {
   &amp;quot;tasks&amp;quot;: [
     {
@@ -651,39 +756,37 @@ Below we will go through the deployment process in 10 easy steps, assuming that 
 &lt;li&gt;&lt;p&gt;Execute &lt;code&gt;pip freeze &amp;gt; requirements.txt&lt;/code&gt; to create the file &lt;code&gt;requirements.txt&lt;/code&gt; - file that contains a list of all the python packages that are currently in your virtual installation. This file is necessary to tell ‘Heroku’ what to install in their system.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Create a file called &lt;code&gt;Procile&lt;/code&gt; without an extension and write &lt;code&gt;web: gunicorn app:app&lt;/code&gt; whereby the first instance of &lt;code&gt;app&lt;/code&gt; refers to the name of your file &lt;code&gt;app.py&lt;/code&gt; and the second &lt;code&gt;app&lt;/code&gt; refers to the name of the variable holding the Flask instance.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;The last file we need is a file called &lt;code&gt;runtime.txt&lt;/code&gt; in which we have to write the version of python we want our app to run on. To specify the correct version, simply refer to the &lt;a href=&#34;https://devcenter.heroku.com/articles/python-runtimes&#34;&gt;Heroku DevCenter&lt;/a&gt; that always lists the latest supported python distributions for Python 2 and 3. In our case, we write &lt;code&gt;python-3.6.4&lt;/code&gt; to our file.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;Next, we have to log in to &lt;code&gt;heroku&lt;/code&gt; from the command line ty executing &lt;code&gt;heroku login&lt;/code&gt;. When asked type in your Email-address and password.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;$ heroku login
-Enter your Heroku credentials:
-Email: &amp;lt;your_email_address&amp;gt;
-Password: &amp;lt;your_password&amp;gt;
-Logged in as &amp;lt;your_email_address&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;6&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Next, we have to log in to &lt;code&gt;heroku&lt;/code&gt; from the command line ty executing &lt;code&gt;heroku login&lt;/code&gt;. When asked type in your Email-address and password.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; ```raw
+ $ heroku login
+ Enter your Heroku credentials:
+ Email: &amp;lt;your_email_address&amp;gt;
+ Password: &amp;lt;your_password&amp;gt;
+ Logged in as &amp;lt;your_email_address&amp;gt;
+ ```&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;We create a new app by executing &lt;code&gt;heroku create todo-api-tutorial&lt;/code&gt;. Note that you will have to use a different name because &lt;code&gt;todo-api-tutorial&lt;/code&gt; will already be taken by me unless I deleted this app again in the meantime and the name is free again.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;$ git init
-Initialized empty Git repository in ..........................
-$ git add .
-$ git commit -m &amp;quot;first commit&amp;quot;
-[master (root-commit) 77ab482] first commit
- 5 files changed, 287 insertions(+)
- create mode 100644 Procfile
- create mode 100644 app.py
- create mode 100644 requirements.txt
- create mode 100644 runtime.txt
- create mode 100644 tasks.txt&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;8&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; ```raw
+ $ git init
+ Initialized empty Git repository in ..........................
+ $ git add .
+ $ git commit -m &amp;quot;first commit&amp;quot;
+ [master (root-commit) 77ab482] first commit
+  5 files changed, 287 insertions(+)
+  create mode 100644 Procfile
+  create mode 100644 app.py
+  create mode 100644 requirements.txt
+  create mode 100644 runtime.txt
+  create mode 100644 tasks.txt
+ ```&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;We want to connect to our &lt;code&gt;todo-api-tutorial&lt;/code&gt; app by executing &lt;code&gt;heroku git:remote --app todo-api-tutorial&lt;/code&gt;. To check that the connection was successful run &lt;code&gt;heroku info&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;By running &lt;code&gt;git push heroku master&lt;/code&gt; will detect all the files that you created above, install all dependencies and packages specified in &lt;code&gt;requirements.txt&lt;/code&gt; and ultimately deploy the app. The entire deployment process should end with&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;&lt;p&gt;By running &lt;code&gt;git push heroku master&lt;/code&gt; will detect all the files that you created above, install all dependencies and packages specified in &lt;code&gt;requirements.txt&lt;/code&gt; and ultimately deploy the app. The entire deployment process should end with&lt;/p&gt;
 &lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;remote: Verifying deploy... done.
 To https://git.heroku.com/todo-api-tutorial.git
- * [new branch]      master -&amp;gt; master&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;10&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below &lt;code&gt;GET&lt;/code&gt; request in your command line should give you the following output:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+ * [new branch]      master -&amp;gt; master&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below &lt;code&gt;GET&lt;/code&gt; request in your command line should give you the following output:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```raw
+$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
 {
   &amp;quot;tasks&amp;quot;: [
     {
@@ -699,8 +802,10 @@ To https://git.heroku.com/todo-api-tutorial.git
       &amp;quot;uri&amp;quot;: &amp;quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2&amp;quot;
     }
   ]
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If so, congratulations!&lt;/p&gt;
+}
+```&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If so, congratulations!&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;In a similar fashion, you can add a task:&lt;/p&gt;
 &lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;$ curl -u your_username:your_password -H &amp;quot;Content-Type: application/json&amp;quot; -X POST -d &amp;#39;{&amp;quot;title&amp;quot;:&amp;quot;Read a book&amp;quot;}&amp;#39; http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
 {
@@ -2763,7 +2868,7 @@ proportion of correct predictions is largest (see the R-Code in the Appendix bel
 &lt;p&gt;During my studies I&amp;rsquo;ve had the chance to be involved in my university&amp;rsquo;s teaching (Public Economics, Microeconomics) before starting my professional career with an internship at the Economic Studies Divison of the &lt;a href=&#34;https://www.oenb.at/&#34;&gt;Austrian National Bank&lt;/a&gt; (Vienna, Austria). After switching to the &lt;a href=&#34;https://www.ecb.europa.eu/stats/html/index.en.html&#34;&gt;European Central Bank&amp;rsquo;s DG-Statistics&lt;/a&gt; (Frankfurt a. M., Germany) for about two years (first as a Trainee for 12 months, then continuing as an Analyst), I am with &lt;a href=&#34;https://www.ey.com/de_de&#34;&gt;EY&lt;/a&gt;&amp;lsquo;s Quantitative Adivisory Services-Team (also Frankfurt a. M.) since July 2018 where I am working with financial institutions mostly on topics related to credit risk (and risk management more general).&lt;/p&gt;
 &lt;h2 id=&#34;economics-in-the-21st-century-&#34;&gt;Economics in the 21st Century&lt;/h2&gt;
 &lt;p&gt;Besides my current work in risk management and my passion for programming and econometrics/data science, starting with my time at university macroeconomic matters were and are at the heart of my thought and contemplation. Having studied economics during the Financial Crisis I got drawn into matters related to monetary policy and fiscal policy as they dominated the debate between 2008 and 2015.&lt;br&gt;
-While economics graduates seem to have a slightly better idea of the reasons for the crisis and mitigating steps that were subsequently taken both on the side of regulators, central banks and governments alike, (neo-classical) economic theory, in my opinion, unfortunately has long ago isolated itself in an academic ivory tower where theories are pushed further without ever stepping down to practice &amp;lsquo;evidence&amp;rsquo; - based economics. From my own experience and observation and having written my diploma thesis about &amp;lsquo;Asset Prices and Monetary Policy&amp;rsquo; in 2011, this problem is most severely pronounced in matters related to how economics textbooks present matters related to money and banking and how the banking system and monetary policy actually works. As aptly formulated by Bindseil (2014, p. 1)&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt; &lt;em&gt;&amp;lsquo;Central bank monetary policy operations have traditionally been considered as a matter of practice, while the macroeconomic modelling of the transmission mechanism is regarded as a discipline relying on substantial theory (&amp;lsquo;monetary economics&amp;rsquo;).&#39;&lt;/em&gt; It is in this observation that I see a lot of changes necessary in economics curricula worldwide.&lt;/p&gt;
+From my own observation, unfortunately, the macroeconomics has long ago isolated itself in an academic ivory tower where theories are pushed further without ever stepping down to practice &amp;lsquo;evidence&amp;rsquo;-based economics. This problem is most severely pronounced in matters related to how economics textbooks present matters related to money and banking and how the banking system and monetary policy actually works. As aptly formulated by Bindseil (2014, p. 1)&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt; &lt;em&gt;&amp;lsquo;Central bank monetary policy operations have traditionally been considered as a matter of practice, while the macroeconomic modelling of the transmission mechanism is regarded as a discipline relying on substantial theory (&amp;lsquo;monetary economics&amp;rsquo;).&#39;&lt;/em&gt; It is in this observation that I see a lot of changes necessary in economics curricula worldwide.&lt;/p&gt;
 &lt;p&gt;Since this blog is also about &amp;lsquo;Economics&amp;rsquo;, following the above introduction I hence want to stress that all opinions expressed in this blog are entirely my own.&lt;/p&gt;
 &lt;h2 id=&#34;in-my-spare-time-&#34;&gt;In My Spare Time&lt;/h2&gt;
 &lt;p&gt;Besides my work I&amp;rsquo;m also a passionate musician. I play the piano and guitar and dedicated a lot of my time to making music in various bands/projects for more than ten years between 2003 and 2014. When starting to work and leaving for Vienna and subsequently Frankfurt a.M. consequently also my time available for making music decreased, but I still have my guitar with me wherever I go and enjoy playing it like at day one. If I ever manage I will also try to make some of my music available via this blog as soon as I have decided for a good way to do so.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
