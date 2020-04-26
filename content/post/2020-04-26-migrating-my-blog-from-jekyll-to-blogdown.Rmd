@@ -1,0 +1,26 @@
+---
+title: Migrating my blog from jekyll to blogdown
+author: Marcel Kropp
+date: '2020-04-26'
+slug: migrating-my-blog-from-jekyll-to-blogdown
+categories:
+  - General
+tags:
+  - jekyll
+  - blogdown
+  - site-generator
+description: ''
+thumbnail: ''
+---
+
+About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between [pelikan](https://blog.getpelican.com/) and [jekyll](https://jekyllrb.com/) and their easy compatibility with [github (pages)](https://pages.github.com/), I ultimately decided to use [jekyll](https://jekyllrb.com/). While I did have some background in html, css and javascript, I remember that it did take me a few days to finally set up my blog with jekyll. While the resources are plenty (I actually should have written a dedicated blog-post back then about how I set up my blog to remember exactly everything), I do remember that the video series on Jekyll provided by the guys from [Giraffe Academy](https://www.youtube.com/watch?v=T1itpPvFWHI&list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB) had helped me the most. I hosted the final result on [github](https://github.com/himynameismarcel/himynameismarcel.github.io) which powered my final web-page at [himynameismarcel.github.io](https://himynameismarcel.github.io/).
+
+While I did not write a dedicated blog-post about how I've set up my blog two years ago, I did take a few notes in a notebook friends had given to me upon my departure (see the below picture for the front-matter of the notebook :P).
+
+<img src="/img/getshitdone.png" width="250">
+
+In there I found the following resources that I've read 
+
+
+
+

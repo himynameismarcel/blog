@@ -1,4 +1,4 @@
-{{- $highlightColor := .Site.Params.highlightColor | default "#e22d30" -}}
+{{- $highlightColor := .Site.Params.highlightColor | default "#1756a9" -}}
 
 *,
 *::before,
@@ -268,7 +268,7 @@ code {
 
 code {
 	padding: 0 5px;
-	color: #4b6892;
+	color: #1756a9;
 }
 
 pre {

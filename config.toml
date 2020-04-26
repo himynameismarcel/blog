@@ -21,7 +21,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   toc = false
   pager = true
   post_meta = ["date", "categories"] # Order of post meta information
-  highlightColor = "#4b6892"
+  highlightColor = "#1756a9"
   
   # 24.04.2020: updated parameters for syntax highlighting:
   highlightjsVersion = "9.12.0"

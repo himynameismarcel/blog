@@ -17,12 +17,18 @@ The last missing puzzle piece that finally made me sit down and create a blog wa
 This blog is hence dedicated to my journey through all things <em>economics</em>, <em>data</em> (using primarily R and Python) as well as <em>programming</em> more general.
 
 ## Professional Experience ##
-During my studies I've had the chance to be involved in my university's teaching (Public Economics, Microeconomics) before starting my professional career with an internship at the Economic Studies Divison of the [Austrian National Bank](https://www.oenb.at/) (Vienna, Austria). After switching to the [European Central Bank's DG-Statistics](https://www.ecb.europa.eu/stats/html/index.en.html) (Frankfurt a. M., Germany) for about two years (first as a Trainee for 12 months, continuing as an Analyst), I am with [EY](https://www.ey.com/de_de)'s Quantitative Adivisory Services-Team (also Frankfurt a. M.) since July 2018 where I am mostly working on topics related to credit risk.
-Hence, all opinions expressed in this blog are entirely my own.
+During my studies I've had the chance to be involved in my university's teaching (Public Economics, Microeconomics) before starting my professional career with an internship at the Economic Studies Divison of the [Austrian National Bank](https://www.oenb.at/) (Vienna, Austria). After switching to the [European Central Bank's DG-Statistics](https://www.ecb.europa.eu/stats/html/index.en.html) (Frankfurt a. M., Germany) for about two years (first as a Trainee for 12 months, then continuing as an Analyst), I am with [EY](https://www.ey.com/de_de)'s Quantitative Adivisory Services-Team (also Frankfurt a. M.) since July 2018 where I am working with financial institutions mostly on topics related to credit risk (and risk management more general).
+
+
+## Economics in the 21st Century ##
+Besides my current work in risk management and my passion for programming and econometrics/data science, starting with my time at university macroeconomic matters were and are at the heart of my thought and contemplation. Having studied economics during the Financial Crisis I got drawn into matters related to monetary policy and fiscal policy as they dominated the debate between 2008 and 2015. \
+While economics graduates seem to have a slightly better idea of the reasons for the crisis and mitigating steps that were subsequently taken both on the side of regulators, central banks and governments alike, (neo-classical) economic theory, in my opinion, unfortunately has long ago isolated itself in an academic ivory tower where theories are pushed further without ever stepping down to practice 'evidence' - based economics. From my own experience and observation and having written my diploma thesis about 'Asset Prices and Monetary Policy' in 2011, this problem is most severely pronounced in matters related to how economics textbooks present matters related to money and banking and how the banking system and monetary policy actually works. As aptly formulated by Bindseil (2014, p. 1)[^5] *'Central bank monetary policy operations have traditionally been considered as a matter of practice, while the macroeconomic modelling of the transmission mechanism is regarded as a discipline relying on substantial theory ('monetary economics').'* It is in this observation that I see a lot of changes necessary in economics curricula worldwide.
+
+Since this blog is also about 'Economics', following the above introduction I hence want to stress that all opinions expressed in this blog are entirely my own.
 
 
 ## In My Spare Time ##
-Besides my work I'm also a passionate musician. I play the piano and make music in various bands/projects. If I ever manage I will also try to make some of my music available via this blog as soon as I have decided for a good way to do so.</p>
+Besides my work I'm also a passionate musician. I play the piano and guitar and dedicated a lot of my time to making music in various bands/projects for more than ten years between 2003 and 2014. When starting to work and leaving for Vienna and subsequently Frankfurt a.M. consequently also my time available for making music decreased, but I still have my guitar with me wherever I go and enjoy playing it like at day one. If I ever manage I will also try to make some of my music available via this blog as soon as I have decided for a good way to do so.</p>
 
 [^1]: Thanks to an amazing class of my Professor [Herbert Stocker](https://www.hsto.info/econometrics/).
 
@@ -31,3 +37,5 @@ Besides my work I'm also a passionate musician. I play the piano and make music 
 [^3]: See [here](https://econpapers.repec.org/article/onboenbfs/y_3a2016_3ai_3a31_3ab_3a3.htm) and [here](https://www.unece.org/fileadmin/DAM/stats/documents/ece/ces/ge.42/2017/ECB.pdf).
 
 [^4]: In the meantime I have also had the chance to explore tools other than R (e.g., VBA, Python, etc.).
+
+[^5]: Monetary Policy Operations and the Financial System (2014).

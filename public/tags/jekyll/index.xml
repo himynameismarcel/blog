@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jekyll on himynameismarcel</title>
+    <link>/tags/jekyll/</link>
+    <description>Recent content in jekyll on himynameismarcel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Migrating my blog from jekyll to blogdown</title>
+      <link>/post/migrating-my-blog-from-jekyll-to-blogdown/</link>
+      <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/migrating-my-blog-from-jekyll-to-blogdown/</guid>
+      <description>
+
+
+&lt;p&gt;About two years ago I had decided to finally start my own blog. I knew that I wanted to use a static site generator (with its obvious advantages and easy maintainability) and so after researching for various alternatives and having narrowed it down to the choice between &lt;a href=&#34;https://blog.getpelican.com/&#34;&gt;pelikan&lt;/a&gt; and &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt; and their easy compatibility with &lt;a href=&#34;https://pages.github.com/&#34;&gt;github (pages)&lt;/a&gt;, I ultimately decided to use &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;jekyll&lt;/a&gt;. While I did have some background in html, css and javascript, I remember that it did take me a few days to finally set up my blog with jekyll. While the resources are plenty (I actually should have written a dedicated blog-post back then about how I set up my blog to remember exactly everything), I do remember that the video series on Jekyll provided by the guys from &lt;a href=&#34;https://www.youtube.com/watch?v=T1itpPvFWHI&amp;amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB&#34;&gt;Giraffe Academy&lt;/a&gt; had helped me the most. I hosted the final result on &lt;a href=&#34;https://github.com/himynameismarcel/himynameismarcel.github.io&#34;&gt;github&lt;/a&gt; which powered my final web-page at &lt;a href=&#34;https://himynameismarcel.github.io/&#34;&gt;himynameismarcel.github.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While I did not write a dedicated blog-post about how I’ve set up my blog two years ago, I did take a few notes in a notebook friends had given to me upon my departure (see the below picture for the front-matter of the notebook :P).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/getshitdone.png&#34; width=&#34;250&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In there I found the following resources that I’ve read&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
