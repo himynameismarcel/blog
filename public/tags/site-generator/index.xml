@@ -97,17 +97,19 @@ Mainroad is by default shipped with a red color-theme. To switch that to a more 
 &lt;ul&gt;
 &lt;li&gt;Set &lt;code&gt;highlightColor = &amp;quot;#1756a9&amp;quot;&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;. This will change the color-scheme for most of the colored text-elements&lt;/li&gt;
 &lt;li&gt;In the file &lt;code&gt;style.css&lt;/code&gt; which you can find under &lt;code&gt;themes/Mainroad/static/css&lt;/code&gt; change the color-code of the &lt;code&gt;code&lt;/code&gt; - block via &lt;code&gt;color: #1756a9;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in &lt;code&gt;style.css&lt;/code&gt;: &lt;code&gt;/* padding: 0.1rem; */&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in &lt;code&gt;style.css&lt;/code&gt;: &lt;code&gt;/* padding: 0.1rem; */&lt;/code&gt;.&lt;br /&gt;
+&lt;br /&gt;
+&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Support math expressions through MathJax:&lt;/strong&gt; 
-Yihui Xie explains how to add the support for mathematical expressions in the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/templates.html&#34;&gt;blogdown e-book&lt;/a&gt; in chapter 2.5.2. To do this, you have to add the below code to &lt;code&gt;footer.html&lt;/code&gt; which is parked in &lt;code&gt;themes/Mainroad/layouts/partials&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;&amp;lt;script src=&amp;quot;//yihui.org/js/math-code.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Support math expressions through MathJax:&lt;/strong&gt; 
+Yihui Xie explains how to add the support for mathematical expressions in the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/templates.html&#34;&gt;blogdown e-book&lt;/a&gt; in chapter 2.5.2. To do this, you have to add the below code to &lt;code&gt;footer.html&lt;/code&gt; which is parked in &lt;code&gt;themes/Mainroad/layouts/partials&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```raw
+&amp;lt;script src=&amp;quot;//yihui.org/js/math-code.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
 &amp;lt;script async
 src=&amp;quot;//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
-&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, &lt;code&gt;YOUR-CDN-LIN&lt;/code&gt; has to be replaced with the link to your preferred CDN host of MathJax, .e.g &lt;code&gt;cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5&lt;/code&gt;.&lt;/p&gt;
-&lt;ul&gt;
+&amp;lt;/script&amp;gt;
+```&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, &lt;code&gt;YOUR-CDN-LINK&lt;/code&gt; has to be replaced with the link to your preferred CDN host of MathJax, .e.g &lt;code&gt;cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Including an RSS-feed:&lt;/strong&gt;&lt;br /&gt;
 As an optional set-up you can include an RSS-feed for your blog which is a prerequisite to be on &lt;a href=&#34;https://www.r-bloggers.com/add-your-blog/&#34;&gt;r-bloggers&lt;/a&gt;. &lt;a href=&#34;https://notast.netlify.app/post/blogdown-hugo-git-github-netlify-rss-disqus/&#34;&gt;Benjaming C&lt;/a&gt; outlines how he set up the RSS-feeds (at the bottom of the blog-post). The steps are as follows:
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -129,7 +131,7 @@ Having stumbled over &lt;a href=&#34;https://notast.netlify.app/&#34;&gt;Benjami
 &lt;/ul&gt;
 &lt;p&gt;Overall, I’m pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Deployment:&lt;/strong&gt;&lt;br /&gt;
-Deployment id, among others, discussed in &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with RMarkdown&lt;/a&gt; itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using &lt;a href=&#34;https://app.netlify.com&#34;&gt;Netlify&lt;/a&gt; for continuous deployment.&lt;/p&gt;&lt;/li&gt;
+Deployment id, among others, discussed in &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with RMarkdown&lt;/a&gt; itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using &lt;a href=&#34;https://app.netlify.com&#34;&gt;Netlify&lt;/a&gt; for continuous deployment. I have made use of this option myself and was able to deploy the website (which you first have to push to your remote github repository) worked like a charm.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 </description>

@@ -111,19 +111,21 @@ The Mainroad-theme is not shipped with automatic syntax highlighting. The prefer
 Mainroad is by default shipped with a red color-theme. To switch that to a more blue-ish scheme I adjusted the color-codes in the following places:
   * Set `highlightColor = "#1756a9"` in `config.toml`. This will change the color-scheme for most of the colored text-elements 
   * In the file `style.css` which you can find under `themes/Mainroad/static/css` change the color-code of the `code` - block via `color: #1756a9;`.
-  * I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in `style.css`: `/* padding: 0.1rem; */`.
+  * I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in `style.css`: `/* padding: 0.1rem; */`.\
+  \
   
   
 * **Support math expressions through MathJax:**\  
 Yihui Xie explains how to add the support for mathematical expressions in the [blogdown e-book](https://bookdown.org/yihui/blogdown/templates.html) in chapter 2.5.2. To do this, you have to add the below code to `footer.html` which is parked in `themes/Mainroad/layouts/partials`.
-```raw
-<script src="//yihui.org/js/math-code.js"></script>
-<script async
-src="//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-```
 
-Finally, `YOUR-CDN-LIN` has to be replaced with the link to your preferred CDN host of MathJax, .e.g `cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5`.
+      ```raw
+      <script src="//yihui.org/js/math-code.js"></script>
+      <script async
+      src="//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML">
+      </script>
+      ```
+
+  Finally, `YOUR-CDN-LINK` has to be replaced with the link to your preferred CDN host of MathJax, .e.g `cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5`.
 
 * **Including an RSS-feed:**\
 As an optional set-up you can include an RSS-feed for your blog which is a prerequisite to be on [r-bloggers](https://www.r-bloggers.com/add-your-blog/). [Benjaming C](https://notast.netlify.app/post/blogdown-hugo-git-github-netlify-rss-disqus/) outlines how he set up the RSS-feeds (at the bottom of the blog-post). The steps are as follows:
@@ -144,5 +146,5 @@ Having stumbled over [Benjaming C's blog](https://notast.netlify.app/) which lev
   Overall, I'm pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.
 
 * **Deployment:**\
-Deployment id, among others, discussed in [blogdown: Creating Websites with RMarkdown](https://bookdown.org/yihui/blogdown/) itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using [Netlify](https://app.netlify.com) for continuous deployment.
+Deployment id, among others, discussed in [blogdown: Creating Websites with RMarkdown](https://bookdown.org/yihui/blogdown/) itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using [Netlify](https://app.netlify.com) for continuous deployment. I have made use of this option myself and was able to deploy the website (which you first have to push to your remote github repository) worked like a charm.
     

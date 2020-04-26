@@ -158,17 +158,19 @@ Mainroad is by default shipped with a red color-theme. To switch that to a more 
 <ul>
 <li>Set <code>highlightColor = &quot;#1756a9&quot;</code> in <code>config.toml</code>. This will change the color-scheme for most of the colored text-elements</li>
 <li>In the file <code>style.css</code> which you can find under <code>themes/Mainroad/static/css</code> change the color-code of the <code>code</code> - block via <code>color: #1756a9;</code>.</li>
-<li>I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in <code>style.css</code>: <code>/* padding: 0.1rem; */</code>.</li>
+<li>I noticed that code-chunkgs by default come along with a huge padding-frame. To remove this behavior I out-commented the following line in <code>style.css</code>: <code>/* padding: 0.1rem; */</code>.<br />
+<br />
+</li>
 </ul></li>
-<li><strong>Support math expressions through MathJax:</strong> 
-Yihui Xie explains how to add the support for mathematical expressions in the <a href="https://bookdown.org/yihui/blogdown/templates.html">blogdown e-book</a> in chapter 2.5.2. To do this, you have to add the below code to <code>footer.html</code> which is parked in <code>themes/Mainroad/layouts/partials</code>.</li>
-</ul>
-<pre class="raw"><code>&lt;script src=&quot;//yihui.org/js/math-code.js&quot;&gt;&lt;/script&gt;
+<li><p><strong>Support math expressions through MathJax:</strong> 
+Yihui Xie explains how to add the support for mathematical expressions in the <a href="https://bookdown.org/yihui/blogdown/templates.html">blogdown e-book</a> in chapter 2.5.2. To do this, you have to add the below code to <code>footer.html</code> which is parked in <code>themes/Mainroad/layouts/partials</code>.</p>
+<pre><code>```raw
+&lt;script src=&quot;//yihui.org/js/math-code.js&quot;&gt;&lt;/script&gt;
 &lt;script async
 src=&quot;//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
-&lt;/script&gt;</code></pre>
-<p>Finally, <code>YOUR-CDN-LIN</code> has to be replaced with the link to your preferred CDN host of MathJax, .e.g <code>cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5</code>.</p>
-<ul>
+&lt;/script&gt;
+```</code></pre>
+<p>Finally, <code>YOUR-CDN-LINK</code> has to be replaced with the link to your preferred CDN host of MathJax, .e.g <code>cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5</code>.</p></li>
 <li><strong>Including an RSS-feed:</strong><br />
 As an optional set-up you can include an RSS-feed for your blog which is a prerequisite to be on <a href="https://www.r-bloggers.com/add-your-blog/">r-bloggers</a>. <a href="https://notast.netlify.app/post/blogdown-hugo-git-github-netlify-rss-disqus/">Benjaming C</a> outlines how he set up the RSS-feeds (at the bottom of the blog-post). The steps are as follows:
 <ol style="list-style-type: decimal">
@@ -190,7 +192,7 @@ Having stumbled over <a href="https://notast.netlify.app/">Benjaming C’s blog<
 </ul>
 <p>Overall, I’m pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.</p></li>
 <li><p><strong>Deployment:</strong><br />
-Deployment id, among others, discussed in <a href="https://bookdown.org/yihui/blogdown/">blogdown: Creating Websites with RMarkdown</a> itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using <a href="https://app.netlify.com">Netlify</a> for continuous deployment.</p></li>
+Deployment id, among others, discussed in <a href="https://bookdown.org/yihui/blogdown/">blogdown: Creating Websites with RMarkdown</a> itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using <a href="https://app.netlify.com">Netlify</a> for continuous deployment. I have made use of this option myself and was able to deploy the website (which you first have to push to your remote github repository) worked like a charm.</p></li>
 </ul>
 </div>
 
