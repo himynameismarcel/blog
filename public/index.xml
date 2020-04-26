@@ -43,7 +43,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=CjTLN-FXiFA&#34;&gt;Introduction to Blogdown (R Package) RStudio Webinar&lt;/a&gt; from the creator of the blogdowm-package himself, &lt;a href=&#34;https://yihui.org/en/&#34;&gt;Yihui Xie&lt;/a&gt;: The video is about 2.5 years old but it is still an hour worth spent to get a quick overview of blogdown. Interestingly, Yihui himself wasn’t too happy with jekyll and explains the speed of &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;(the static site-generator built into the blogdown-package which is itself written in the &lt;a href=&#34;https://golang.org/&#34;&gt;Go-langugage&lt;/a&gt;) as one of the key-reasons to having used it as the foundation of the blogdown-package.&lt;/li&gt;
 &lt;li&gt;blogdown’s e-book &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with RMarkdown&lt;/a&gt; by Yihui Xie, Amber Thomas and Alison Presmanes Hill: Arguably it is possible to set up the blog by just reading/skimming through Chapter 1 (Get Started) and 3 (Deployment) of this book, but I do think that the other parts (especially Chapter 2 on Hugo (the static site-generator serving under the hood in the blogdown package) is definitely worth to read to get a more fundamental understanding to start out with.&lt;/li&gt;
-&lt;li&gt;As a complementary resource a great article by Storybench on &lt;a href=&#34;https://www.storybench.org/how-to-build-a-website-with-blogdown-in-r/&#34;&gt;How to build a website with Blogdown in R&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;As a complementary resource a great article by Martin Frigaard on Storybench about &lt;a href=&#34;https://www.storybench.org/how-to-build-a-website-with-blogdown-in-r/&#34;&gt;How to build a website with Blogdown in R&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That’s about it to have the website up and running locally in almost no time.&lt;/p&gt;
 &lt;/div&gt;
@@ -126,9 +126,11 @@ Having stumbled over &lt;a href=&#34;https://notast.netlify.app/&#34;&gt;Benjami
 &lt;li&gt;turn pagination on/off and adjust the number of posts per page,&lt;/li&gt;
 &lt;li&gt;enable disqus comments by entering your Disqus shortname,&lt;/li&gt;
 &lt;li&gt;etc.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Overall, I’m pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.&lt;/p&gt;
+&lt;p&gt;Overall, I’m pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Deployment:&lt;/strong&gt;&lt;br /&gt;
+Deployment id, among others, discussed in &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;blogdown: Creating Websites with RMarkdown&lt;/a&gt; itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using &lt;a href=&#34;https://app.netlify.com&#34;&gt;Netlify&lt;/a&gt; for continuous deployment.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>

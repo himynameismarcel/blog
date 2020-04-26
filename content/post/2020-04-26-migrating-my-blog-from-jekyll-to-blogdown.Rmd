@@ -37,7 +37,7 @@ Due to my background in R and basic knowledge in web technologies, my transition
 
 * [Introduction to Blogdown (R Package) RStudio Webinar](https://www.youtube.com/watch?v=CjTLN-FXiFA) from the creator of the blogdowm-package himself, [Yihui Xie](https://yihui.org/en/): The video is about 2.5 years old but it is still an hour worth spent to get a quick overview of blogdown. Interestingly, Yihui himself wasn't too happy with jekyll and explains the speed of [Hugo](https://gohugo.io/)(the static site-generator built into the blogdown-package which is itself written in the [Go-langugage](https://golang.org/)) as one of the key-reasons to having used it as the foundation of the blogdown-package.
 * blogdown's e-book [blogdown: Creating Websites with RMarkdown](https://bookdown.org/yihui/blogdown/) by Yihui Xie, Amber Thomas and Alison Presmanes Hill: Arguably it is possible to set up the blog by just reading/skimming through Chapter 1 (Get Started) and 3 (Deployment) of this book, but I do think that the other parts (especially Chapter 2 on Hugo (the static site-generator serving under the hood in the blogdown package) is definitely worth to read to get a more fundamental understanding to start out with.
-* As a complementary resource a great article by Storybench on [How to build a website with Blogdown in R](https://www.storybench.org/how-to-build-a-website-with-blogdown-in-r/).
+* As a complementary resource a great article by Martin Frigaard on Storybench about [How to build a website with Blogdown in R](https://www.storybench.org/how-to-build-a-website-with-blogdown-in-r/).
 
 That's about it to have the website up and running locally in almost no time.
 
@@ -141,6 +141,8 @@ Having stumbled over [Benjaming C's blog](https://notast.netlify.app/) which lev
   * enable disqus comments by entering your Disqus shortname,
   * etc.
   
-Overall, I'm pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.
+  Overall, I'm pretty impressed by the amount of options you have without having to turn the templates that come along with the Mainroad-Theme upside down.
 
+* **Deployment:**\
+Deployment id, among others, discussed in [blogdown: Creating Websites with RMarkdown](https://bookdown.org/yihui/blogdown/) itself. While for jekyll the recommended solution was to use github-pages and a similar approach is also viable for blogdown, the authors recommend using [Netlify](https://app.netlify.com) for continuous deployment.
     
