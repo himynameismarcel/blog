@@ -144,10 +144,11 @@ When running the same in hugo</p>
 <p>we get</p>
 <p><img src="/img/hugo_markdown_example_output.jpeg" /></p>
 <p>which doesn’t look very pretty.</p>
-<p>A hint can be found <a href="https://commonmark.org/help/tutorial/10-nestedLists.html">here</a> where it says <em>to nest a code block, indent by either 8 spaces or two tabs</em>. By trial and error I discovered that <strong>three</strong> tabs did the trick for me and the following code</p>
+<p>A hint can be found <a href="https://commonmark.org/help/tutorial/10-nestedLists.html">here</a> where it says <em>to nest a code block, indent by either 8 spaces or two tabs</em>. By trial and error I discovered that <strong>three</strong> tabs did the trick for me (in this case of a nested list) and the following code</p>
 <p><img src="/img/hugo_markdown_example_solution.png" /></p>
 <p>generates the desired output</p>
-<p><img src="/img/hugo_markdown_example_solution2.png" /></p></li>
+<p><img src="/img/hugo_markdown_example_solution2.png" /></p>
+<p>If you only want to indent on the level of the first list you have to adjust the number of <em>tabs</em> accordingly (i.e. on the first level you would indent only one tab).</p></li>
 <li><p><strong>Lists and Enumerations:</strong> <br />
 In hugo (blogdown), lists and enumerations did not render for me when simply migrating my <code>.markdown</code>-blogposts to blogdown. The reasin was quickly found as discussed here on <a href="https://stackoverflow.com/questions/55186599/bullet-lists-not-rendering-in-blogdown-rmd-file">stackoverflow</a>: You have to add an empty line before the list.</p></li>
 <li><p><strong>How to include ‘Non-blog-files’ (like e.g. <code>.pdf</code>-files):</strong><br />
@@ -165,13 +166,11 @@ Mainroad is by default shipped with a red color-theme. To switch that to a more 
 </li>
 </ul></li>
 <li><p><strong>Support math expressions through MathJax:</strong> 
-Yihui Xie explains how to add the support for mathematical expressions in the <a href="https://bookdown.org/yihui/blogdown/templates.html">blogdown e-book</a> in chapter 2.5.2. To do this, you have to add the below code to <code>footer.html</code> which is parked in <code>themes/Mainroad/layouts/partials</code>.</p>
-<pre><code>```raw
-&lt;script src=&quot;//yihui.org/js/math-code.js&quot;&gt;&lt;/script&gt;
+Yihui Xie explains how to add the support for mathematical expressions in the <a href="https://bookdown.org/yihui/blogdown/templates.html">blogdown e-book</a> in chapter 2.5.2. To do this, you have to add the below code to <code>footer.html</code> which is parked in <code>themes/Mainroad/layouts/partials</code> in your blog’s folder-structure:</p>
+<pre class="raw"><code>&lt;script src=&quot;//yihui.org/js/math-code.js&quot;&gt;&lt;/script&gt;
 &lt;script async
 src=&quot;//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
-&lt;/script&gt;
-```</code></pre>
+&lt;/script&gt;</code></pre>
 <p>Finally, <code>YOUR-CDN-LINK</code> has to be replaced with the link to your preferred CDN host of MathJax, .e.g <code>cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5</code>.</p></li>
 <li><strong>Including an RSS-feed:</strong><br />
 As an optional set-up you can include an RSS-feed for your blog which is a prerequisite to be on <a href="https://www.r-bloggers.com/add-your-blog/">r-bloggers</a>. <a href="https://notast.netlify.app/post/blogdown-hugo-git-github-netlify-rss-disqus/">Benjaming C</a> outlines how he set up the RSS-feeds (at the bottom of the blog-post). The steps are as follows:

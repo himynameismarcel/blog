@@ -92,13 +92,15 @@ In lists or enumerations in jekyll, the engine would automatically indent code-b
     
     which doesn't look very pretty.
     
-    A hint can be found [here](https://commonmark.org/help/tutorial/10-nestedLists.html) where it says *to nest a code block, indent by either 8 spaces or two tabs*. By trial and error I discovered that **three** tabs did the trick for me and the following code
+    A hint can be found [here](https://commonmark.org/help/tutorial/10-nestedLists.html) where it says *to nest a code block, indent by either 8 spaces or two tabs*. By trial and error I discovered that **three** tabs did the trick for me (in this case of a nested list) and the following code
     
     ![](/img/hugo_markdown_example_solution.png)
     
     generates the desired output
     
-    ![](/img/hugo_markdown_example_solution2.png)   
+    ![](/img/hugo_markdown_example_solution2.png)  
+    
+    If you only want to indent on the level of the first list you have to adjust the number of *tabs* accordingly (i.e. on the first level you would indent only one tab).
     
 * **Lists and Enumerations:**\   
 In hugo (blogdown), lists and enumerations did not render for me when simply migrating my `.markdown`-blogposts to blogdown. The reasin was quickly found as discussed here on [stackoverflow](https://stackoverflow.com/questions/55186599/bullet-lists-not-rendering-in-blogdown-rmd-file): You have to add an empty line before the list.
@@ -119,15 +121,14 @@ Mainroad is by default shipped with a red color-theme. To switch that to a more 
   
   
 * **Support math expressions through MathJax:**\  
-Yihui Xie explains how to add the support for mathematical expressions in the [blogdown e-book](https://bookdown.org/yihui/blogdown/templates.html) in chapter 2.5.2. To do this, you have to add the below code to `footer.html` which is parked in `themes/Mainroad/layouts/partials`.
-
-      ```raw
-      <script src="//yihui.org/js/math-code.js"></script>
-      <script async
-      src="//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML">
-      </script>
-      ```
-
+Yihui Xie explains how to add the support for mathematical expressions in the [blogdown e-book](https://bookdown.org/yihui/blogdown/templates.html) in chapter 2.5.2. To do this, you have to add the below code to `footer.html` which is parked in `themes/Mainroad/layouts/partials` in your blog's folder-structure:
+  ```raw
+  <script src="//yihui.org/js/math-code.js"></script>
+  <script async
+  src="//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  ```
+      
   Finally, `YOUR-CDN-LINK` has to be replaced with the link to your preferred CDN host of MathJax, .e.g `cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5`.
 
 * **Including an RSS-feed:**\

@@ -83,10 +83,11 @@ When running the same in hugo&lt;/p&gt;
 &lt;p&gt;we get&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_output.jpeg&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;which doesn’t look very pretty.&lt;/p&gt;
-&lt;p&gt;A hint can be found &lt;a href=&#34;https://commonmark.org/help/tutorial/10-nestedLists.html&#34;&gt;here&lt;/a&gt; where it says &lt;em&gt;to nest a code block, indent by either 8 spaces or two tabs&lt;/em&gt;. By trial and error I discovered that &lt;strong&gt;three&lt;/strong&gt; tabs did the trick for me and the following code&lt;/p&gt;
+&lt;p&gt;A hint can be found &lt;a href=&#34;https://commonmark.org/help/tutorial/10-nestedLists.html&#34;&gt;here&lt;/a&gt; where it says &lt;em&gt;to nest a code block, indent by either 8 spaces or two tabs&lt;/em&gt;. By trial and error I discovered that &lt;strong&gt;three&lt;/strong&gt; tabs did the trick for me (in this case of a nested list) and the following code&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_solution.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;generates the desired output&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_solution2.png&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;/img/hugo_markdown_example_solution2.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;If you only want to indent on the level of the first list you have to adjust the number of &lt;em&gt;tabs&lt;/em&gt; accordingly (i.e. on the first level you would indent only one tab).&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Lists and Enumerations:&lt;/strong&gt; &lt;br /&gt;
 In hugo (blogdown), lists and enumerations did not render for me when simply migrating my &lt;code&gt;.markdown&lt;/code&gt;-blogposts to blogdown. The reasin was quickly found as discussed here on &lt;a href=&#34;https://stackoverflow.com/questions/55186599/bullet-lists-not-rendering-in-blogdown-rmd-file&#34;&gt;stackoverflow&lt;/a&gt;: You have to add an empty line before the list.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;How to include ‘Non-blog-files’ (like e.g. &lt;code&gt;.pdf&lt;/code&gt;-files):&lt;/strong&gt;&lt;br /&gt;
@@ -104,13 +105,11 @@ Mainroad is by default shipped with a red color-theme. To switch that to a more 
 &lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Support math expressions through MathJax:&lt;/strong&gt; 
-Yihui Xie explains how to add the support for mathematical expressions in the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/templates.html&#34;&gt;blogdown e-book&lt;/a&gt; in chapter 2.5.2. To do this, you have to add the below code to &lt;code&gt;footer.html&lt;/code&gt; which is parked in &lt;code&gt;themes/Mainroad/layouts/partials&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```raw
-&amp;lt;script src=&amp;quot;//yihui.org/js/math-code.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+Yihui Xie explains how to add the support for mathematical expressions in the &lt;a href=&#34;https://bookdown.org/yihui/blogdown/templates.html&#34;&gt;blogdown e-book&lt;/a&gt; in chapter 2.5.2. To do this, you have to add the below code to &lt;code&gt;footer.html&lt;/code&gt; which is parked in &lt;code&gt;themes/Mainroad/layouts/partials&lt;/code&gt; in your blog’s folder-structure:&lt;/p&gt;
+&lt;pre class=&#34;raw&#34;&gt;&lt;code&gt;&amp;lt;script src=&amp;quot;//yihui.org/js/math-code.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
 &amp;lt;script async
 src=&amp;quot;//YOUR-CDN-LINK/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
-&amp;lt;/script&amp;gt;
-```&lt;/code&gt;&lt;/pre&gt;
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Finally, &lt;code&gt;YOUR-CDN-LINK&lt;/code&gt; has to be replaced with the link to your preferred CDN host of MathJax, .e.g &lt;code&gt;cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Including an RSS-feed:&lt;/strong&gt;&lt;br /&gt;
 As an optional set-up you can include an RSS-feed for your blog which is a prerequisite to be on &lt;a href=&#34;https://www.r-bloggers.com/add-your-blog/&#34;&gt;r-bloggers&lt;/a&gt;. &lt;a href=&#34;https://notast.netlify.app/post/blogdown-hugo-git-github-netlify-rss-disqus/&#34;&gt;Benjaming C&lt;/a&gt; outlines how he set up the RSS-feeds (at the bottom of the blog-post). The steps are as follows:
