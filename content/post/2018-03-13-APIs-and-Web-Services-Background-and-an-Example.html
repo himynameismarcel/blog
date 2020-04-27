@@ -547,7 +547,7 @@ Date: Sun, 25 Mar 2018 14:41:25 GMT
   ]
 }</code></pre>
 <p>We should apply this technique to all other functions to ensure that the client always also sees the URIs instead of the ids (not shown here).</p>
-<p>The very last piece we want to implement following <a href="https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments">Grinberg’s post</a> is to secure our web service with an authentication. by requiring clients to provide a username and password.<br>
+<p>The very last piece we want to implement following <a href="https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments">Grinberg’s post</a> is to secure our web service with an authentication by requiring clients to provide a username and password.<br>
 Usually in web applications where we would have a login form that sends the credentials to the server which then creates a session for the logged in user would violate the <em>stateless</em> requirement of REST. Therefore, instead we have to ask clients to send their authentication information with every request they send to us.
 and because with REST we always try to adhere to the HTTP protocol as much as we can, we can make use of the Flask extension <code>Flask-HTTPAuth</code> which allows us to secure our web API. For this, we first have to install the extension with</p>
 <pre class="raw"><code>$ pip install flask-httpauth</code></pre>
@@ -623,36 +623,31 @@ Below we will go through the deployment process in 10 easy steps, assuming that 
 <li><p>Create a file called <code>Procile</code> without an extension and write <code>web: gunicorn app:app</code> whereby the first instance of <code>app</code> refers to the name of your file <code>app.py</code> and the second <code>app</code> refers to the name of the variable holding the Flask instance.</p></li>
 <li><p>The last file we need is a file called <code>runtime.txt</code> in which we have to write the version of python we want our app to run on. To specify the correct version, simply refer to the <a href="https://devcenter.heroku.com/articles/python-runtimes">Heroku DevCenter</a> that always lists the latest supported python distributions for Python 2 and 3. In our case, we write <code>python-3.6.4</code> to our file.</p></li>
 <li><p>Next, we have to log in to <code>heroku</code> from the command line ty executing <code>heroku login</code>. When asked type in your Email-address and password.</p>
-<pre><code> ```raw
- $ heroku login
- Enter your Heroku credentials:
- Email: &lt;your_email_address&gt;
- Password: &lt;your_password&gt;
- Logged in as &lt;your_email_address&gt;
- ```</code></pre></li>
+<pre class="raw"><code>$ heroku login
+Enter your Heroku credentials:
+Email: &lt;your_email_address&gt;
+Password: &lt;your_password&gt;
+Logged in as &lt;your_email_address&gt;</code></pre></li>
 <li><p>We create a new app by executing <code>heroku create todo-api-tutorial</code>. Note that you will have to use a different name because <code>todo-api-tutorial</code> will already be taken by me unless I deleted this app again in the meantime and the name is free again.</p></li>
 <li><p>Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:</p>
-<pre><code> ```raw
- $ git init
- Initialized empty Git repository in ..........................
- $ git add .
- $ git commit -m &quot;first commit&quot;
- [master (root-commit) 77ab482] first commit
-  5 files changed, 287 insertions(+)
-  create mode 100644 Procfile
-  create mode 100644 app.py
-  create mode 100644 requirements.txt
-  create mode 100644 runtime.txt
-  create mode 100644 tasks.txt
- ```</code></pre></li>
+<pre class="raw"><code>$ git init
+Initialized empty Git repository in ..........................
+$ git add .
+$ git commit -m &quot;first commit&quot;
+[master (root-commit) 77ab482] first commit
+ 5 files changed, 287 insertions(+)
+ create mode 100644 Procfile
+ create mode 100644 app.py
+ create mode 100644 requirements.txt
+ create mode 100644 runtime.txt
+ create mode 100644 tasks.txt</code></pre></li>
 <li><p>We want to connect to our <code>todo-api-tutorial</code> app by executing <code>heroku git:remote --app todo-api-tutorial</code>. To check that the connection was successful run <code>heroku info</code>.</p></li>
 <li><p>By running <code>git push heroku master</code> will detect all the files that you created above, install all dependencies and packages specified in <code>requirements.txt</code> and ultimately deploy the app. The entire deployment process should end with</p>
 <pre class="raw"><code>remote: Verifying deploy... done.
 To https://git.heroku.com/todo-api-tutorial.git
  * [new branch]      master -&gt; master</code></pre></li>
 <li><p>Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below <code>GET</code> request in your command line should give you the following output:</p>
-<pre><code>```raw
-$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+<pre class="raw"><code>$ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
 {
   &quot;tasks&quot;: [
     {
@@ -668,8 +663,7 @@ $ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/tod
       &quot;uri&quot;: &quot;http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2&quot;
     }
   ]
-}
-```</code></pre>
+}</code></pre>
 <p>If so, congratulations!</p></li>
 </ol>
 <p>In a similar fashion, you can add a task:</p>

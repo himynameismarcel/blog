@@ -597,7 +597,7 @@ Date: Sun, 25 Mar 2018 14:41:25 GMT
 ```
 We should apply this technique to all other functions to ensure that the client always also sees the URIs instead of the ids (not shown here).
 
-The very last piece we want to implement following [Grinberg's post](https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments) is to secure our web service with an authentication. by requiring clients to provide a username and password.<br>
+The very last piece we want to implement following [Grinberg's post](https://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask/page/0#comments) is to secure our web service with an authentication by requiring clients to provide a username and password.<br>
 Usually in web applications where we would have a login form that sends the credentials to the server which then creates a session for the logged in user would violate the *stateless* requirement of REST. Therefore, instead we have to ask clients to send their authentication information with every request they send to us.
 and because with REST we always try to adhere to the HTTP protocol as much as we can, we can make use of the Flask extension `Flask-HTTPAuth` which allows us to secure our web API. For this, we first have to install the extension with
 ```raw
@@ -697,31 +697,31 @@ In case you are in the `/app` directory but your virtual environment is deactiva
 
 5. Next, we have to log in to `heroku` from the command line ty executing `heroku login`. When asked type in your Email-address and password.
 
-        ```raw
-        $ heroku login
-        Enter your Heroku credentials:
-        Email: <your_email_address>
-        Password: <your_password>
-        Logged in as <your_email_address>
-        ```
+      ```raw
+      $ heroku login
+      Enter your Heroku credentials:
+      Email: <your_email_address>
+      Password: <your_password>
+      Logged in as <your_email_address>
+      ```
 
 6. We create a new app by executing `heroku create todo-api-tutorial`. Note that you will have to use a different name because `todo-api-tutorial` will already be taken by me unless I deleted this app again in the meantime and the name is free again.
 
 7. Type the following sequence of commands that creates a local git repository, stages all files in the repository and commits all changes:
 
-        ```raw
-        $ git init
-        Initialized empty Git repository in ..........................
-        $ git add .
-        $ git commit -m "first commit"
-        [master (root-commit) 77ab482] first commit
-         5 files changed, 287 insertions(+)
-         create mode 100644 Procfile
-         create mode 100644 app.py
-         create mode 100644 requirements.txt
-         create mode 100644 runtime.txt
-         create mode 100644 tasks.txt
-        ```
+      ```raw
+      $ git init
+      Initialized empty Git repository in ..........................
+      $ git add .
+      $ git commit -m "first commit"
+      [master (root-commit) 77ab482] first commit
+       5 files changed, 287 insertions(+)
+       create mode 100644 Procfile
+       create mode 100644 app.py
+       create mode 100644 requirements.txt
+       create mode 100644 runtime.txt
+       create mode 100644 tasks.txt
+      ```
 
 8. We want to connect to our `todo-api-tutorial` app by executing `heroku git:remote --app todo-api-tutorial`. To check that the connection was successful run `heroku info`.
 
@@ -735,25 +735,25 @@ In case you are in the `/app` directory but your virtual environment is deactiva
 
 10. Now comes the big moment where we will check whether our deployed web service is now actually also retrievable. Executing the below `GET` request in your command line should give you the following output:
 
-        ```raw
-        $ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
-        {
-          "tasks": [
-            {
-              "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
-              "done": false,
-              "title": "Buy groceries",
-              "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/1"
-            },
-            {
-              "description": "Need to find a good Python tutorial on the web",
-              "done": false,
-              "title": "Learn Python",
-              "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2"
-            }
-          ]
-        }
-        ```
+      ```raw
+      $ curl -u your_username:your_password http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks
+      {
+        "tasks": [
+          {
+            "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
+            "done": false,
+            "title": "Buy groceries",
+            "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/1"
+          },
+          {
+            "description": "Need to find a good Python tutorial on the web",
+            "done": false,
+            "title": "Learn Python",
+            "uri": "http://todo-api-tutorial.herokuapp.com/todo/api/v1.0/tasks/2"
+          }
+        ]
+      }
+      ```
 If so, congratulations!
 
 In a similar fashion, you can add a task:

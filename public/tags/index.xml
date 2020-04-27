@@ -102,20 +102,11 @@
     </item>
     
     <item>
-      <title>GLEIF</title>
-      <link>/tags/gleif/</link>
+      <title>bokeh</title>
+      <link>/tags/bokeh/</link>
       <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/gleif/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Publication</title>
-      <link>/tags/publication/</link>
-      <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/publication/</guid>
+      <guid>/tags/bokeh/</guid>
       <description></description>
     </item>
     
@@ -125,6 +116,24 @@
       <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GLEIF</title>
+      <link>/tags/gleif/</link>
+      <pubDate>Fri, 29 Sep 2017 10:37:05 +0100</pubDate>
+      
+      <guid>/tags/gleif/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Publication</title>
+      <link>/tags/publication/</link>
+      <pubDate>Fri, 29 Sep 2017 10:37:05 +0100</pubDate>
+      
+      <guid>/tags/publication/</guid>
       <description></description>
     </item>
     

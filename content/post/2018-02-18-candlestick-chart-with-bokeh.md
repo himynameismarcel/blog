@@ -1,9 +1,11 @@
 ---
 author: Marcel Kropp
 date: "2018-02-19"
+categories:
+- Python
 tags:
-- Publication
-- GLEIF
+- Python
+- bokeh
 - Web-Scraping
 title: Candlestick Chart using Python's Bokeh Library
 ---
