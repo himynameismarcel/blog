@@ -580,7 +580,7 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
 
 .meta__item {
 	display: inline;
-	margin-left: 15px;
+	margin-right: 15px;
 }
 
 .meta__item:first-child {
